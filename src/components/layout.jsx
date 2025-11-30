@@ -1,8 +1,9 @@
-import {Button, Layout, Menu} from "antd";
+import {Avatar, Button, Layout, Menu} from "antd";
 import {useState} from "react";
 import {useNavigate, useLocation} from "react-router"
 import {items} from "../utils/menu_items.jsx";
-import {MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons";
+import {MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined} from "@ant-design/icons";
+import {Outlet} from "react-router-dom";
 
 const {Sider, Header, Content} = Layout;
 
@@ -12,17 +13,29 @@ const PageLayout = () => {
   const navigate = useNavigate();
   return (
     <Layout className="!min-h-screen">
-      <Sider trigger={null} collapsible collapsed={collapsed}>
-        <Menu
-          theme="dark"
-          items={items}
-          mode="inline"
-          selectedKeys={[location.pathname]}
-          onClick={(item) => navigate(item.key)}
-        />
+      <Sider
+        width={220}
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        theme="light"
+        className="fixed left-0 top-0 h-screen shadow"
+      >
+        <div className="flex justify-center items-center py-9">
+          <Avatar icon={<UserOutlined/>} size={64}/>
+        </div>
+        <div className="overflow-y-auto h-[calc(100vh-120px)]">
+          <Menu
+            theme="light"
+            items={items}
+            mode="inline"
+            selectedKeys={[location.pathname]}
+            onClick={(item) => navigate(item.key)}
+          />
+        </div>
       </Sider>
       <Layout>
-        <Header className="!bg-white shadow flex items-center !px-4">
+        <Header className="!bg-white shadow flex items-center !px-4 sticky top-0">
           <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -31,7 +44,7 @@ const PageLayout = () => {
           />
         </Header>
         <Content className="p-6 bg-gray-100">
-          Content
+          <Outlet/>
         </Content>
       </Layout>
     </Layout>
