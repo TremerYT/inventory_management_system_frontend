@@ -1,6 +1,6 @@
 import "./index.css";
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import PageLayout from "./components/layout.jsx";
+import PageLayout from "./components/layout/layout.jsx";
 import Dashboard from "./pages/dashboard.jsx";
 
 function App() {

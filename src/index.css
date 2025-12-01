@@ -1,20 +1,25 @@
 @import "tailwindcss";
-
+* {
+  font-family: "Poppins", sans-serif;
+}
 
 ::-webkit-scrollbar {
-    width: 4px;
+  width: 4px;
 }
+
 ::-webkit-scrollbar-thumb {
-    background: #cbd5e0;
-    border-radius: 4px;
+  background: #cbd5e0;
+  border-radius: 4px;
 }
+
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+  background: #f1f1f1;
 }
 
 .hide-scrollbar {
-    scrollbar-width: none;
+  scrollbar-width: none;
 }
+
 .hide-scrollbar::-webkit-scrollbar {
-    display: none;
+  display: none;
 }

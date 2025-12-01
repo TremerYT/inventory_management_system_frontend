@@ -1,7 +1,7 @@
 import {Avatar, Button, Layout, Menu} from "antd";
 import {useState} from "react";
 import {useNavigate, useLocation} from "react-router"
-import {items} from "../utils/menu_items.jsx";
+import {items} from "../../utils/menu_items.jsx";
 import {MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined} from "@ant-design/icons";
 import {Outlet} from "react-router-dom";
 
@@ -38,9 +38,9 @@ const PageLayout = () => {
         <Header className="!bg-white shadow flex items-center !px-4 sticky top-0">
           <Button
             type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
             onClick={() => setCollapsed(!collapsed)}
-            style={{ fontSize: 18, width: 48, height: 48 }}
+            style={{fontSize: 18, width: 48, height: 48}}
           />
         </Header>
         <Content className="p-6 bg-gray-100">
