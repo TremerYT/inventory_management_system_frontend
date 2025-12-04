@@ -1,7 +1,7 @@
 import {Form} from "antd";
-import ProductForm from "../components/forms/product.jsx";
+import ProductForm from "../components/forms/product_details.jsx";
 
-const ProductDetails = () => {
+const Product = () => {
   const [form] = Form.useForm()
   return (
     <Form
@@ -13,4 +13,4 @@ const ProductDetails = () => {
   );
 }
 
-export default ProductDetails;
+export default Product;

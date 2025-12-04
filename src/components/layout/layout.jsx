@@ -1,54 +1,66 @@
-import {Avatar, Button, Layout, Menu} from "antd";
-import {useState} from "react";
-import {useNavigate, useLocation} from "react-router"
-import {items} from "../../utils/menu_items.jsx";
-import {MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined} from "@ant-design/icons";
-import {Outlet} from "react-router-dom";
+import React, { useState } from "react";
+import { Avatar, Button, Layout, Menu} from "antd";
+import { useNavigate, useLocation, Outlet } from "react-router-dom"; // Standardized import
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  UserOutlined
+} from "@ant-design/icons";
+import { items } from "../../utils/menu_items.jsx";
 
-const {Sider, Header, Content} = Layout;
+const { Sider, Header, Content } = Layout;
 
 const PageLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+
   return (
-    <Layout className="!min-h-screen">
+    <Layout className="h-screen w-full overflow-hidden">
       <Sider
         width={220}
         trigger={null}
         collapsible
         collapsed={collapsed}
         theme="light"
-        className="fixed left-0 top-0 h-screen shadow"
+        className="border-r border-gray-200"
       >
-        <div className="flex justify-center items-center py-9">
-          <Avatar icon={<UserOutlined/>} size={64}/>
-        </div>
-        <div className="overflow-y-auto h-[calc(100vh-120px)]">
-          <Menu
-            theme="light"
-            items={items}
-            mode="inline"
-            selectedKeys={[location.pathname]}
-            onClick={(item) => navigate(item.key)}
-          />
+        <div className="flex flex-col h-full">
+          <div className="flex justify-center items-center py-6 shrink-0">
+            <Avatar icon={<UserOutlined />} size={collapsed ? 40 : 64} className="transition-all duration-300" />
+          </div>
+          <div className="flex-1 overflow-y-auto custom-scrollbar">
+            <Menu
+              theme="light"
+              mode="inline"
+              items={items}
+              selectedKeys={[location.pathname]}
+              onClick={(item) => navigate(item.key)}
+              style={{ borderRight: 0 }}
+            />
+          </div>
         </div>
       </Sider>
       <Layout>
-        <Header className="!bg-white shadow flex items-center !px-4 sticky top-0 z-10">
+        <Header
+          style={{ padding: 0 }}
+          className="shadow-sm flex items-center px-4 relative z-10 !bg-white"
+        >
           <Button
             type="text"
-            icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
-            style={{fontSize: 18, width: 48, height: 48}}
+            style={{ fontSize: "16px", width: 48, height: 48 }}
           />
         </Header>
-        <Content className="p-6 bg-gray-100 overflow-y-auto h-[calc(100vh-80px)]">
-          <Outlet/>
+        <Content className="overflow-y-auto p-6 bg-gray-50 h-full relative">
+          <div className="max-w-[1600px] mx-auto">
+            <Outlet />
+          </div>
         </Content>
       </Layout>
     </Layout>
   );
-}
+};
 
 export default PageLayout;
