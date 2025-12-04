@@ -8,7 +8,7 @@ const ProductDetails = () => {
       layout="vertical"
       form={form}
     >
-      <ProductForm />
+      <ProductForm form={form}/>
     </Form>
   );
 }
