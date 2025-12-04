@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import { Avatar, Button, Layout, Menu} from "antd";
+import {Avatar, Badge, Button, Dropdown, Layout, Menu} from "antd";
 import { useNavigate, useLocation, Outlet } from "react-router-dom"; // Standardized import
 import {
+  BellOutlined,
   MenuFoldOutlined,
-  MenuUnfoldOutlined,
+  MenuUnfoldOutlined, PlusCircleOutlined, SettingOutlined,
   UserOutlined
 } from "@ant-design/icons";
 import { items } from "../../utils/menu_items.jsx";
+import ItemDropdown from "../ui/item_dropdown.jsx";
+import ProfileDropDown from "../ui/profile_dropdown.jsx";
+
 
 const { Sider, Header, Content } = Layout;
 
@@ -44,7 +48,7 @@ const PageLayout = () => {
       <Layout>
         <Header
           style={{ padding: 0 }}
-          className="shadow-sm flex items-center px-4 relative z-10 !bg-white"
+          className="shadow-sm flex justify-between items-center !px-4 relative z-10 !bg-white"
         >
           <Button
             type="text"
@@ -52,6 +56,31 @@ const PageLayout = () => {
             onClick={() => setCollapsed(!collapsed)}
             style={{ fontSize: "16px", width: 48, height: 48 }}
           />
+          <div className="flex items-center !gap-6">
+            <Dropdown
+              trigger="click"
+              placement="bottomLeft"
+              dropdownRender={() => <ItemDropdown/>}
+            >
+              <Button
+                type="primary"
+                icon={<PlusCircleOutlined/>}
+              >
+                Add New
+              </Button>
+            </Dropdown>
+            <Badge count={2} size="small">
+              <BellOutlined style={{ fontSize: 17 }} />
+            </Badge>
+            <SettingOutlined style={{ fontSize: 17 }}/>
+            <Dropdown
+              trigger="click"
+              placement="bottomLeft"
+              dropdownRender={() => <ProfileDropDown/>}
+            >
+              <Avatar icon={<UserOutlined/>}/>
+            </Dropdown>
+          </div>
         </Header>
         <Content className="overflow-y-auto p-6 bg-gray-50 h-full relative">
           <div className="max-w-[1600px] mx-auto">

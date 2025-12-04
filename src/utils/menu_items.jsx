@@ -1,10 +1,11 @@
 import {
   AppstoreOutlined, BarChartOutlined,
   DashboardOutlined, FileTextOutlined,
-  ProductOutlined, ReloadOutlined,
+  ProductOutlined, ReloadOutlined, SettingOutlined,
   ShoppingCartOutlined,
   ShoppingOutlined, TeamOutlined, UserOutlined
 } from "@ant-design/icons";
+import {Avatar} from "antd";
 
 const getItems = (key, icon, label, children) => {
   return {
@@ -53,7 +54,50 @@ export const items = [
     getItems("/suppliers/add", null, "Add Supplier"),
   ]),
 
-  getItems("/reports", <FileTextOutlined />, "Reports"),
+  getItems("/expenses", <FileTextOutlined />, "Expenses"),
 
   getItems("/analytics", <BarChartOutlined />, "Analytics"),
 ];
+
+export const itemDropdown = [
+  {
+    icon: <AppstoreOutlined/>,
+    label: "Category"
+  },
+  {
+    icon: <ProductOutlined/>,
+    label: "Product"
+  },
+  {
+    icon: <ShoppingOutlined/>,
+    label: "Purchase"
+  },
+  {
+    icon: <ShoppingCartOutlined/>,
+    label: "Sale"
+  },
+  {
+    icon: <FileTextOutlined/>,
+    label: "Expense"
+  },
+  {
+    icon: <ReloadOutlined/>,
+    label: "Returns"
+  },
+];
+
+export const profileDropdown = [
+  {
+    icon: <UserOutlined/>,
+    label: "My Profile"
+  },
+  {
+    icon: <BarChartOutlined/>,
+    label: "Analytics"
+  },
+  {
+    icon: <SettingOutlined/>,
+    label: "Settings"
+  }
+  ];
+

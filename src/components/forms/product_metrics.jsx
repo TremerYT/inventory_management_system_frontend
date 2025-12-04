@@ -6,7 +6,7 @@ const ProductMetrics = ({form}) => {
   const currentTaxType = Form.useWatch("taxType", form);
   const currentDiscountType = Form.useWatch("discountType", form);
   return (
-    <Card title={<Title level={4}>Pricing and Stocks</Title>}>
+    <Card title={<Title level={5}>Pricing and Stocks</Title>}>
       <Row gutter={[16, 16]}>
         <Col span={8}>
           <Form.Item

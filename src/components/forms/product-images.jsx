@@ -9,7 +9,7 @@ const ProductImages = () => {
     setFileList(fileList);
   }
   return (
-    <Card title={<Title level={4}>Product Images</Title>}>
+    <Card title={<Title level={5}>Product Images</Title>} >
       <Form.Item
         name="images"
         valuePropName="fileList"
