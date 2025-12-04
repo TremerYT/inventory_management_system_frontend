@@ -35,7 +35,7 @@ const PageLayout = () => {
         </div>
       </Sider>
       <Layout>
-        <Header className="!bg-white shadow flex items-center !px-4 sticky top-0">
+        <Header className="!bg-white shadow flex items-center !px-4 sticky top-0 z-10">
           <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
@@ -43,7 +43,7 @@ const PageLayout = () => {
             style={{fontSize: 18, width: 48, height: 48}}
           />
         </Header>
-        <Content className="p-6 bg-gray-100">
+        <Content className="p-6 bg-gray-100 overflow-y-auto h-[calc(100vh-80px)]">
           <Outlet/>
         </Content>
       </Layout>

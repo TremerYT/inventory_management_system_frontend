@@ -125,7 +125,64 @@ const ProductForm = ({form}) => {
           </Form.Item>
         </Col>
       </Row>
+      <Row gutter={[16, 16]}>
+        <Col span={12}>
+          <Form.Item
+            name='category'
+            label='Category'
+            rules={[{required: true, message: "Category is Required"}]}
+          >
+            <Select options={categories}/>
+          </Form.Item>
+        </Col>
+
+        <Col span={12}>
+          <Form.Item
+            name='brand'
+            label="Brand"
+            rules={[{required: true, message: "Brand is Required"}]}
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+
+      </Row>
+
+      <Row gutter={[16, 16]}>
+        <Col span={12}>
+          <Form.Item
+            name='sellingType'
+            label="Selling Type"
+            rules={[{required: true, message: "Selling Type is Required"}]}
+          >
+            <Select options={sellingType}/>
+          </Form.Item>
+        </Col>
+
+        <Col span={12}>
+          <Form.Item
+            name='unit'
+            label='Unit'
+            rules={[{required: true, message: "Unit is Required"}]}
+          >
+            <Input/>
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col span={24}>
+          <Form.Item
+            name='description'
+            label='Description'
+            rules={[{required: true, message: "Description is Required"}]}
+          >
+            <TextArea rows={4}/>
+          </Form.Item>
+        </Col>
+      </Row>
     </Card>
+
   );
 }
 
