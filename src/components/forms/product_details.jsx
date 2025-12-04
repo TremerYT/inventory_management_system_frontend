@@ -16,10 +16,7 @@ const ProductDetails = ({form}) => {
     form.setFieldsValue({skuNumber: sku});
   }
   return (
-    <Card
-      title={<Title level={4}>Product Information</Title>}
-      className="!mb-4"
-    >
+    <Card title={<Title level={4}>Product Information</Title>}>
       <Row gutter={[16, 16]}>
         <Col span={12}>
           <Form.Item
