@@ -1,8 +1,7 @@
-import {Button, Card, Col, Form, Input, Row, Select, Typography} from 'antd';
+import {Card, Col, Form, Input, Row, Select, Typography} from 'antd';
 import {categories, sellingType, stores, wareHouses} from "../../utils/select_items.js";
-import {PlusCircleOutlined, ReloadOutlined} from "@ant-design/icons";
 
-const {Title, Text} = Typography;
+const {Title} = Typography;
 const { TextArea } = Input;
 const generateSKU = (productName) => {
   if (!productName) return "";
@@ -11,14 +10,15 @@ const generateSKU = (productName) => {
   return `${code}-${randomNumber}`;
 }
 
-const ProductForm = ({form}) => {
+const ProductDetails = ({form}) => {
   const handleProductChange = (value) => {
     const sku = generateSKU(value);
     form.setFieldsValue({skuNumber: sku});
   }
   return (
     <Card
-      title={<Title level={3}>Product Information</Title>}
+      title={<Title level={4}>Product Information</Title>}
+      className="!mb-4"
     >
       <Row gutter={[16, 16]}>
         <Col span={12}>
@@ -129,4 +129,4 @@ const ProductForm = ({form}) => {
   );
 }
 
-export default ProductForm
+export default ProductDetails

@@ -1,5 +1,6 @@
 import {Form} from "antd";
-import ProductForm from "../components/forms/product_details.jsx";
+import ProductDetails from "../components/forms/product_details.jsx";
+import ProductMetrics from "../components/forms/product_metrics.jsx";
 
 const Product = () => {
   const [form] = Form.useForm()
@@ -8,7 +9,8 @@ const Product = () => {
       layout="vertical"
       form={form}
     >
-      <ProductForm form={form}/>
+      <ProductDetails form={form}/>
+      <ProductMetrics form={form}/>
     </Form>
   );
 }
