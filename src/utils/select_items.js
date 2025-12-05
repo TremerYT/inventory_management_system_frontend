@@ -1,11 +1,3 @@
-import {
-  AppstoreOutlined,
-  FileTextOutlined,
-  ProductOutlined, ReloadOutlined,
-  ShoppingCartOutlined,
-  ShoppingOutlined
-} from "@ant-design/icons";
-
 export const stores = [
   {
     value: 'option1',
@@ -119,6 +111,6 @@ export const discounts = [
     value: 0.02,
     label: "20%",
   }
-]
+];
 
 

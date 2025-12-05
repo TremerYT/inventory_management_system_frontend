@@ -65,7 +65,7 @@ const AllProducts = () => {
       </div>
 
       <Card
-        title={<Input.Search onChange={handleOnChange} className="!w-1/4"/>}
+        title={<Input.Search value={searchText} onChange={handleOnChange} className="!w-1/4"/>}
         extra= {
           <div className="flex gap-2 w-80">
             <Select
