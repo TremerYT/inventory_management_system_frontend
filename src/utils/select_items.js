@@ -62,6 +62,21 @@ export const categories= [
   }
 ];
 
+export const brands= [
+  {
+    value: 'option1',
+    label: 'option 1'
+  },
+  {
+    value: 'option2',
+    label: 'option 2'
+  },
+  {
+    value: 'option3',
+    label: 'option 3'
+  }
+];
+
 export const taxType = [
   {
     value: "flat",

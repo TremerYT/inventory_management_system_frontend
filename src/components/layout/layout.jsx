@@ -60,7 +60,7 @@ const PageLayout = () => {
             <Dropdown
               trigger="click"
               placement="bottomLeft"
-              dropdownRender={() => <ItemDropdown/>}
+              popupRender={() => <ItemDropdown/>}
             >
               <Button
                 type="primary"
@@ -76,15 +76,15 @@ const PageLayout = () => {
             <Dropdown
               trigger="click"
               placement="bottomLeft"
-              dropdownRender={() => <ProfileDropDown/>}
+              popupRender={() => <ProfileDropDown/>}
             >
               <Avatar icon={<UserOutlined/>}/>
             </Dropdown>
           </div>
         </Header>
-        <Content className="overflow-y-auto p-6 bg-gray-50 h-full relative">
+        <Content className="overflow-y-auto p-6 bg-gray-100 h-full relative">
           <div className="max-w-[1600px] mx-auto">
-            <Outlet />
+            <Outlet/>
           </div>
         </Content>
       </Layout>
