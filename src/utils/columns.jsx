@@ -4,8 +4,8 @@ import {DeleteOutlined, EditOutlined, EyeOutlined} from "@ant-design/icons";
 export const productColumns = [
   {
     title: 'SKU',
-    dataIndex: 'sku',
-    key: 'sku',
+    dataIndex: 'skuNumber',
+    key: 'skuNumber',
   },
   {
     title: 'Product Name',

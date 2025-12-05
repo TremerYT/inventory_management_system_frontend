@@ -19,7 +19,12 @@ const AllProducts = () => {
     const searchString = e.target.value;
     setSearchText(searchString);
 
-    const filtered = mockProducts.filter((item) => item.productName)
+    const filtered = mockProducts.filter(
+      (item) => item.productName.toLowerCase().includes(searchString.toLowerCase()) ||
+      item.skuNumber.toLowerCase().includes(searchString.toLowerCase())
+    );
+
+    setfilteredProducts(filtered)
   }
 
   return (
@@ -79,7 +84,7 @@ const AllProducts = () => {
         <Table
           rowSelection={rowSelection}
           columns={productColumns}
-          dataSource={mockProducts}
+          dataSource={filteredProducts}
         />
       </Card>
     </>

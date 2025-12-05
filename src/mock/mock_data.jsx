@@ -1,7 +1,7 @@
 export const mockProducts = [
   {
     key: 1,
-    sku: "SKU001",
+    skuNumber: "SKU001",
     productName: "Apple iPhone 15",
     category: "Electronics",
     price: 1200,
@@ -10,7 +10,7 @@ export const mockProducts = [
   },
   {
     key: 2,
-    sku: "SKU002",
+    skuNumber: "SKU002",
     productName: "Samsung Galaxy S23",
     category: "Electronics",
     price: 1100,
@@ -19,7 +19,7 @@ export const mockProducts = [
   },
   {
     key: 3,
-    sku: "SKU003",
+    skuNumber: "SKU003",
     productName: "Nike Air Max",
     category: "Footwear",
     price: 150,
@@ -28,7 +28,7 @@ export const mockProducts = [
   },
   {
     key: 4,
-    sku: "SKU004",
+    skuNumber: "SKU004",
     productName: "Levi's Jeans",
     category: "Apparel",
     price: 80,
@@ -37,7 +37,7 @@ export const mockProducts = [
   },
   {
     key: 5,
-    sku: "SKU005",
+    skuNumber: "SKU005",
     productName: "Dell XPS 13",
     category: "Electronics",
     price: 1400,
@@ -46,7 +46,7 @@ export const mockProducts = [
   },
   {
     key: 6,
-    sku: "SKU006",
+    skuNumber: "SKU006",
     productName: "Sony Headphones",
     category: "Electronics",
     price: 250,
@@ -55,7 +55,7 @@ export const mockProducts = [
   },
   {
     key: 7,
-    sku: "SKU007",
+    skuNumber: "SKU007",
     productName: "Adidas Running Shoes",
     category: "Footwear",
     price: 130,
@@ -64,7 +64,7 @@ export const mockProducts = [
   },
   {
     key: 8,
-    sku: "SKU008",
+    skuNumber: "SKU008",
     productName: "HP Pavilion Laptop",
     category: "Electronics",
     price: 900,
@@ -73,7 +73,7 @@ export const mockProducts = [
   },
   {
     key: 9,
-    sku: "SKU009",
+    skuNumber: "SKU009",
     productName: "Puma T-Shirt",
     category: "Apparel",
     price: 25,
@@ -82,7 +82,7 @@ export const mockProducts = [
   },
   {
     key: 10,
-    sku: "SKU010",
+    skuNumber: "SKU010",
     productName: "Canon EOS R6",
     category: "Electronics",
     price: 2500,
