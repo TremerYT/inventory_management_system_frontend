@@ -1,52 +1,92 @@
-import {Button, Space} from "antd";
-import {DeleteOutlined, EditOutlined, EyeOutlined} from "@ant-design/icons";
+import { Button, Space, Tag } from "antd";
+import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
 
 export const productColumns = [
   {
-    title: 'SKU',
-    dataIndex: 'skuNumber',
-    key: 'skuNumber',
+    title: "SKU",
+    dataIndex: "skuNumber",
+    key: "skuNumber",
   },
   {
-    title: 'Product Name',
-    dataIndex: 'productName',
-    key: 'productName',
+    title: "Product Name",
+    dataIndex: "productName",
+    key: "productName",
   },
   {
-    title: 'Category',
-    dataIndex: 'category',
-    key: 'category',
+    title: "Category",
+    dataIndex: "category",
+    key: "category",
   },
   {
-    title: 'Price',
-    dataIndex: 'price',
-    key: 'price',
+    title: "Brand",
+    dataIndex: "brand",
+    key: "brand",
   },
   {
-    title: 'Unit',
-    dataIndex: 'unit',
-    key: 'unit',
+    title: "Price",
+    dataIndex: "price",
+    key: "price",
   },
   {
-    title: 'Qty',
-    dataIndex: 'quantity',
-    key: 'quantity',
+    title: "Unit",
+    dataIndex: "unit",
+    key: "unit",
   },
   {
-    title: 'Action',
-    key: 'action',
+    title: "Quantity",
+    dataIndex: "quantity",
+    key: "quantity",
+  },
+  {
+    title: "Action",
+    key: "action",
+    render: (_, record) => (
+      <Space size="middle">
+        <Button icon={<EyeOutlined />} onClick={() => {}} />
+        <Button
+          icon={<EditOutlined style={{ color: "blue" }} />}
+          onClick={() => {}}
+        />
+        <Button
+          icon={<DeleteOutlined style={{ color: "red" }} />}
+          onClick={() => {}}
+        />
+      </Space>
+    ),
+  },
+];
+
+export const categoryColumns = [
+  {
+    title: "Category",
+    dataIndex: "category",
+    key: "category",
+  },
+  {
+    title: "Created on",
+    dataIndex: "createdAt",
+    key: "createdAt",
+    render: (value) => new Date(value).toLocaleDateString(),
+  },
+  {
+    title: "Status",
+    dataIndex: "status",
+    key: "status",
+    render: (status) => (
+      <Tag color={status === "Active" ? "green" : "red"}>{status}</Tag>
+    ),
+  },
+  {
+    title: "Action",
+    key: "action",
     render: (_, record) => (
       <Space size="middle">
         <Button
-          icon={<EyeOutlined/>}
+          icon={<EditOutlined style={{ color: "blue" }} />}
           onClick={() => {}}
         />
         <Button
-          icon={<EditOutlined style={{color: "blue"}}/>}
-          onClick={() => {}}
-        />
-        <Button
-          icon={<DeleteOutlined style={{color: "red"}}/>}
+          icon={<DeleteOutlined style={{ color: "red" }} />}
           onClick={() => {}}
         />
       </Space>

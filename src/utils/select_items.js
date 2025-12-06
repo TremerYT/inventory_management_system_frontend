@@ -1,72 +1,72 @@
 export const stores = [
   {
-    value: 'option1',
-    label: 'option 1'
+    value: "option1",
+    label: "option 1",
   },
   {
-    value: 'option2',
-    label: 'option 2'
+    value: "option2",
+    label: "option 2",
   },
   {
-    value: 'option3',
-    label: 'option 3'
-  }
+    value: "option3",
+    label: "option 3",
+  },
 ];
 
 export const wareHouses = [
   {
-    value: 'option1',
-    label: 'option 1'
+    value: "option1",
+    label: "option 1",
   },
   {
-    value: 'option2',
-    label: 'option 2'
+    value: "option2",
+    label: "option 2",
   },
   {
-    value: 'option3',
-    label: 'option 3'
-  }
+    value: "option3",
+    label: "option 3",
+  },
 ];
 
 export const sellingType = [
   {
-    value: 'online',
-    label: 'Online'
+    value: "online",
+    label: "Online",
   },
   {
-    value: 'pos',
-    label: 'POS'
-  }
+    value: "pos",
+    label: "POS",
+  },
 ];
 
-export const categories= [
+export const categories = [
   {
-    value: 'option1',
-    label: 'option 1'
+    value: "option1",
+    label: "option 1",
   },
   {
-    value: 'option2',
-    label: 'option 2'
+    value: "option2",
+    label: "option 2",
   },
   {
-    value: 'option3',
-    label: 'option 3'
-  }
+    value: "option3",
+    label: "option 3",
+  },
 ];
 
-export const brands= [
+export const brands = [
   {
-    value: 'option1',
-    label: 'option 1'
+    value: "option1",
+    label: "option 1",
   },
   {
-    value: 'option2',
-    label: 'option 2'
+    value: "option2",
+    label: "option 2",
   },
   {
-    value: 'option3',
-    label: 'option 3'
-  }
+    value: "option3",
+    label: "option 3",
+  },
 ];
 
 export const taxType = [
@@ -76,8 +76,8 @@ export const taxType = [
   },
   {
     value: "percentage",
-    label: "Percentage"
-  }
+    label: "Percentage",
+  },
 ];
 
 export const taxes = [
@@ -88,8 +88,8 @@ export const taxes = [
   {
     value: 10,
     label: "Excise duty (10%)",
-  }
-]
+  },
+];
 
 export const discountType = [
   {
@@ -98,8 +98,8 @@ export const discountType = [
   },
   {
     value: "percentage",
-    label: "Percentage"
-  }
+    label: "Percentage",
+  },
 ];
 
 export const discounts = [
@@ -110,7 +110,16 @@ export const discounts = [
   {
     value: 0.02,
     label: "20%",
-  }
+  },
 ];
 
-
+export const status = [
+  {
+    value: "active",
+    label: "Active",
+  },
+  {
+    value: "inActive",
+    label: "Inactive",
+  },
+];

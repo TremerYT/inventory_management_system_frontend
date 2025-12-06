@@ -3,29 +3,23 @@ import {FileExcelFilled, FilePdfFilled, PlusOutlined, ReloadOutlined} from "@ant
 import {brands, categories} from "../utils/select_items.js";
 import {useState} from "react";
 import {productColumns} from "../utils/columns.jsx";
-import {mockProducts} from "../mock/mock_data.jsx";
+import {useProductFilter} from "../hooks/useProductFilter.js";
 
 const AllProducts = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  const [searchText, setSearchText] = useState("");
-  const [filteredProducts, setfilteredProducts] = useState(mockProducts);
+  const {
+    searchText,
+    filteredProducts,
+    handleOnChange,
+    handleOnSelect,
+  } = useProductFilter();
+
   const rowSelection = {
     selectedRowKeys,
     onChange: (newSelectedKeys) => {
       setSelectedRowKeys(newSelectedKeys);
     }
   };
-  const handleOnChange = (e) => {
-    const searchString = e.target.value;
-    setSearchText(searchString);
-
-    const filtered = mockProducts.filter(
-      (item) => item.productName.toLowerCase().includes(searchString.toLowerCase()) ||
-      item.skuNumber.toLowerCase().includes(searchString.toLowerCase())
-    );
-
-    setfilteredProducts(filtered)
-  }
 
   return (
     <>
@@ -72,11 +66,13 @@ const AllProducts = () => {
               defaultValue="Category"
               options={categories}
               className="!w-full"
+              onSelect={handleOnSelect}
             />
             <Select
               defaultValue="Brand"
               options={brands}
               className="!w-full"
+              onSelect={handleOnSelect}
             />
           </div>
         }
@@ -85,6 +81,7 @@ const AllProducts = () => {
           rowSelection={rowSelection}
           columns={productColumns}
           dataSource={filteredProducts}
+          pagination={{pageSize: 10}}
         />
       </Card>
     </>

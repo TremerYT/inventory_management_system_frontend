@@ -26,7 +26,6 @@ export const items = [
 
   getItems("/categories", <AppstoreOutlined />, "Categories", [
     getItems("/categories/list", null, "List Categories"),
-    getItems("/categories/add", null, "Add Category"),
   ]),
 
   getItems("/sales", <ShoppingCartOutlined />, "Sales", [
