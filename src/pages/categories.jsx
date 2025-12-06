@@ -8,16 +8,20 @@ import {
   ReloadOutlined,
 } from "@ant-design/icons";
 import { categoryColumns } from "../utils/columns";
-import {useCategoryFilter} from "../hooks/useCategoryFilter.js";
+import {useFilter} from "../hooks/useFilter.js";
+import {mockCategories} from "../mock/mock_data.jsx";
 
 const Categories = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const {
     searchText,
-    filteredCategories,
+    filteredData,
     handleOnChange,
     handleOnSelect,
-  } = useCategoryFilter();
+  } = useFilter(mockCategories, {
+    searchFields: ["category"],
+    selectFields: ["status"],
+  });
 
   const rowSelection = {
     selectedRowKeys,
@@ -67,14 +71,14 @@ const Categories = () => {
           <Select
             defaultValue="Status"
             options={status}
-            onSelect={handleOnSelect}
+            onSelect={(value) => handleOnSelect("status", value)}
           />
         }
       >
         <Table
           rowSelection={rowSelection}
           columns={categoryColumns}
-          dataSource={filteredCategories}
+          dataSource={filteredData}
           pagination={{ pageSize: 10 }}
         />
       </Card>

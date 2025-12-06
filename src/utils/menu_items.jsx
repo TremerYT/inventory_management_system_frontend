@@ -20,8 +20,8 @@ export const items = [
   getItems("/dashboard", <DashboardOutlined />, "Dashboard"),
 
   getItems("/products", <ProductOutlined />, "Products", [
-    getItems("/products/list", null, "List Products"),
     getItems("/products/add", null, "Add Product"),
+    getItems("/products/list", null, "List Products"),
   ]),
 
   getItems("/categories", <AppstoreOutlined />, "Categories", [
@@ -29,13 +29,12 @@ export const items = [
   ]),
 
   getItems("/sales", <ShoppingCartOutlined />, "Sales", [
-    getItems("/sales/list", null, "List Sales"),
-    getItems("/sales/add", null, "Add Sale"),
+    getItems("/sales/online", null, "Online Sales"),
+    getItems("/sales/pos", null, " Pos Sales"),
   ]),
 
   getItems("/purchases", <ShoppingOutlined />, "Purchases", [
     getItems("/purchases/list", null, "List Purchases"),
-    getItems("/purchases/add", null, "Add Purchase"),
   ]),
 
   getItems("/returns", <ReloadOutlined />, "Returns", [

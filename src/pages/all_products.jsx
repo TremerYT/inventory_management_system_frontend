@@ -3,16 +3,22 @@ import {FileExcelFilled, FilePdfFilled, PlusOutlined, ReloadOutlined} from "@ant
 import {brands, categories} from "../utils/select_items.js";
 import {useState} from "react";
 import {productColumns} from "../utils/columns.jsx";
-import {useProductFilter} from "../hooks/useProductFilter.js";
+import {useFilter} from "../hooks/useFilter.js";
+import {mockProducts} from "../mock/mock_data.jsx";
 
 const AllProducts = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const {
     searchText,
-    filteredProducts,
+    filteredData,
     handleOnChange,
     handleOnSelect,
-  } = useProductFilter();
+  } = useFilter(
+    mockProducts, {
+      searchFields: ["productName", "skuNumber"],
+      selectFields: ["category", "brand"],
+    }
+  );
 
   const rowSelection = {
     selectedRowKeys,
@@ -66,13 +72,13 @@ const AllProducts = () => {
               defaultValue="Category"
               options={categories}
               className="!w-full"
-              onSelect={handleOnSelect}
+              onSelect={(value) => handleOnSelect("category", value)}
             />
             <Select
               defaultValue="Brand"
               options={brands}
               className="!w-full"
-              onSelect={handleOnSelect}
+              onSelect={(value) => handleOnSelect("brand", value)}
             />
           </div>
         }
@@ -80,7 +86,7 @@ const AllProducts = () => {
         <Table
           rowSelection={rowSelection}
           columns={productColumns}
-          dataSource={filteredProducts}
+          dataSource={filteredData}
           pagination={{pageSize: 10}}
         />
       </Card>
