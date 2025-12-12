@@ -59,28 +59,29 @@ export const items = [
 
 export const itemDropdown = [
   {
-    icon: <AppstoreOutlined/>,
-    label: "Category"
-  },
-  {
     icon: <ProductOutlined/>,
-    label: "Product"
+    label: "Product",
+    path: '/Products/add'
   },
   {
     icon: <ShoppingOutlined/>,
-    label: "Purchase"
+    label: "Purchase",
+    path: '/purchases/list'
   },
   {
     icon: <ShoppingCartOutlined/>,
-    label: "Sale"
+    label: "Sale",
+    path: '/sales/list'
   },
   {
     icon: <FileTextOutlined/>,
-    label: "Expense"
+    label: "Expense",
+    path: '/expenses/list'
   },
   {
     icon: <ReloadOutlined/>,
-    label: "Returns"
+    label: "Returns",
+    path: '/returns/list'
   },
 ];
 

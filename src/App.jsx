@@ -5,6 +5,7 @@ import Dashboard from "./pages/dashboard.jsx";
 import Product from "./pages/product.jsx";
 import AllProducts from "./pages/all_products.jsx";
 import Categories from "./pages/categories.jsx";
+import OnlineSales from "./pages/online_sales.jsx";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/products/add" element={<Product />} />
           <Route path="/products/list" element={<AllProducts />} />
           <Route path="/categories/list" element={<Categories />} />
+          <Route path="/sales/online" element={<OnlineSales />} />
         </Route>
       </Routes>
     </BrowserRouter>

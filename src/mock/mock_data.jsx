@@ -164,3 +164,37 @@ export const mockCategories = [
     status: "Inactive",
   },
 ];
+
+export const mockSales = [
+  {
+    key: 1,
+    customerName: "John Doe",
+    referenceNumber: "REF001",
+    date: "2025-12-10T14:30:00Z",
+    status: "Completed",
+    grandTotal: 1500,
+    paid: 1000,
+    paymentStatus: "Overdue",
+  },
+  {
+    key: 2,
+    customerName: "Jane Smith",
+    referenceNumber: "REF002",
+    date: "2025-12-11T09:15:00Z",
+    status: "Pending",
+    grandTotal: 800,
+    paid: 0,
+    paymentStatus: "Unpaid",
+  },
+  {
+    key: 3,
+    customerName: "Michael Brown",
+    referenceNumber: "REF003",
+    date: "2025-12-12T16:45:00Z",
+    status: "Completed",
+    grandTotal: 250,
+    paid: 250,
+    paymentStatus: "Paid",
+  },
+];
+

@@ -123,3 +123,48 @@ export const status = [
     label: "Inactive",
   },
 ];
+
+export const saleStatus = [
+  {
+    value: "pending",
+    label: "Pending",
+  },
+  {
+    value: "completed",
+    label: "Completed",
+  },
+];
+
+export const paymentStatus = [
+  {
+    value: "paid",
+    label: "Paid",
+  },
+  {
+    value: "unPaid",
+    label: "unpaid",
+  },
+  {
+    value: "overDue",
+    label: "overdue",
+  },
+];
+
+export const dates = [
+  {
+    value: "ascending",
+    label: "Ascending",
+  },
+  {
+    value: "descending",
+    label: "Descending",
+  },
+  {
+    value: "lastMonth",
+    label: "Last Month",
+  },
+  {
+    value: "lastWeek",
+    label: "Last 7 Days",
+  },
+]

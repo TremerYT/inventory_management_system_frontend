@@ -5,21 +5,21 @@ import {
   PlusOutlined,
   ReloadOutlined,
 } from "@ant-design/icons";
-import { brands, categories } from "../utils/select_items.js";
+import { dates, paymentStatus, saleStatus, status } from "../utils/select_items.js";
 import { useState } from "react";
-import { productColumns } from "../utils/columns.jsx";
+import { salesColumns } from "../utils/columns.jsx";
 import { useFilter } from "../hooks/useFilter.js";
-import { mockProducts } from "../mock/mock_data.jsx";
+import { mockProducts, mockSales } from "../mock/mock_data.jsx";
 import { useNavigate } from "react-router";
 
-const AllProducts = () => {
+const OnlineSales = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const navigate = useNavigate();
   const { searchText, filteredData, handleSearch, handleSelect } = useFilter(
-    mockProducts,
+    mockSales,
     {
-      searchFields: ["productName", "skuNumber"],
-      selectFields: ["category", "brand"],
+      searchFields: ["customerName", "referenceNumber"],
+      selectFields: ["status", "paymentStatus", "date"],
     }
   );
 
@@ -34,8 +34,8 @@ const AllProducts = () => {
     <>
       <div className="flex justify-between items-center mb-4">
         <div className="flex flex-col items-start">
-          <h2 className="text-2xl">Product List</h2>
-          <p>Manage Your Products</p>
+          <h2 className="text-2xl">Online Sales</h2>
+          <p>Manage Your Online Sales</p>
         </div>
         <div className="flex gap-3">
           <Button
@@ -53,9 +53,6 @@ const AllProducts = () => {
             icon={<ReloadOutlined style={{ fontSize: 20 }} />}
             onClick={() => {}}
           />
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => {navigate('/products/add')}}>
-            Add Product
-          </Button>
         </div>
       </div>
 
@@ -68,25 +65,31 @@ const AllProducts = () => {
           />
         }
         extra={
-          <div className="flex gap-2 w-80">
+          <div className="flex gap-2 w-100">
             <Select
-              defaultValue="Category"
-              options={categories}
+              placeholder="Status"
+              options={saleStatus}
               className="!w-full"
-              onSelect={(value) => handleSelect("category", value)}
+              onSelect={(value) => handleSelect("status", value)}
             />
             <Select
-              defaultValue="Brand"
-              options={brands}
+              placeholder="Payment Status"
+              options={paymentStatus}
               className="!w-full"
-              onSelect={(value) => handleSelect("brand", value)}
+              onSelect={(value) => handleSelect("paymentStatus", value)}
+            />
+            <Select
+              placeholder="Sort by Date"
+              options={dates}
+              className="!w-full"
+              onSelect={(value) => handleSelect("date", value)}
             />
           </div>
         }
       >
         <Table
           rowSelection={rowSelection}
-          columns={productColumns}
+          columns={salesColumns}
           dataSource={filteredData}
           pagination={{ pageSize: 10 }}
         />
@@ -95,4 +98,4 @@ const AllProducts = () => {
   );
 };
 
-export default AllProducts;
+export default OnlineSales;
