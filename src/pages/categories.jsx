@@ -16,8 +16,8 @@ const Categories = () => {
   const {
     searchText,
     filteredData,
-    handleOnChange,
-    handleOnSelect,
+    handleSearch,
+    handleSelect,
   } = useFilter(mockCategories, {
     searchFields: ["category"],
     selectFields: ["status"],
@@ -63,7 +63,7 @@ const Categories = () => {
         title={
           <Input.Search
             value={searchText}
-            onChange={handleOnChange}
+            onChange={handleSearch}
             className="!w-1/4"
           />
         }
@@ -71,7 +71,7 @@ const Categories = () => {
           <Select
             defaultValue="Status"
             options={status}
-            onSelect={(value) => handleOnSelect("status", value)}
+            onSelect={(value) => handleSelect("status", value)}
           />
         }
       >

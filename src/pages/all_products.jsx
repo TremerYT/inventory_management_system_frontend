@@ -1,20 +1,21 @@
-import {Button, Card, Input, Select, Table} from "antd";
-import {FileExcelFilled, FilePdfFilled, PlusOutlined, ReloadOutlined} from "@ant-design/icons";
-import {brands, categories} from "../utils/select_items.js";
-import {useState} from "react";
-import {productColumns} from "../utils/columns.jsx";
-import {useFilter} from "../hooks/useFilter.js";
-import {mockProducts} from "../mock/mock_data.jsx";
+import { Button, Card, Input, Select, Table } from "antd";
+import {
+  FileExcelFilled,
+  FilePdfFilled,
+  PlusOutlined,
+  ReloadOutlined,
+} from "@ant-design/icons";
+import { brands, categories } from "../utils/select_items.js";
+import { useState } from "react";
+import { productColumns } from "../utils/columns.jsx";
+import { useFilter } from "../hooks/useFilter.js";
+import { mockProducts } from "../mock/mock_data.jsx";
 
 const AllProducts = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  const {
-    searchText,
-    filteredData,
-    handleOnChange,
-    handleOnSelect,
-  } = useFilter(
-    mockProducts, {
+  const { searchText, filteredData, handleSearch, handleSelect } = useFilter(
+    mockProducts,
+    {
       searchFields: ["productName", "skuNumber"],
       selectFields: ["category", "brand"],
     }
@@ -24,61 +25,59 @@ const AllProducts = () => {
     selectedRowKeys,
     onChange: (newSelectedKeys) => {
       setSelectedRowKeys(newSelectedKeys);
-    }
+    },
   };
 
   return (
     <>
       <div className="flex justify-between items-center mb-4">
         <div className="flex flex-col items-start">
-          <h2 className="text-2xl">
-            Product List
-          </h2>
-          <p>
-            Manage Your Products
-          </p>
+          <h2 className="text-2xl">Product List</h2>
+          <p>Manage Your Products</p>
         </div>
         <div className="flex gap-3">
           <Button
-            type='text'
-            icon={<FilePdfFilled style={{fontSize: 20, color: "red"}}/>}
+            type="text"
+            icon={<FilePdfFilled style={{ fontSize: 20, color: "red" }} />}
             onClick={() => {}}
           />
           <Button
-            type='text'
-            icon={<FileExcelFilled style={{fontSize: 20, color: "green"}}/>}
+            type="text"
+            icon={<FileExcelFilled style={{ fontSize: 20, color: "green" }} />}
             onClick={() => {}}
           />
           <Button
-            type='text'
-            icon={<ReloadOutlined style={{fontSize: 20}}/>}
+            type="text"
+            icon={<ReloadOutlined style={{ fontSize: 20 }} />}
             onClick={() => {}}
           />
-          <Button
-            type='primary'
-            icon={<PlusOutlined/>}
-            onClick={() => {}}
-          >
+          <Button type="primary" icon={<PlusOutlined />} onClick={() => {}}>
             Add Product
           </Button>
         </div>
       </div>
 
       <Card
-        title={<Input.Search value={searchText} onChange={handleOnChange} className="!w-1/4"/>}
-        extra= {
+        title={
+          <Input.Search
+            value={searchText}
+            onChange={handleSearch}
+            className="!w-1/4"
+          />
+        }
+        extra={
           <div className="flex gap-2 w-80">
             <Select
               defaultValue="Category"
               options={categories}
               className="!w-full"
-              onSelect={(value) => handleOnSelect("category", value)}
+              onSelect={(value) => handleSelect("category", value)}
             />
             <Select
               defaultValue="Brand"
               options={brands}
               className="!w-full"
-              onSelect={(value) => handleOnSelect("brand", value)}
+              onSelect={(value) => handleSelect("brand", value)}
             />
           </div>
         }
@@ -87,11 +86,11 @@ const AllProducts = () => {
           rowSelection={rowSelection}
           columns={productColumns}
           dataSource={filteredData}
-          pagination={{pageSize: 10}}
+          pagination={{ pageSize: 10 }}
         />
       </Card>
     </>
   );
-}
+};
 
 export default AllProducts;
