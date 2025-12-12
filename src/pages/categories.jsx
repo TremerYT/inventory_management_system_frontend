@@ -10,9 +10,11 @@ import {
 import { categoryColumns } from "../utils/columns";
 import {useFilter} from "../hooks/useFilter.js";
 import {mockCategories} from "../mock/mock_data.jsx";
+import AddCategory from "../components/modal/add_category.jsx";
 
 const Categories = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
   const {
     searchText,
     filteredData,
@@ -29,6 +31,15 @@ const Categories = () => {
       setSelectedRowKeys(newSelectedKeys);
     },
   };
+
+  const handleOk = (values) => {
+    console.log("Form Submited:", values);
+		setIsOpen(false);
+  }
+
+   const handleCancel = () => {
+		setIsOpen(false);
+  }
 
   return (
     <>
@@ -53,7 +64,7 @@ const Categories = () => {
             icon={<ReloadOutlined style={{ fontSize: 20 }} />}
             onClick={() => {}}
           />
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => {}}>
+          <Button type="primary" icon={<PlusOutlined />} onClick={() => setIsOpen(true)}>
             Add Category
           </Button>
         </div>
@@ -81,6 +92,7 @@ const Categories = () => {
           dataSource={filteredData}
           pagination={{ pageSize: 10 }}
         />
+        <AddCategory isOpen={isOpen} handleOk={handleOk} handleCancel={handleCancel}/>
       </Card>
     </>
   );
