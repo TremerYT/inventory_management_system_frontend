@@ -123,13 +123,13 @@ export const salesColumns = [
     title: "Grand Total",
     dataIndex: "grandTotal",
     key: "grandTotal",
-    render: (value) => `ksh${(value || 0).toFixed(2)}`
+    render: (value) => `ksh${(value || 0).toFixed(2)}`,
   },
   {
     title: "Paid",
     dataIndex: "paid",
     key: "Paid",
-    render: (value) => `ksh${(value || 0).toFixed(2)}`
+    render: (value) => `ksh${(value || 0).toFixed(2)}`,
   },
   {
     title: "Amount Due",
@@ -141,31 +141,30 @@ export const salesColumns = [
     },
   },
   {
-  title: "Payment Status",
-  dataIndex: "paymentStatus",
-  key: "paymentStatus",
-  render: (status) => {
-    let color;
+    title: "Payment Status",
+    dataIndex: "paymentStatus",
+    key: "paymentStatus",
+    render: (status) => {
+      let color;
 
-    switch (status.toLowerCase()) {
-      case "paid":
-        color = "green";
-        break;
-      case "overdue":
-        color = "gold";
-        break;
-      case "unpaid":
-        color = "volcano";
-        break;
-      default:
-        color = "default";
-    }
-    const displayStatus = status.charAt(0).toUpperCase() + status.slice(1);
+      switch (status.toLowerCase()) {
+        case "paid":
+          color = "green";
+          break;
+        case "overdue":
+          color = "gold";
+          break;
+        case "unpaid":
+          color = "volcano";
+          break;
+        default:
+          color = "default";
+      }
+      const displayStatus = status.charAt(0).toUpperCase() + status.slice(1);
 
-    return <Tag color={color}>{displayStatus}</Tag>;
+      return <Tag color={color}>{displayStatus}</Tag>;
+    },
   },
-},
-
   {
     title: "Action",
     key: "action",
@@ -182,4 +181,67 @@ export const salesColumns = [
       </Space>
     ),
   },
-]
+];
+
+export const customersColumns = [
+  {
+    title: "Customer Id",
+    dataIndex: "customerId",
+    key: "customerId",
+  },
+  {
+    title: "Customer",
+    dataIndex: "customerName",
+    key: "customerName",
+  },
+  {
+    title: "Email",
+    dataIndex: "email",
+    key: "email",
+  },
+  {
+    title: "Phone",
+    dataIndex: "phone",
+    key: "phone",
+  },
+  {
+    title: "Address",
+    dataIndex: "address",
+    key: "address",
+  },
+  {
+    title: "Postal Code",
+    dataIndex: "postalCode",
+    key: "postalCode",
+  },
+  {
+    title: "City",
+    dataIndex: "city",
+    key: "city",
+  },
+  {
+    title: "Status",
+    dataIndex: "status",
+    key: "status",
+    render: (status) => (
+      <Tag color={status === "Active" ? "green" : "red"}>{status}</Tag>
+    ),
+  },
+  {
+    title: "Action",
+    key: "action",
+    render: (_, record) => (
+      <Space size="middle">
+        <Button
+          icon={<EditOutlined style={{ color: "blue" }} />}
+          onClick={() => {}}
+        />
+        <Button
+          icon={<DeleteOutlined style={{ color: "red" }} />}
+          onClick={() => {}}
+        />
+      </Space>
+    ),
+  },
+];
+

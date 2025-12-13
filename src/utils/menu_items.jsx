@@ -42,18 +42,11 @@ export const items = [
     getItems("/returns/add", null, "Add Return"),
   ]),
 
-  getItems("/customers", <UserOutlined />, "Customers", [
-    getItems("/customers/list", null, "List Customers"),
-    getItems("/customers/add", null, "Add Customer"),
+  getItems("/people", <UserOutlined />, "People", [
+    getItems("/customers", null, "Customers"),
+    getItems("/suppliers", null, "Suppliers"),
   ]),
-
-  getItems("/suppliers", <TeamOutlined />, "Suppliers", [
-    getItems("/suppliers/list", null, "List Suppliers"),
-    getItems("/suppliers/add", null, "Add Supplier"),
-  ]),
-
   getItems("/expenses", <FileTextOutlined />, "Expenses"),
-
   getItems("/analytics", <BarChartOutlined />, "Analytics"),
 ];
 

@@ -3,17 +3,18 @@ import {
   FileExcelFilled,
   FilePdfFilled,
   ReloadOutlined,
+  PlusOutlined
 } from "@ant-design/icons";
-import { dates, paymentStatus, saleStatus, status } from "../utils/select_items.js";
+import { dates, paymentStatus, saleStatus } from "../utils/select_items.js";
 import { useState } from "react";
 import { salesColumns } from "../utils/columns.jsx";
 import { useFilter } from "../hooks/useFilter.js";
-import { mockProducts, mockSales } from "../mock/mock_data.jsx";
+import { mockSales } from "../mock/mock_data.jsx";
 import { useNavigate } from "react-router";
 
-const OnlineSales = () => {
+
+const PosSales = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  const navigate = useNavigate();
   const { searchText, filteredData, handleSearch, handleSelect } = useFilter(
     mockSales,
     {
@@ -33,8 +34,8 @@ const OnlineSales = () => {
     <>
       <div className="flex justify-between items-center mb-4">
         <div className="flex flex-col items-start">
-          <h2 className="text-2xl">Online Sales</h2>
-          <p>Manage Your Online Sales</p>
+          <h2 className="text-2xl">POS Sales</h2>
+          <p>Manage Your POS Sales</p>
         </div>
         <div className="flex gap-3">
           <Button
@@ -52,6 +53,9 @@ const OnlineSales = () => {
             icon={<ReloadOutlined style={{ fontSize: 20 }} />}
             onClick={() => {}}
           />
+          <Button type="primary" icon={<PlusOutlined />} onClick={() => {}}>
+            Add Sale
+          </Button>
         </div>
       </div>
 
@@ -69,19 +73,20 @@ const OnlineSales = () => {
               placeholder="Status"
               options={saleStatus}
               className="!w-full"
-              onSelect={(value) => handleSelect("status", value)}
+              onChange={(value) => handleSelect("status", value)}
+              allowClear
             />
             <Select
               placeholder="Payment Status"
               options={paymentStatus}
               className="!w-full"
-              onSelect={(value) => handleSelect("paymentStatus", value)}
+              onChange={(value) => handleSelect("paymentStatus", value)}
             />
             <Select
               placeholder="Sort by Date"
               options={dates}
               className="!w-full"
-              onSelect={(value) => handleSelect("date", value)}
+              onOnChange={(value) => handleSelect("date", value)}
             />
           </div>
         }
@@ -97,4 +102,4 @@ const OnlineSales = () => {
   );
 };
 
-export default OnlineSales;
+export default PosSales

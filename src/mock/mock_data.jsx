@@ -101,7 +101,6 @@ export const mockProducts = [
   },
 ];
 
-
 export const mockCategories = [
   {
     key: 1,
@@ -198,3 +197,60 @@ export const mockSales = [
   },
 ];
 
+export const mockCustomers = [
+  {
+    key: 1,
+    customerId: "CUST-001",
+    customerName: "John Mwangi",
+    email: "john.mwangi@gmail.com",
+    phone: "+254712345678",
+    address: "Kilimani Road",
+    postalCode: "00100",
+    city: "Nairobi",
+    status: "Active",
+  },
+  {
+    key: 2,
+    customerId: "CUST-002",
+    customerName: "Grace Wanjiku",
+    email: "grace.wanjiku@yahoo.com",
+    phone: "+254722987654",
+    address: "Thika Road",
+    postalCode: "01000",
+    city: "Thika",
+    status: "Inactive",
+  },
+  {
+    key: 3,
+    customerId: "CUST-003",
+    customerName: "Peter Otieno",
+    email: "peter.otieno@outlook.com",
+    phone: "+254733456789",
+    address: "Oginga Odinga Street",
+    postalCode: "40100",
+    city: "Kisumu",
+    status: "Active",
+  },
+  {
+    key: 4,
+    customerId: "CUST-004",
+    customerName: "Mary Achieng",
+    email: "mary.achieng@gmail.com",
+    phone: "+254700112233",
+    address: "Tom Mboya Avenue",
+    postalCode: "40300",
+    city: "Homa Bay",
+    status: "Active",
+  },
+  {
+    key: 5,
+    customerId: "CUST-005",
+    customerName: "Brian Kamau",
+    email: "brian.kamau@gmail.com",
+    phone: "+254711223344",
+    address: "Moi Avenue",
+    postalCode: "20100",
+    city: "Nakuru",
+    status: "Inactive",
+  },
+];

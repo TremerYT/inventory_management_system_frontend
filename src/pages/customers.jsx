@@ -2,23 +2,23 @@ import { Button, Card, Input, Select, Table } from "antd";
 import {
   FileExcelFilled,
   FilePdfFilled,
+  PlusOutlined,
   ReloadOutlined,
 } from "@ant-design/icons";
-import { dates, paymentStatus, saleStatus, status } from "../utils/select_items.js";
+import { status } from "../utils/select_items.js";
 import { useState } from "react";
-import { salesColumns } from "../utils/columns.jsx";
+import { customersColumns, productColumns } from "../utils/columns.jsx";
 import { useFilter } from "../hooks/useFilter.js";
-import { mockProducts, mockSales } from "../mock/mock_data.jsx";
+import { mockCustomers, mockProducts } from "../mock/mock_data.jsx";
 import { useNavigate } from "react-router";
 
-const OnlineSales = () => {
+const Customers = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  const navigate = useNavigate();
   const { searchText, filteredData, handleSearch, handleSelect } = useFilter(
-    mockSales,
+    mockCustomers,
     {
-      searchFields: ["customerName", "referenceNumber"],
-      selectFields: ["status", "paymentStatus", "date"],
+      searchFields: ["customerName", "email"],
+      selectFields: ["status"],
     }
   );
 
@@ -33,8 +33,8 @@ const OnlineSales = () => {
     <>
       <div className="flex justify-between items-center mb-4">
         <div className="flex flex-col items-start">
-          <h2 className="text-2xl">Online Sales</h2>
-          <p>Manage Your Online Sales</p>
+          <h2 className="text-2xl">Customers</h2>
+          <p>Manage Your Customers</p>
         </div>
         <div className="flex gap-3">
           <Button
@@ -52,6 +52,9 @@ const OnlineSales = () => {
             icon={<ReloadOutlined style={{ fontSize: 20 }} />}
             onClick={() => {}}
           />
+          <Button type="primary" icon={<PlusOutlined />} onClick={() => {}}>
+            Add Customer
+          </Button>
         </div>
       </div>
 
@@ -64,31 +67,20 @@ const OnlineSales = () => {
           />
         }
         extra={
-          <div className="flex gap-2 w-100">
+          <div className="w-30">
             <Select
-              placeholder="Status"
-              options={saleStatus}
+              placeholder="status"
               className="!w-full"
-              onSelect={(value) => handleSelect("status", value)}
-            />
-            <Select
-              placeholder="Payment Status"
-              options={paymentStatus}
-              className="!w-full"
-              onSelect={(value) => handleSelect("paymentStatus", value)}
-            />
-            <Select
-              placeholder="Sort by Date"
-              options={dates}
-              className="!w-full"
-              onSelect={(value) => handleSelect("date", value)}
+              options={status}
+              allowClear
+              onChange={(value) => handleSelect("status", value)}
             />
           </div>
         }
       >
         <Table
           rowSelection={rowSelection}
-          columns={salesColumns}
+          columns={customersColumns}
           dataSource={filteredData}
           pagination={{ pageSize: 10 }}
         />
@@ -97,4 +89,4 @@ const OnlineSales = () => {
   );
 };
 
-export default OnlineSales;
+export default Customers;
