@@ -5,19 +5,21 @@ import {
   PlusOutlined,
   ReloadOutlined,
 } from "@ant-design/icons";
-import { status } from "../utils/select_items.js";
+import { brands, categories } from "../utils/select_items.js";
 import { useState } from "react";
-import { customersColumns} from "../utils/columns.jsx";
+import { productColumns } from "../utils/columns.jsx";
 import { useFilter } from "../hooks/useFilter.js";
-import { mockCustomers} from "../mock/mock_data.jsx";
+import { mockProducts } from "../mock/mock_data.jsx";
+import { useNavigate } from "react-router";
 
-const Customers = () => {
+const Expenses = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const navigate = useNavigate();
   const { searchText, filteredData, handleSearch, handleSelect } = useFilter(
-    mockCustomers,
+    mockProducts,
     {
-      searchFields: ["customerName", "email"],
-      selectFields: ["status"],
+      searchFields: ["productName", "skuNumber"],
+      selectFields: ["category", "brand"],
     }
   );
 
@@ -32,8 +34,8 @@ const Customers = () => {
     <>
       <div className="flex justify-between items-center mb-4">
         <div className="flex flex-col items-start">
-          <h2 className="text-2xl">Customers</h2>
-          <p>Manage Your Customers</p>
+          <h2 className="text-2xl">Product List</h2>
+          <p>Manage Your Products</p>
         </div>
         <div className="flex gap-3">
           <Button
@@ -51,8 +53,8 @@ const Customers = () => {
             icon={<ReloadOutlined style={{ fontSize: 20 }} />}
             onClick={() => {}}
           />
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => {}}>
-            Add Customer
+          <Button type="primary" icon={<PlusOutlined />} onClick={() => {navigate('/products/add')}}>
+            Add Product
           </Button>
         </div>
       </div>
@@ -66,20 +68,25 @@ const Customers = () => {
           />
         }
         extra={
-          <div className="w-30">
+          <div className="flex gap-2 w-80">
             <Select
-              placeholder="status"
+              defaultValue="Category"
+              options={categories}
               className="!w-full"
-              options={status}
-              allowClear
-              onChange={(value) => handleSelect("status", value)}
+              onSelect={(value) => handleSelect("category", value)}
+            />
+            <Select
+              defaultValue="Brand"
+              options={brands}
+              className="!w-full"
+              onSelect={(value) => handleSelect("brand", value)}
             />
           </div>
         }
       >
         <Table
           rowSelection={rowSelection}
-          columns={customersColumns}
+          columns={productColumns}
           dataSource={filteredData}
           pagination={{ pageSize: 10 }}
         />
@@ -88,4 +95,4 @@ const Customers = () => {
   );
 };
 
-export default Customers;
+export default AllProducts;

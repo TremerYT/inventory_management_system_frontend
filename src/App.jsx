@@ -8,6 +8,7 @@ import Categories from "./pages/categories.jsx";
 import OnlineSales from "./pages/online_sales.jsx";
 import PosSales from "./pages/pos_sales.jsx";
 import Customers from "./pages/customers.jsx";
+import Suppliers from "./pages/suppliers.jsx";
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
           <Route path="/sales/online" element={<OnlineSales />} />
           <Route path="/sales/pos" element={<PosSales />} />
           <Route path="/customers" element={<Customers/>} />
-
+          <Route path="/suppliers" element={<Suppliers/>} />
+           <Route path="/suppliers" element={<Suppliers/>} />
         </Route>
       </Routes>
     </BrowserRouter>

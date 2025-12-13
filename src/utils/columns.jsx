@@ -245,3 +245,62 @@ export const customersColumns = [
   },
 ];
 
+export const suppliersColumn = [
+  {
+    title: "Supplier Id",
+    dataIndex: "supplierId",
+    key: "supplierId",
+  },
+  {
+    title: "Supplier",
+    dataIndex: "supplierName",
+    key: "supplierName",
+  },
+  {
+    title: "Company",
+    dataIndex: "company",
+    key: "company",
+  },
+  {
+    title: "Email",
+    dataIndex: "email",
+    key: "email",
+  },
+  {
+    title: "Phone",
+    dataIndex: "phone",
+    key: "phone",
+  },
+  {
+    title: "Address",
+    dataIndex: "address",
+    key: "address",
+  },
+  {
+    title: "Postal Code",
+    dataIndex: "postalCode",
+    key: "postalCode",
+  },
+  {
+    title: "City",
+    dataIndex: "city",
+    key: "city",
+  },
+  {
+    title: "Action",
+    key: "action",
+    render: (_, record) => (
+      <Space size="middle">
+        <Button
+          icon={<EditOutlined style={{ color: "blue" }} />}
+          onClick={() => {}}
+        />
+        <Button
+          icon={<DeleteOutlined style={{ color: "red" }} />}
+          onClick={() => {}}
+        />
+      </Space>
+    ),
+  },
+];
+
