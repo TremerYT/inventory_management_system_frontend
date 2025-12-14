@@ -24,13 +24,22 @@ const PurchaseForm = () => {
   return (
     <Form form={purchaseForm} layout="vertical">
       <Row gutter={[16, 16]}>
-        <Col span={24}>
+        <Col span={12}>
           <Form.Item
             name="date"
             label="Date"
             rules={[{required: true, message: "Date is required"}]}
           >
             <DatePicker disabledDate={(current) => (current && current < dayjs().startOf("day"))} className="w-full"/>
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item
+            name="productName"
+            label="ProductName"
+            rules={[{required: true, message: "Product Name is required"}]}
+          >
+            <Input/>
           </Form.Item>
         </Col>
       </Row>

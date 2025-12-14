@@ -304,3 +304,53 @@ export const suppliersColumn = [
   },
 ];
 
+export const purchasesColumns = [
+  {
+    title: "Date",
+    dataIndex: "date",
+    key: "date",
+    render: (value) => new Date(value).toLocaleDateString(),
+  },
+  {
+    title: "Purchase Number",
+    dataIndex: "purchaseNumber",
+    key: "purchaseNumber",
+  },
+  {
+    title: "Supplier",
+    dataIndex: "supplier",
+    key: "supplier",
+  },
+  {
+    title: "Total",
+    dataIndex: "total",
+    key: "total",
+  },
+  {
+    title: "Paid",
+    dataIndex: "paid",
+    key: "paid",
+  },
+  {
+    title: "Balance",
+    dataIndex: "balance",
+    key: "balance",
+  },
+  {
+    title: "Action",
+    key: "action",
+    render: (_, record) => (
+      <Space size="middle">
+        <Button
+          icon={<EditOutlined style={{ color: "blue" }} />}
+          onClick={() => {}}
+        />
+        <Button
+          icon={<DeleteOutlined style={{ color: "red" }} />}
+          onClick={() => {}}
+        />
+      </Space>
+    ),
+  },
+];
+

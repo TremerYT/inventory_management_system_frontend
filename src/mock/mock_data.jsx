@@ -312,3 +312,52 @@ export const mockSuppliers = [
     city: "Nyeri",
   },
 ];
+
+export const mockPurchases = [
+  {
+    key: "1",
+    date: "2025-01-05",
+    purchaseNumber: "PUR-001",
+    supplier: "Tech Supplies Ltd",
+    total: 250000,
+    paid: 150000,
+    balance: 100000,
+  },
+  {
+    key: "2",
+    date: "2025-01-08",
+    purchaseNumber: "PUR-002",
+    supplier: "OfficeMart Kenya",
+    total: 120000,
+    paid: 120000,
+    balance: 0,
+  },
+  {
+    key: "3",
+    date: "2025-01-12",
+    purchaseNumber: "PUR-003",
+    supplier: "ElectroWorld",
+    total: 98000,
+    paid: 50000,
+    balance: 48000,
+  },
+  {
+    key: "4",
+    date: "2025-01-18",
+    purchaseNumber: "PUR-004",
+    supplier: "Global Distributors",
+    total: 340000,
+    paid: 200000,
+    balance: 140000,
+  },
+  {
+    key: "5",
+    date: "2025-01-22",
+    purchaseNumber: "PUR-005",
+    supplier: "Quick Supplies Co",
+    total: 45000,
+    paid: 45000,
+    balance: 0,
+  },
+];
+
