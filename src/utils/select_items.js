@@ -167,4 +167,15 @@ export const dates = [
     value: "lastWeek",
     label: "Last 7 Days",
   },
-]
+];
+
+export const received = [
+  {
+    value: "received",
+    label: "Received",
+  },
+  {
+    value: "notYet",
+    label: "Not Yet Received",
+  },
+];

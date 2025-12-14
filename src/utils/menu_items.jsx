@@ -59,7 +59,7 @@ export const itemDropdown = [
   {
     icon: <ShoppingOutlined/>,
     label: "Purchase",
-    path: '/purchases/list'
+    path: '/purchases/add'
   },
   {
     icon: <ShoppingCartOutlined/>,
