@@ -35,6 +35,7 @@ export const items = [
 
   getItems("/purchases", <ShoppingOutlined />, "Purchases", [
     getItems("/purchases/list", null, "List Purchases"),
+    getItems("/purchases/add", null, "Add Purchases"),
   ]),
 
   getItems("/returns", <ReloadOutlined />, "Returns", [
@@ -46,7 +47,6 @@ export const items = [
     getItems("/customers", null, "Customers"),
     getItems("/suppliers", null, "Suppliers"),
   ]),
-  getItems("/expenses", <FileTextOutlined />, "Expenses"),
   getItems("/analytics", <BarChartOutlined />, "Analytics"),
 ];
 

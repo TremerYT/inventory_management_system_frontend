@@ -75,7 +75,7 @@ const Categories = () => {
           <Input.Search
             value={searchText}
             onChange={handleSearch}
-            className="!w-1/4"
+            className="w-1/4!"
           />
         }
         extra={

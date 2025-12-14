@@ -64,7 +64,7 @@ const PosSales = () => {
           <Input.Search
             value={searchText}
             onChange={handleSearch}
-            className="!w-1/4"
+            className="w-1/4!"
           />
         }
         extra={
@@ -72,20 +72,20 @@ const PosSales = () => {
             <Select
               placeholder="Status"
               options={saleStatus}
-              className="!w-full"
+              className="w-full!"
               onChange={(value) => handleSelect("status", value)}
               allowClear
             />
             <Select
               placeholder="Payment Status"
               options={paymentStatus}
-              className="!w-full"
+              className="w-full!"
               onChange={(value) => handleSelect("paymentStatus", value)}
             />
             <Select
               placeholder="Sort by Date"
               options={dates}
-              className="!w-full"
+              className="w-full!"
               onOnChange={(value) => handleSelect("date", value)}
             />
           </div>

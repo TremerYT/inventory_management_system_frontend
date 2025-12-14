@@ -62,14 +62,14 @@ const Customers = () => {
           <Input.Search
             value={searchText}
             onChange={handleSearch}
-            className="!w-1/4"
+            className="w-1/4!"
           />
         }
         extra={
           <div className="w-30">
             <Select
               placeholder="status"
-              className="!w-full"
+              className="w-full!"
               options={status}
               allowClear
               onChange={(value) => handleSelect("status", value)}

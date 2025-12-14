@@ -64,7 +64,7 @@ const AllProducts = () => {
           <Input.Search
             value={searchText}
             onChange={handleSearch}
-            className="!w-1/4"
+            className="w-1/4!"
           />
         }
         extra={
@@ -72,13 +72,13 @@ const AllProducts = () => {
             <Select
               defaultValue="Category"
               options={categories}
-              className="!w-full"
+              className="w-full!"
               onSelect={(value) => handleSelect("category", value)}
             />
             <Select
               defaultValue="Brand"
               options={brands}
-              className="!w-full"
+              className="w-full!"
               onSelect={(value) => handleSelect("brand", value)}
             />
           </div>
