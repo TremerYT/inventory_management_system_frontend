@@ -74,19 +74,18 @@ const ReturnsForm = () => {
             <Select />
           </Form.Item>
         </Col>
+      </Row>
 
+      <Row gutter={[16, 16]}>
         <Col span={12}>
           <Form.Item
             name="customer"
             label="Customer Name"
-            rules={[{ required: true, message: "Customer Name is required" }]}
+            rules={[{ required: true }]}
           >
-            <Input/>
+            <Input />
           </Form.Item>
         </Col>
-      </Row>
-
-      <Row gutter={[16, 16]}>
         <Col span={12}>
           <Form.Item
             name="received"
@@ -94,16 +93,6 @@ const ReturnsForm = () => {
             rules={[{ required: true, message: "Return status is required" }]}
           >
             <Select options={received} />
-          </Form.Item>
-        </Col>
-
-        <Col span={12}>
-          <Form.Item
-            name="returnTax"
-            label="Return Tax"
-            rules={[{ required: true, message: "Return tax is required" }]}
-          >
-            <Select options={taxes} />
           </Form.Item>
         </Col>
       </Row>
@@ -125,7 +114,7 @@ const ReturnsForm = () => {
             label="Payment Method"
             rules={[{ required: true, message: "Payment method is required" }]}
           >
-            <Input />
+            <Select/>
           </Form.Item>
         </Col>
       </Row>

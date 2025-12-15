@@ -12,6 +12,7 @@ import Suppliers from "./pages/suppliers.jsx";
 import AddReturn from "./pages/add_return.jsx";
 import Purchases from "./pages/purchases.jsx";
 import AddPurchase from "./pages/add-purchase.jsx";
+import Returns from "./pages/returns.jsx";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/purchases/list" element={<Purchases/>} />
           <Route path="/purchases/add" element={<AddPurchase/>} />
           <Route path="/returns/add" element={<AddReturn/>} />
+          <Route path="/returns/list" element={<Returns/>} />
           <Route path="/customers" element={<Customers/>} />
           <Route path="/suppliers" element={<Suppliers/>} />
         </Route>

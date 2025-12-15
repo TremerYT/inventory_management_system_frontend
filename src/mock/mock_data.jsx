@@ -361,3 +361,26 @@ export const mockPurchases = [
   },
 ];
 
+export const mockReturns = [
+  {
+    key: "1",
+    date: "2025-01-20",
+    returnNo: "RET-2341",
+    productName: "Samsung Galaxy S23",
+    supplier: "ElectroWorld",
+    received: "Yes",
+    refund: 45000,
+  },
+  {
+    key: "2",
+    date: "2025-01-22",
+    returnNo: "RET-7812",
+    productName: "HP EliteBook 840",
+    supplier: "Tech Supplies Ltd",
+    received: "No",
+    refund: 120000,
+  },
+];
+
+
+

@@ -354,3 +354,59 @@ export const purchasesColumns = [
   },
 ];
 
+export const returnsColumns = [
+  {
+    title: "Return Date",
+    dataIndex: "date",
+    key: "date",
+    render: (value) => new Date(value).toLocaleDateString(),
+  },
+  {
+    title: "Return No",
+    dataIndex: "returnNo",
+    key: "returnNo",
+  },
+  {
+    title: "Product",
+    dataIndex: "productName",
+    key: "productName",
+  },
+  {
+    title: "Supplier",
+    dataIndex: "supplier",
+    key: "supplier",
+  },
+  {
+    title: "Status",
+    dataIndex: "received",
+    key: "received",
+    render: (status) => (
+      <Tag color={status === "Yes" ? "green" : "volcano"}>
+        {status}
+      </Tag>
+    ),
+  },
+  {
+    title: "Refund",
+    dataIndex: "refund",
+    key: "refund",
+    render: (value) => `KES ${Number(value).toLocaleString()}`,
+  },
+  {
+    title: "Action",
+    key: "action",
+    render: (_, record) => (
+      <Space size="middle">
+        <Button
+          icon={<EyeOutlined />}
+          onClick={() => console.log("View return:", record)}
+        />
+        <Button
+          danger
+          icon={<DeleteOutlined />}
+          onClick={() => console.log("Delete return:", record)}
+        />
+      </Space>
+    ),
+  },
+];

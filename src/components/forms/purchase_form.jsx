@@ -36,7 +36,7 @@ const PurchaseForm = () => {
         <Col span={12}>
           <Form.Item
             name="productName"
-            label="ProductName"
+            label="Product Name"
             rules={[{required: true, message: "Product Name is required"}]}
           >
             <Input/>
@@ -75,8 +75,8 @@ const PurchaseForm = () => {
         </Col>
         <Col span={12}>
           <Form.Item
-            name="order Tax"
-            label="Order Tax"
+            name="taxValue"
+            label="Tax Value"
             rules={[{required: true, message: "Order tax is required"}]}
           >
             <Select options={taxes}/>

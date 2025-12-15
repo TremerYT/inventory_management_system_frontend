@@ -1,7 +1,7 @@
 import {
-  AppstoreOutlined, BarChartOutlined,
-  DashboardOutlined, FileTextOutlined,
-  ProductOutlined, ReloadOutlined, SettingOutlined,
+  AppstoreOutlined, BarChartOutlined, ContainerOutlined,
+  DashboardOutlined, FileTextOutlined, InboxOutlined,
+  ProductOutlined, ReloadOutlined, SettingOutlined, ShopOutlined,
   ShoppingCartOutlined,
   ShoppingOutlined, TeamOutlined, UserOutlined
 } from "@ant-design/icons";
@@ -67,14 +67,19 @@ export const itemDropdown = [
     path: '/sales/list'
   },
   {
-    icon: <FileTextOutlined/>,
-    label: "Expense",
-    path: '/expenses/list'
+    icon: <ShopOutlined/>,
+    label: "Store",
+    path: null
+  },
+  {
+    icon: <ContainerOutlined/>,
+    label: "Warehouse",
+    path: null
   },
   {
     icon: <ReloadOutlined/>,
     label: "Returns",
-    path: '/returns/list'
+    path: '/returns/add'
   },
 ];
 

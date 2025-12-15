@@ -21,7 +21,7 @@ const ProductDetails = ({form}) => {
         <Col span={12}>
           <Form.Item
             name='storeName'
-            label="store"
+            label="Store"
             rules={[{required: true, message: "Store is Required"}]}
           >
             <Select
