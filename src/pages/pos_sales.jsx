@@ -11,10 +11,13 @@ import { salesColumns } from "../utils/columns.jsx";
 import { useFilter } from "../hooks/useFilter.js";
 import { mockSales } from "../mock/mock_data.jsx";
 import { useNavigate } from "react-router";
+import AddSale from "../components/modal/add_sale.jsx";
 
 
 const PosSales = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [sales, setSales] = useState(mockSales);
   const { searchText, filteredData, handleSearch, handleSelect } = useFilter(
     mockSales,
     {
@@ -28,6 +31,20 @@ const PosSales = () => {
     onChange: (newSelectedKeys) => {
       setSelectedRowKeys(newSelectedKeys);
     },
+  };
+
+
+  const handleAddSale = (sale) => {
+    setSales((prev) => [
+      ...prev,
+      {
+        ...sale,
+        saleId: Date.now(),
+        referenceNumber: `SALE-${Date.now()}`,
+        status: "Completed",
+        paymentStatus: "Paid",
+      },
+    ]);
   };
 
   return (
@@ -53,7 +70,7 @@ const PosSales = () => {
             icon={<ReloadOutlined style={{ fontSize: 20 }} />}
             onClick={() => {}}
           />
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => {}}>
+          <Button type="primary" icon={<PlusOutlined />} onClick={() => {setIsModalOpen(true)}}>
             Add Sale
           </Button>
         </div>
@@ -86,7 +103,7 @@ const PosSales = () => {
               placeholder="Sort by Date"
               options={dates}
               className="w-full!"
-              onOnChange={(value) => handleSelect("date", value)}
+              onChange={(value) => handleSelect("date", value)}
             />
           </div>
         }
@@ -98,6 +115,11 @@ const PosSales = () => {
           pagination={{ pageSize: 10 }}
         />
       </Card>
+      <AddSale
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleAddSale}
+      />
     </>
   );
 };

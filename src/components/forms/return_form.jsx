@@ -5,7 +5,6 @@ import { received, taxes } from "../../utils/select_items.js";
 
 const { TextArea } = Input;
 
-/* Generate Return Number */
 const generateRET = () => {
   const code = "RET";
   const randomNumber = Math.floor(1000 + Math.random() * 9000);
