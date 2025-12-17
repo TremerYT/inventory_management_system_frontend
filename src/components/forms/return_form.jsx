@@ -25,7 +25,6 @@ const ReturnsForm = () => {
 
   return (
     <Form form={returnsForm} layout="vertical">
-      {/* Row 1 */}
       <Row gutter={[16, 16]}>
         <Col span={12}>
           <Form.Item

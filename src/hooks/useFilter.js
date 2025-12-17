@@ -2,7 +2,6 @@ import { useState } from "react";
 
 export const useFilter = (data, config) => {
   const { searchFields = [], selectFields = [] } = config;
-
   const [searchText, setSearchText] = useState("");
   const [selectedValues, setSelectedValues] = useState({});
   const [filteredData, setFilteredData] = useState(data);

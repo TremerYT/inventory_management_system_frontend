@@ -104,11 +104,11 @@ export const discountType = [
 
 export const discounts = [
   {
-    value: 0.01,
+    value: 10,
     label: "10%",
   },
   {
-    value: 0.02,
+    value: 20,
     label: "20%",
   },
 ];

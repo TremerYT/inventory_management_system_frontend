@@ -18,31 +18,22 @@ const getItems = (key, icon, label, children) => {
 
 export const items = [
   getItems("/dashboard", <DashboardOutlined />, "Dashboard"),
-
   getItems("/products", <ProductOutlined />, "Products", [
     getItems("/products/add", null, "Add Product"),
     getItems("/products/list", null, "List Products"),
   ]),
-
   getItems("/categories", <AppstoreOutlined />, "Categories", [
     getItems("/categories/list", null, "List Categories"),
   ]),
-
-  getItems("/sales", <ShoppingCartOutlined />, "Sales", [
-    getItems("/sales/online", null, "Online Sales"),
-    getItems("/sales/pos", null, " Pos Sales"),
-  ]),
-
+  getItems("/sales", <ShoppingCartOutlined />, "Sales"),
   getItems("/purchases", <ShoppingOutlined />, "Purchases", [
     getItems("/purchases/list", null, "List Purchases"),
     getItems("/purchases/add", null, "Add Purchases"),
   ]),
-
   getItems("/returns", <ReloadOutlined />, "Returns", [
     getItems("/returns/list", null, "List Returns"),
     getItems("/returns/add", null, "Add Return"),
   ]),
-
   getItems("/people", <UserOutlined />, "People", [
     getItems("/customers", null, "Customers"),
     getItems("/suppliers", null, "Suppliers"),

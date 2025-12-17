@@ -8,10 +8,10 @@ import { dates, paymentStatus, saleStatus, status } from "../utils/select_items.
 import { useState } from "react";
 import { salesColumns } from "../utils/columns.jsx";
 import { useFilter } from "../hooks/useFilter.js";
-import { mockProducts, mockSales } from "../mock/mock_data.jsx";
+import { mockSales } from "../mock/mock_data.jsx";
 import { useNavigate } from "react-router";
 
-const OnlineSales = () => {
+const Sales = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const navigate = useNavigate();
   const { searchText, filteredData, handleSearch, handleSelect } = useFilter(
@@ -33,8 +33,8 @@ const OnlineSales = () => {
     <>
       <div className="flex justify-between items-center mb-4">
         <div className="flex flex-col items-start">
-          <h2 className="text-2xl">Online Sales</h2>
-          <p>Manage Your Online Sales</p>
+          <h2 className="text-2xl">Sales</h2>
+          <p>Manage Your Sales</p>
         </div>
         <div className="flex gap-3">
           <Button
@@ -97,4 +97,4 @@ const OnlineSales = () => {
   );
 };
 
-export default OnlineSales;
+export default Sales;

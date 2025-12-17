@@ -22,7 +22,7 @@ const PageLayout = () => {
   return (
     <Layout className="h-screen w-full overflow-hidden">
       <Sider
-        width={220}
+        width={250}
         trigger={null}
         collapsible
         collapsed={collapsed}
