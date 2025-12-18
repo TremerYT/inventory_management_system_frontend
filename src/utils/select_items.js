@@ -28,16 +28,6 @@ export const wareHouses = [
   },
 ];
 
-export const sellingType = [
-  {
-    value: "online",
-    label: "Online",
-  },
-  {
-    value: "pos",
-    label: "POS",
-  },
-];
 
 export const categories = [
   {

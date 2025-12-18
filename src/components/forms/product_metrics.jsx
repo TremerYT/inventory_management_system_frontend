@@ -8,7 +8,7 @@ const ProductMetrics = ({form}) => {
   return (
     <Card title={<Title level={5}>Pricing and Stocks</Title>}>
       <Row gutter={[16, 16]}>
-        <Col span={8}>
+        <Col span={12}>
           <Form.Item
             name="quantity"
             label="Quantity"
@@ -17,7 +17,7 @@ const ProductMetrics = ({form}) => {
             <Input/>
           </Form.Item>
         </Col>
-        <Col span={8}>
+        <Col span={12}>
           <Form.Item
             name="price"
             label="Price"
@@ -26,36 +26,10 @@ const ProductMetrics = ({form}) => {
             <Input/>
           </Form.Item>
         </Col>
-        <Col span={8}>
-          <Form.Item
-            name="taxType"
-            label="Tax Type"
-            rules={[{required: true, message: "Tax type is required"}]}
-          >
-            <Select
-              options={taxType}
-            />
-          </Form.Item>
-        </Col>
       </Row>
 
       <Row gutter={[16, 16]}>
-        <Col span={8}>
-          <Form.Item
-            name="taxValue"
-            label="Tax Value"
-            rules={[{required: true, message: "Tax value is required"}]}
-          >
-            {
-             currentTaxType === "percentage" ? (
-                <Select options={taxes} />
-              ) : (
-                <Input />
-              )
-            }
-          </Form.Item>
-        </Col>
-        <Col span={8}>
+        <Col span={12}>
           <Form.Item
             name="discountType"
             label="Discont Type"
@@ -66,7 +40,7 @@ const ProductMetrics = ({form}) => {
             />
           </Form.Item>
         </Col>
-        <Col span={8}>
+        <Col span={12}>
           <Form.Item
             name="discountValue"
             label="Discount Value"
