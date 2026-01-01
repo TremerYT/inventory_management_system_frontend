@@ -1,7 +1,6 @@
 import {
   AppstoreOutlined, BarChartOutlined, ContainerOutlined,
-  DashboardOutlined, FileTextOutlined, InboxOutlined,
-  ProductOutlined, ReloadOutlined, SettingOutlined, ShopOutlined,
+  DashboardOutlined, ProductOutlined, ReloadOutlined, SettingOutlined, ShopOutlined,
   ShoppingCartOutlined,
   ShoppingOutlined, TeamOutlined, UserOutlined
 } from "@ant-design/icons";
