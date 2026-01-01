@@ -12,11 +12,13 @@ import Purchases from "./pages/purchases.jsx";
 import AddPurchase from "./pages/add-purchase.jsx";
 import Returns from "./pages/returns.jsx";
 import Sales from "./pages/online_sales.jsx";
+import Login from "./pages/login.jsx";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/login" element={<Login/>}/>
         <Route path="/" element={<PageLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/products/add" element={<Product />} />

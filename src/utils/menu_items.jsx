@@ -1,6 +1,6 @@
 import {
   AppstoreOutlined, BarChartOutlined, ContainerOutlined,
-  DashboardOutlined, ProductOutlined, ReloadOutlined, SettingOutlined, ShopOutlined,
+  DashboardOutlined, LoadingOutlined, LogoutOutlined, ProductOutlined, ReloadOutlined, SettingOutlined, ShopOutlined,
   ShoppingCartOutlined,
   ShoppingOutlined, TeamOutlined, UserOutlined
 } from "@ant-design/icons";
@@ -76,15 +76,23 @@ export const itemDropdown = [
 export const profileDropdown = [
   {
     icon: <UserOutlined/>,
-    label: "My Profile"
+    label: "My Profile",
+    path: 'profile'
   },
   {
     icon: <BarChartOutlined/>,
-    label: "Analytics"
+    label: "Analytics",
+    path: '/analytics'
   },
   {
     icon: <SettingOutlined/>,
-    label: "Settings"
+    label: "Settings",
+    path: '/settings'
+  },
+  {
+    icon: <LogoutOutlined/>,
+    label: "Logout",
+    path: '/login'
   }
   ];
 
