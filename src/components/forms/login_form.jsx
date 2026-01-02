@@ -24,7 +24,7 @@ const LoginForm = () => {
           <Form.Item name="remember" valuePropName="checked" noStyle>
             <Checkbox>Stay logged in on this device</Checkbox>
           </Form.Item>
-          <Button type="link" size="large">Forgot Password?</Button>
+          <Button type="link" size="large" color="">Forgot Password?</Button>
         </div>
 
         <Button

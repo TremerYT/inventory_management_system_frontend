@@ -13,12 +13,14 @@ import AddPurchase from "./pages/add-purchase.jsx";
 import Returns from "./pages/returns.jsx";
 import Sales from "./pages/online_sales.jsx";
 import Login from "./pages/login.jsx";
+import Register from "./pages/register.jsx";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login/>}/>
+        <Route path="/register" element={<Register/>}/>
         <Route path="/" element={<PageLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/products/add" element={<Product />} />
