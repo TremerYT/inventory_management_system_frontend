@@ -14,9 +14,9 @@ const AuthLayout = ({
   const navigate = useNavigate();
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-300">
-      <div className="flex shadow-lg max-w-5xl w-full bg-gray-200 rounded-2xl">
+      <div className="flex shadow-lg max-w-5xl w-full bg-white rounded-2xl">
         <div className="flex-1 p-10 w-1/2">
-          <h1 className="mb-20">Nirvana</h1>
+          <h1 className="mb-15">Nirvana</h1>
           <div className="flex flex-col justify-center text-center mb-10">
             <h2 className="text-xl">{title}</h2>
             <p className="text-gray-500">{subtitle}</p>
