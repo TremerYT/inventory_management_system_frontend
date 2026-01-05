@@ -14,27 +14,33 @@ import Returns from "./pages/returns.jsx";
 import Sales from "./pages/online_sales.jsx";
 import Login from "./pages/login.jsx";
 import Register from "./pages/register.jsx";
+import PrivateRoute from "./pages/private_route.jsx";
+import {AuthProvider} from "./context/auth_context.jsx";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
-        <Route path="/" element={<PageLayout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/products/add" element={<Product />} />
-          <Route path="/products/list" element={<AllProducts />} />
-          <Route path="/categories/list" element={<Categories />} />
-          <Route path="/sales" element={<Sales />} />
-          <Route path="/purchases/list" element={<Purchases/>} />
-          <Route path="/purchases/add" element={<AddPurchase/>} />
-          <Route path="/returns/add" element={<AddReturn/>} />
-          <Route path="/returns/list" element={<Returns/>} />
-          <Route path="/customers" element={<Customers/>} />
-          <Route path="/suppliers" element={<Suppliers/>} />
-        </Route>
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/register" element={<Register/>}/>
+          <Route element={<PrivateRoute/>}>
+            <Route path="/" element={<PageLayout />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/products/add" element={<Product />} />
+              <Route path="/products/list" element={<AllProducts />} />
+              <Route path="/categories/list" element={<Categories />} />
+              <Route path="/sales" element={<Sales />} />
+              <Route path="/purchases/list" element={<Purchases/>} />
+              <Route path="/purchases/add" element={<AddPurchase/>} />
+              <Route path="/returns/add" element={<AddReturn/>} />
+              <Route path="/returns/list" element={<Returns/>} />
+              <Route path="/customers" element={<Customers/>} />
+              <Route path="/suppliers" element={<Suppliers/>} />
+            </Route>
+          </Route>
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

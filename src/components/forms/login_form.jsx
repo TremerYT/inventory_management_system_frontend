@@ -1,9 +1,15 @@
 import {Button, Checkbox, Form, Input, Space} from "antd";
+import {useState} from "react";
 
 const LoginForm = () => {
   const [loginForm] = Form.useForm();
+  const handleSubmit = () => {
+    const data = loginForm.getFieldsValue();
+
+  }
+
   return (
-      <Form form={loginForm} layout="vertical">
+      <Form form={loginForm} layout="vertical" onFinish={handleSubmit}>
         <Form.Item
           label="Email"
           name="email"
