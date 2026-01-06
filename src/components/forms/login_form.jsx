@@ -1,11 +1,26 @@
-import {Button, Checkbox, Form, Input, Space} from "antd";
+import {Button, Checkbox, Form, Input, message} from "antd";
 import {useState} from "react";
+import api from "../../services/api.js";
+import {useAuth} from "../../context/auth_context.js";
 
 const LoginForm = () => {
   const [loginForm] = Form.useForm();
-  const handleSubmit = () => {
+  const { login } = useAuth();
+  const handleSubmit = async () => {
     const data = loginForm.getFieldsValue();
-
+    try {
+      const response = await  api.post(
+        "/auth/login",
+        data,
+        {skipAuth: true}
+      );
+      console.log(response.data)
+      login(response.data.accessToken);
+    }
+    catch (e) {
+      console.log(e);
+      message.error("Invalid Credentials");
+    }
   }
 
   return (

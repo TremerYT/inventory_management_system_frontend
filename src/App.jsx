@@ -15,7 +15,7 @@ import Sales from "./pages/online_sales.jsx";
 import Login from "./pages/login.jsx";
 import Register from "./pages/register.jsx";
 import PrivateRoute from "./pages/private_route.jsx";
-import {AuthProvider} from "./context/auth_context.jsx";
+import {AuthProvider} from "./context/auth_context.js";
 
 function App() {
   return (
