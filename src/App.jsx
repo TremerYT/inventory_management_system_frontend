@@ -15,29 +15,34 @@ import Sales from "./pages/online_sales.jsx";
 import Login from "./pages/login.jsx";
 import Register from "./pages/register.jsx";
 import PrivateRoute from "./pages/private_route.jsx";
-import {AuthProvider} from "./context/auth_context.js";
+import {AuthProvider} from "./context/auth_provider.jsx";
+import {Navigate} from "react-router";
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          <Route path="/login" element={<Login/>}/>
+          <Route path="/" element={<Navigate to= "/login"/>}/>
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register/>}/>
-          <Route element={<PrivateRoute/>}>
-            <Route path="/" element={<PageLayout />}>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/products/add" element={<Product />} />
-              <Route path="/products/list" element={<AllProducts />} />
-              <Route path="/categories/list" element={<Categories />} />
-              <Route path="/sales" element={<Sales />} />
-              <Route path="/purchases/list" element={<Purchases/>} />
-              <Route path="/purchases/add" element={<AddPurchase/>} />
-              <Route path="/returns/add" element={<AddReturn/>} />
-              <Route path="/returns/list" element={<Returns/>} />
-              <Route path="/customers" element={<Customers/>} />
-              <Route path="/suppliers" element={<Suppliers/>} />
-            </Route>
+          <Route element={
+              <PrivateRoute>
+                <PageLayout />
+              </PrivateRoute>
+            }
+          >
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/products/add" element={<Product />} />
+            <Route path="/products/list" element={<AllProducts />} />
+            <Route path="/categories/list" element={<Categories />} />
+            <Route path="/sales" element={<Sales />} />
+            <Route path="/purchases/list" element={<Purchases/>} />
+            <Route path="/purchases/add" element={<AddPurchase/>} />
+            <Route path="/returns/add" element={<AddReturn/>} />
+            <Route path="/returns/list" element={<Returns/>} />
+            <Route path="/customers" element={<Customers/>} />
+            <Route path="/suppliers" element={<Suppliers/>} />
           </Route>
         </Routes>
       </AuthProvider>

@@ -1,7 +1,6 @@
 import {Button, Checkbox, Form, Input, message} from "antd";
-import {useState} from "react";
 import api from "../../services/api.js";
-import {useAuth} from "../../context/auth_context.js";
+import useAuth from "../../hooks/useAuth.js";
 
 const LoginForm = () => {
   const [loginForm] = Form.useForm();
@@ -14,11 +13,9 @@ const LoginForm = () => {
         data,
         {skipAuth: true}
       );
-      console.log(response.data)
       login(response.data.accessToken);
     }
     catch (e) {
-      console.log(e);
       message.error("Invalid Credentials");
     }
   }
