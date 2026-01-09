@@ -83,7 +83,7 @@ const PageLayout = () => {
           </div>
         </Header>
         <Content className="overflow-y-auto p-6 bg-gray-100 h-full relative">
-          <div className="max-w-[1600px] mx-auto">
+          <div className="mx-auto w-full flex flex-col">
             <Outlet/>
           </div>
         </Content>

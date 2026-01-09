@@ -10,7 +10,7 @@ const Dashboard = () => {
     <>
       <Row gutter={[16, 16]} className="w-full">
         <Col xs={24} lg={8}>
-          <Title level={2}>
+          <h1 className="mb-2">
             Hi {user?.sub}, {" "}
             {`Good ${
               new Date().getHours() < 12
@@ -19,10 +19,10 @@ const Dashboard = () => {
                   ? "Afternoon"
                   : "Evening"
             }`}
-          </Title>
-          <Text type="secondary">
+          </h1>
+          <p>
             Your dashboard gives you views of key performance or business processes.
-          </Text>
+          </p>
         </Col>
 
         <Col xs={24} lg={16}>
