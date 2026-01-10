@@ -1,4 +1,13 @@
-import {FaBoxes, FaBoxOpen, FaCashRegister, FaMoneyBillWave, FaShoppingCart} from "react-icons/fa";
+import {
+  FaAd,
+  FaBoxes,
+  FaBoxOpen,
+  FaCashRegister,
+  FaMoneyBillWave,
+  FaShoppingCart, FaTruck, FaTruckLoading, FaUndoAlt,
+  FaUser,
+  FaUsers, FaUserTie
+} from "react-icons/fa";
 
 export const cardInfo = [
   {
@@ -6,7 +15,7 @@ export const cardInfo = [
     iconColor: "#ff5c00",
     bgIconColor: "#ffc896",
     value: "Ksh 10,000",
-    label: "Total Product Value",
+    label: "Stock Worth",
   },
   {
     icon: FaCashRegister,
@@ -27,6 +36,33 @@ export const cardInfo = [
     iconColor: "#ff0000",
     bgIconColor: "#ffb4b4",
     value: "Ksh 245,000",
-    label: "Total Products Sold",
+    label: "Products Sold",
   },
 ];
+
+export const statsCards = [
+  {
+    icon: FaUsers,
+    bgColor: "#ff630d",
+    value: "100",
+    label:"customers"
+  },
+  {
+    icon: FaUserTie,
+    bgColor: "#3c89fb",
+    value: "100",
+    label:"Suppliers"
+  },
+  {
+    icon: FaTruck,
+    bgColor: "#00258e",
+    value: "100",
+    label:"Orders"
+  },
+  {
+    icon: FaUndoAlt,
+    bgColor: "#00611e",
+    value: "100",
+    label:"Returns"
+  },
+]
