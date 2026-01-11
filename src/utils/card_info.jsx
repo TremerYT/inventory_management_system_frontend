@@ -1,13 +1,9 @@
 import {
-  FaAd,
   FaBoxes,
-  FaBoxOpen,
-  FaCashRegister,
-  FaMoneyBillWave,
-  FaShoppingCart, FaTruck, FaTruckLoading, FaUndoAlt,
-  FaUser,
-  FaUsers, FaUserTie
+  FaCashRegister, FaMoneyBillWave,
+  FaUsers, FaUserTie, FaWallet
 } from "react-icons/fa";
+import {MdRemoveShoppingCart, MdWarningAmber} from "react-icons/md";
 
 export const cardInfo = [
   {
@@ -15,28 +11,28 @@ export const cardInfo = [
     iconColor: "#ff5c00",
     bgIconColor: "#ffc896",
     value: "Ksh 10,000",
-    label: "Stock Worth",
+    label: "Inventory Value",
   },
   {
     icon: FaCashRegister,
     iconColor: "#0067ff",
     bgIconColor: "#9ab2fb",
     value: "Ksh 245,000",
-    label: "Total Sales Amount",
+    label: "Sales Revenue",
+  },
+  {
+    icon: FaWallet,
+    iconColor: "#c70000",
+    bgIconColor: "#ffb3b3",
+    value: "Ksh 95,000",
+    label: "Expenses",
   },
   {
     icon: FaMoneyBillWave,
-    iconColor: "#00611e",
-    bgIconColor: "#baffc0",
-    value: "Ksh 245,000",
-    label: "Total Expense Amount",
-  },
-  {
-    icon: FaShoppingCart,
-    iconColor: "#ff0000",
-    bgIconColor: "#ffb4b4",
-    value: "Ksh 245,000",
-    label: "Products Sold",
+    iconColor: "#00b300",
+    bgIconColor: "#b3ffb3",
+    value: "Ksh 150,000",
+    label: "Net Profit",
   },
 ];
 
@@ -54,15 +50,15 @@ export const statsCards = [
     label:"Suppliers"
   },
   {
-    icon: FaTruck,
+    icon: MdWarningAmber,
     bgColor: "#00258e",
     value: "100",
-    label:"Orders"
+    label:"Low Stock"
   },
   {
-    icon: FaUndoAlt,
+    icon: MdRemoveShoppingCart,
     bgColor: "#00611e",
     value: "100",
-    label:"Returns"
+    label:"Out of Stock"
   },
 ]

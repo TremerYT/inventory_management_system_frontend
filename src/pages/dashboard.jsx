@@ -4,12 +4,13 @@ import {Col, Row, Typography} from "antd";
 import { useEffect } from "react";
 import {cardInfo, statsCards} from "../utils/card_info.jsx";
 import StatsCards from "../components/ui/stats_cards.jsx";
+import SalesVsPurchases from "../components/charts/sales_purchase.jsx";
 const { Title, Text } = Typography;
 const Dashboard = () => {
   const { user } = useAuth();
   return (
     <>
-      <div>
+      <div className="mb-4">
         <Row gutter={[16, 16]} className="w-full flex items-center">
           <Col xs={24} lg={8}>
             <h1 className="mb-2">
@@ -45,6 +46,11 @@ const Dashboard = () => {
           </Col>
         </Row>
       </div>
+      <Row gutter={[16, 16]}>
+        <Col span={12}>
+          <SalesVsPurchases/>
+        </Col>
+      </Row>
     </>
 
   );
