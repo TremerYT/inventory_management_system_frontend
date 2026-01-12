@@ -1,6 +1,6 @@
 import { Form, Modal, Switch, Input } from "antd";
 
-const AddCategory = ({ isOpen, handleCancel, handleOk}) => {
+const AddCategory = ({ isOpen, handleCancel, handleOk }) => {
   const [addCategoryForm] = Form.useForm();
 
   const onFinish = (values) => {
@@ -23,10 +23,7 @@ const AddCategory = ({ isOpen, handleCancel, handleOk}) => {
         >
           <Input />
         </Form.Item>
-        <Form.Item
-          name="active"
-          valuePropName="checked"
-        >
+        <Form.Item name="active" valuePropName="checked">
           <Switch />
         </Form.Item>
       </Form>

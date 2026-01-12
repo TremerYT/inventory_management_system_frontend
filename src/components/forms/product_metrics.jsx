@@ -1,8 +1,13 @@
-import {Card, Col, Input, Row, Select, Typography} from "antd";
-import {Form} from "antd";
-import {discounts, discountType, taxes, taxType} from "../../utils/select_items.js";
-const {Title} = Typography;
-const ProductMetrics = ({form}) => {
+import { Card, Col, Input, Row, Select, Typography } from "antd";
+import { Form } from "antd";
+import {
+  discounts,
+  discountType,
+  taxes,
+  taxType,
+} from "../../utils/select_items.js";
+const { Title } = Typography;
+const ProductMetrics = ({ form }) => {
   const currentTaxType = Form.useWatch("taxType", form);
   const currentDiscountType = Form.useWatch("discountType", form);
   return (
@@ -12,18 +17,18 @@ const ProductMetrics = ({form}) => {
           <Form.Item
             name="quantity"
             label="Quantity"
-            rules={[{required: true, message: "Quantity is required"}]}
+            rules={[{ required: true, message: "Quantity is required" }]}
           >
-            <Input/>
+            <Input />
           </Form.Item>
         </Col>
         <Col span={12}>
           <Form.Item
             name="price"
             label="Price"
-            rules={[{required: true, message: "Price is required"}]}
+            rules={[{ required: true, message: "Price is required" }]}
           >
-            <Input/>
+            <Input />
           </Form.Item>
         </Col>
       </Row>
@@ -33,31 +38,27 @@ const ProductMetrics = ({form}) => {
           <Form.Item
             name="discountType"
             label="Discont Type"
-            rules={[{required: true, message: "Discount Type is required"}]}
+            rules={[{ required: true, message: "Discount Type is required" }]}
           >
-            <Select
-              options={discountType}
-            />
+            <Select options={discountType} />
           </Form.Item>
         </Col>
         <Col span={12}>
           <Form.Item
             name="discountValue"
             label="Discount Value"
-            rules={[{required: true, message: "Discount Value is required"}]}
+            rules={[{ required: true, message: "Discount Value is required" }]}
           >
-            {
-              currentDiscountType === "percentage" ? (
-                <Select options={discounts} />
-              ) : (
-                <Input />
-              )
-            }
+            {currentDiscountType === "percentage" ? (
+              <Select options={discounts} />
+            ) : (
+              <Input />
+            )}
           </Form.Item>
         </Col>
       </Row>
     </Card>
   );
-}
+};
 
 export default ProductMetrics;

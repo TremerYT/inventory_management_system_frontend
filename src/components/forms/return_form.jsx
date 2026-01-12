@@ -112,7 +112,7 @@ const ReturnsForm = () => {
             label="Payment Method"
             rules={[{ required: true, message: "Payment method is required" }]}
           >
-            <Select/>
+            <Select />
           </Form.Item>
         </Col>
       </Row>

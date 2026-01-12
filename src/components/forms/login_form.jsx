@@ -1,4 +1,4 @@
-import {Button, Checkbox, Form, Input, message} from "antd";
+import { Button, Checkbox, Form, Input, message } from "antd";
 import api from "../../services/api.js";
 import useAuth from "../../hooks/useAuth.js";
 import { useState } from "react";
@@ -10,54 +10,48 @@ const LoginForm = () => {
   const handleSubmit = async () => {
     const data = loginForm.getFieldsValue();
     try {
-      setloading(true)
-      const response = await  api.post(
-        "/auth/login",
-        data,
-        {skipAuth: true}
-      );
+      setloading(true);
+      const response = await api.post("/auth/login", data, { skipAuth: true });
       login(response.data.accessToken);
       setloading(false);
-    }
-    catch (e) {
+    } catch (e) {
       message.error("Invalid Credentials");
     }
-  }
+  };
 
   return (
-      <Form form={loginForm} layout="vertical" onFinish={handleSubmit}>
-        <Form.Item
-          label="Username"
-          name="userName"
-          rules={[{ required: true, message: "Please input your username!" }]}
-        >
-          <Input size="large" placeholder="Enter your email" />
+    <Form form={loginForm} layout="vertical" onFinish={handleSubmit}>
+      <Form.Item
+        label="Username"
+        name="userName"
+        rules={[{ required: true, message: "Please input your username!" }]}
+      >
+        <Input size="large" placeholder="Enter your email" />
+      </Form.Item>
+
+      <Form.Item label="Password" name="password" rules={[{ required: true }]}>
+        <Input.Password size="large" placeholder="Enter your password" />
+      </Form.Item>
+
+      <div className="flex justify-between items-center mb-4">
+        <Form.Item name="remember" valuePropName="checked" noStyle>
+          <Checkbox>Stay logged in on this device</Checkbox>
         </Form.Item>
-
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[{ required: true }]}
-        >
-          <Input.Password size="large" placeholder="Enter your password" />
-        </Form.Item>
-
-        <div className="flex justify-between items-center mb-4">
-          <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Stay logged in on this device</Checkbox>
-          </Form.Item>
-          <Button type="link" size="large" color="">Forgot Password?</Button>
-        </div>
-
-        <Button
-          type="primary"
-          htmlType="submit"
-          size="large"
-          className="w-full mb-6"
-        >
-          Login
+        <Button type="link" size="large" color="">
+          Forgot Password?
         </Button>
-      </Form>
+      </div>
+
+      <Button
+        type="primary"
+        htmlType="submit"
+        size="large"
+        className="w-full mb-6"
+        loading={loading}
+      >
+        Login
+      </Button>
+    </Form>
   );
 };
 

@@ -1,4 +1,4 @@
-import {Button, Checkbox, Form, Input} from "antd";
+import { Button, Checkbox, Form, Input } from "antd";
 
 const RegisterForm = () => {
   const [registerForm] = Form.useForm();
@@ -7,33 +7,29 @@ const RegisterForm = () => {
       <Form.Item
         label="First Name"
         name="firstName"
-        rules={[{required: true, message: "First name is required"}]}
+        rules={[{ required: true, message: "First name is required" }]}
       >
-        <Input size="large" placeholder="Enter your first name"/>
+        <Input size="large" placeholder="Enter your first name" />
       </Form.Item>
 
       <Form.Item
         label="Last Name"
         name="lastName"
-        rules={[{required: true, message: "Last name is required"}]}
+        rules={[{ required: true, message: "Last name is required" }]}
       >
-        <Input size="large" placeholder="Enter your Last name"/>
+        <Input size="large" placeholder="Enter your Last name" />
       </Form.Item>
 
       <Form.Item
         label="Email"
         name="email"
-        rules={[{required: true, type: "email"}]}
+        rules={[{ required: true, type: "email" }]}
       >
-        <Input size="large" placeholder="Enter your email"/>
+        <Input size="large" placeholder="Enter your email" />
       </Form.Item>
 
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[{required: true}]}
-      >
-        <Input.Password size="large" placeholder="Enter your password"/>
+      <Form.Item label="Password" name="password" rules={[{ required: true }]}>
+        <Input.Password size="large" placeholder="Enter your password" />
       </Form.Item>
 
       <Button
@@ -46,6 +42,6 @@ const RegisterForm = () => {
       </Button>
     </Form>
   );
-}
+};
 
 export default RegisterForm;

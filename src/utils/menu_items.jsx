@@ -1,98 +1,121 @@
 import {
-  AppstoreOutlined, BarChartOutlined, ContainerOutlined,
-  DashboardOutlined, LoadingOutlined, LogoutOutlined, ProductOutlined, ReloadOutlined, SettingOutlined, ShopOutlined,
-  ShoppingCartOutlined,
-  ShoppingOutlined, TeamOutlined, UserOutlined
-} from "@ant-design/icons";
-import {Avatar} from "antd";
+  FaBoxOpen,
+  FaChartBar,
+  FaShoppingCart,
+  FaTachometerAlt,
+  FaTags,
+  FaTruck,
+  FaUndoAlt,
+  FaUsers,
+  FaCog,
+  FaBox,
+  FaStore,
+  FaWarehouse,
+  FaUser,
+  FaSignOutAlt
+} from "react-icons/fa";
+import useAuth  from "../hooks/useAuth.js";
+import { useNavigate } from "react-router";
 
 const getItems = (key, icon, label, children) => {
   return {
     key,
     icon,
     children,
-    label
-  }
-}
+    label,
+  };
+};
+
 
 export const items = [
-  getItems("/dashboard", <DashboardOutlined />, "Dashboard"),
-  getItems("/products", <ProductOutlined />, "Products", [
+  getItems("/dashboard", <FaTachometerAlt />, "Dashboard"),
+  getItems("/products", <FaBoxOpen />, "Products", [
     getItems("/products/add", null, "Add Product"),
     getItems("/products/list", null, "List Products"),
+    getItems("/products/low-stocks", null, "Low Stocks"),
   ]),
-  getItems("/categories", <AppstoreOutlined />, "Categories", [
+  getItems("/categories", <FaTags />, "Categories", [
     getItems("/categories/list", null, "List Categories"),
   ]),
-  getItems("/sales", <ShoppingCartOutlined />, "Sales"),
-  getItems("/purchases", <ShoppingOutlined />, "Purchases", [
+  getItems("/sales", <FaShoppingCart />, "Sales", [
+    getItems("/sales/list", null, "Sales Orders"),
+    getItems("/sales/invoices", null, "Invoices"),
+    getItems("/sales/returns", null, "Sales Returns"),
+  ]),
+  getItems("/purchases", <FaTruck />, "Purchases", [
     getItems("/purchases/list", null, "List Purchases"),
     getItems("/purchases/add", null, "Add Purchases"),
+    getItems("/purchases/invoices", null, "Supplier Invoices"),
   ]),
-  getItems("/returns", <ReloadOutlined />, "Returns", [
-    getItems("/returns/list", null, "List Returns"),
+  getItems("/returns", <FaUndoAlt />, "Returns", [
+    getItems("/returns/list", null, "All Returns"),
     getItems("/returns/add", null, "Add Return"),
   ]),
-  getItems("/people", <UserOutlined />, "People", [
+  getItems("/people", <FaUsers />, "People", [
     getItems("/customers", null, "Customers"),
     getItems("/suppliers", null, "Suppliers"),
   ]),
-  getItems("/analytics", <BarChartOutlined />, "Analytics"),
+  getItems("/analytics", <FaChartBar />, "Analytics"),
+  getItems("/settings", <FaCog />, "Settings"),
 ];
 
 export const itemDropdown = [
   {
-    icon: <ProductOutlined/>,
+    icon: <FaBox />,
     label: "Product",
-    path: '/Products/add'
+    path: "/products/add",
   },
   {
-    icon: <ShoppingOutlined/>,
+    icon: <FaTruck />,
     label: "Purchase",
-    path: '/purchases/add'
+    path: "/purchases/add",
   },
   {
-    icon: <ShoppingCartOutlined/>,
+    icon: <FaShoppingCart />,
     label: "Sale",
-    path: '/sales/list'
+    path: "/sales/list",
   },
   {
-    icon: <ShopOutlined/>,
+    icon: <FaStore />,
     label: "Store",
-    path: null
+    path: null,
   },
   {
-    icon: <ContainerOutlined/>,
+    icon: <FaWarehouse />,
     label: "Warehouse",
-    path: null
+    path: null,
   },
   {
-    icon: <ReloadOutlined/>,
+    icon: <FaUndoAlt />,
     label: "Returns",
-    path: '/returns/add'
+    path: "/returns/add",
   },
 ];
 
-export const profileDropdown = [
-  {
-    icon: <UserOutlined/>,
-    label: "My Profile",
-    path: 'profile'
-  },
-  {
-    icon: <BarChartOutlined/>,
-    label: "Analytics",
-    path: '/analytics'
-  },
-  {
-    icon: <SettingOutlined/>,
-    label: "Settings",
-    path: '/settings'
-  },
-  {
-    icon: <LogoutOutlined/>,
-    label: "Logout",
-    path: '/login'
-  }
-  ];
+export const useProfileDropdown = () => {
+  const navigate = useNavigate();
+  const { logout } = useAuth();
 
+  return [
+    {
+      icon: <FaUser />,
+      label: "My Profile",
+      onClick: () => navigate("/profile"),
+    },
+    {
+      icon: <FaChartBar />,
+      label: "Analytics",
+      onClick: () => navigate("/analytics"),
+    },
+    {
+      icon: <FaCog />,
+      label: "Settings",
+      onClick: () => navigate("/settings"),
+    },
+    {
+      icon: <FaSignOutAlt />,
+      label: "Logout",
+      onClick: logout,
+    },
+  ];
+};

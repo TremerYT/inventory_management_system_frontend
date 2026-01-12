@@ -1,9 +1,10 @@
 import Chart from "react-apexcharts";
+import { Card } from "antd";
 
-const ExpensesChart = () => {
+const IncomeChart = () => {
   const series = [
     {
-      name: "Expenses",
+      name: "Income",
       data: [320, 420, 380, 460, 510, 490, 530],
     },
   ];
@@ -28,7 +29,7 @@ const ExpensesChart = () => {
       width: 3,
     },
 
-    colors: ["#2563eb"],
+    colors: ["#f97316"],
 
     grid: {
       show: false,
@@ -59,22 +60,28 @@ const ExpensesChart = () => {
     },
   };
 
-  const totalExpenses = series[0].data.reduce((a, b) => a + b, 0);
+  const totalIncome = series[1].data.reduce((a, b) => a + b, 0);
 
   return (
-    <div className="bg-white rounded-xl p-4 shadow-sm">
-      <div className="flex justify-between mb-2">
+    <Card className="rounded-xl shadow-md border border-gray-200">
+      <div className="mb-4">
+        <h3 className="text-lg font-semibold text-gray-800 mb-4">
+          Income Overview
+        </h3>
+      </div>
+
+      <div className="flex justify-between mb-4">
         <div>
-          <p className="text-sm text-gray-500">Expenses</p>
-          <p className="text-xl font-semibold text-orange-500">
-            KES {totalExpenses.toLocaleString()}
+          <p className="text-sm text-gray-500">Total Income</p>
+          <p className="text-2xl font-bold text-orange-500">
+            KES {totalIncome.toLocaleString()}
           </p>
         </div>
       </div>
 
       <Chart options={options} series={series} type="line" height={200} />
-    </div>
+    </Card>
   );
 };
 
-export default ExpensesChart;
+export default IncomeChart;

@@ -51,13 +51,13 @@ export const statsCards = [
   },
   {
     icon: MdWarningAmber,
-    bgColor: "#00258e",
+    bgColor: "#FA9644",
     value: "100",
     label:"Low Stock"
   },
   {
     icon: MdRemoveShoppingCart,
-    bgColor: "#00611e",
+    bgColor: "#FB0133",
     value: "100",
     label:"Out of Stock"
   },
