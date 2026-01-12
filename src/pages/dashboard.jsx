@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import {cardInfo, statsCards} from "../utils/card_info.jsx";
 import StatsCards from "../components/ui/stats_cards.jsx";
 import SalesVsPurchases from "../components/charts/sales_purchase.jsx";
+import RevenueVsCost from "../components/charts/revenue_cost.jsx";
 const { Title, Text } = Typography;
 const Dashboard = () => {
   const { user } = useAuth();
@@ -49,6 +50,9 @@ const Dashboard = () => {
       <Row gutter={[16, 16]}>
         <Col span={12}>
           <SalesVsPurchases/>
+        </Col> 
+        <Col span={12}>
+          <RevenueVsCost/>
         </Col>
       </Row>
     </>
