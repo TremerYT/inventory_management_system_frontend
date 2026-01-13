@@ -382,5 +382,59 @@ export const mockReturns = [
   },
 ];
 
+export const lowStockData = [
+  {
+    key: "1",
+    name: "USB Type-C Cable",
+    sku: "USB-C-001",
+    category: "Accessories",
+    stock: 4,
+  },
+  {
+    key: "2",
+    name: "Wireless Mouse",
+    sku: "WM-023",
+    category: "Peripherals",
+    stock: 7,
+  },
+  {
+    key: "3",
+    name: "Bluetooth Speaker",
+    sku: "BS-014",
+    category: "Audio",
+    stock: 3,
+  },
+  {
+    key: "4",
+    name: "Laptop Stand",
+    sku: "LS-009",
+    category: "Office",
+    stock: 6,
+  },
+];
+
+export const outOfStockData = [
+  {
+    key: "1",
+    name: "HDMI Cable 2m",
+    sku: "HDMI-002",
+    category: "Accessories",
+  },
+  {
+    key: "2",
+    name: "External Hard Drive 1TB",
+    sku: "EHD-1TB",
+    category: "Storage",
+  },
+  {
+    key: "3",
+    name: "Gaming Keyboard",
+    sku: "GK-077",
+    category: "Peripherals",
+  },
+];
+
+
+
 
 

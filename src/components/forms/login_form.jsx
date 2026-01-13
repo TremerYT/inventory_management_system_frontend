@@ -16,6 +16,7 @@ const LoginForm = () => {
       setloading(false);
     } catch (e) {
       message.error("Invalid Credentials");
+      setloading(false);
     }
   };
 

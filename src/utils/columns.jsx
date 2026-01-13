@@ -410,3 +410,57 @@ export const returnsColumns = [
     ),
   },
 ];
+
+export const lowStockColumns = [
+  {
+    title: "Product",
+    dataIndex: "name",
+    key: "name",
+    ellipsis: true,
+  },
+  {
+    title: "SKU",
+    dataIndex: "sku",
+    key: "sku",
+  },
+  {
+    title: "Category",
+    dataIndex: "category",
+    key: "category",
+  },
+  {
+    title: "Stock",
+    dataIndex: "stock",
+    key: "stock",
+    render: (stock) => (
+      <Tag color={stock <= 5 ? "red" : "orange"}>
+        {stock}
+      </Tag>
+    ),
+  },
+];
+
+export const outOfStockColumns = [
+  {
+    title: "Product",
+    dataIndex: "name",
+    key: "name",
+    ellipsis: true,
+  },
+  {
+    title: "SKU",
+    dataIndex: "sku",
+    key: "sku",
+  },
+  {
+    title: "Category",
+    dataIndex: "category",
+    key: "category",
+  },
+  {
+    title: "Status",
+    key: "status",
+    render: () => <Tag color="red">Out of Stock</Tag>,
+  },
+];
+
