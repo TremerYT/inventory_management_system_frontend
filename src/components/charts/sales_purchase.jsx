@@ -1,22 +1,43 @@
 import { Card } from "antd";
 import Chart from "react-apexcharts";
-
 const options = {
   chart: {
-    id: "sales-vs-purchase",
-    stacked: true,
+    type: "bar",
+    toolbar: {
+      show: true,
+    },
   },
   plotOptions: {
     bar: {
       horizontal: false,
       columnWidth: "55%",
+      borderRadius: 6,
       endingShape: "rounded",
     },
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  stroke: {
+    show: true,
+    width: 2,
+    colors: ["transparent"],
   },
   xaxis: {
     categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"],
   },
+  yaxis: {
+    labels: {
+      formatter: (val) => val.toLocaleString(),
+    },
+  },
+  tooltip: {
+    y: {
+      formatter: (val) => val.toLocaleString(),
+    },
+  },
 };
+
 
 const series = [
   {
@@ -31,7 +52,7 @@ const series = [
 
 const SalesVsPurchase = () => {
   return (
-    <Card title="Sales vs Purchase" style={{ marginBottom: 24 }}>
+    <Card title="Sales vs Purchase" style={{ marginBottom: 24, height: "100%"}}>
       <Chart type="bar" options={options} series={series} height={350} />
     </Card>
   );

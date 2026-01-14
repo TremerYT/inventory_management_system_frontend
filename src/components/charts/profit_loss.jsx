@@ -3,8 +3,8 @@ import Chart from "react-apexcharts";
 
 const options = {
   chart: {
-    type: "area",
-    toolbar: { show: false },
+    type: "line",
+    toolbar: { show: true },
   },
   stroke: {
     curve: "smooth",
@@ -12,15 +12,6 @@ const options = {
   },
   dataLabels: {
     enabled: false,
-  },
-  fill: {
-    type: "gradient",
-    gradient: {
-      shadeIntensity: 0.4,
-      opacityFrom: 0.45,
-      opacityTo: 0.05,
-      stops: [0, 90, 100],
-    },
   },
   labels: [
     "Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -36,14 +27,14 @@ const options = {
     },
   },
   grid: {
-    borderColor: "#f1f5f9",
+    borderColor: "#dddddd",
     strokeDashArray: 4,
   },
   legend: {
     position: "top",
-    horizontalAlign: "right",
+    horizontalAlign: "left",
   },
-  colors: ["#3B82F6", "#F97316"], // blue = revenue, orange = cost
+  colors: ["#3B82F6", "#F97316"],
   tooltip: {
     shared: true,
     intersect: false,
@@ -52,27 +43,21 @@ const options = {
 
 const series = [
   {
-    name: "Revenue",
+    name: "Profit",
     data: [440, 505, 414, 671, 227, 413, 201, 352, 752, 320, 257, 160],
   },
   {
-    name: "Cost",
-    data: [23, 42, 35, 27, 43, 22, 17, 31, 22, 22, 12, 16],
+    name: "Loss",
+    data: [350, 450, 300, 550, 200, 400, 150, 300, 600, 250, 200, 150],
   },
 ];
 
-const RevenueVsCost = () => {
+const ProfitVsLoss = () => {
   return (
-    <Card title="Revenue vs Cost" className="h-full">
-      <Chart
-        options={options}
-        series={series}
-        type="area"
-        height={545}
-      />
+    <Card style={{ height: '100%' }}>
+      <Chart options={options} series={series} type="line" height={450}/>
     </Card>
   );
-};
+}
 
-export default RevenueVsCost;
-
+export default ProfitVsLoss;

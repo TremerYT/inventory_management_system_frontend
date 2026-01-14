@@ -7,9 +7,10 @@ import SalesVsPurchases from "../components/charts/sales_purchase.jsx";
 import RevenueVsCost from "../components/charts/revenue_cost.jsx";
 import ExpensesChart from "../components/charts/expenses_chart.jsx";
 import IncomeChart from "../components/charts/income_chart.jsx";
-import {outOfStockData} from "../mock/mock_data.jsx";
-import {outOfStockColumns} from "../utils/columns.jsx";
+import {lowStockData, outOfStockData} from "../mock/mock_data.jsx";
+import {lowStockColumns, outOfStockColumns} from "../utils/columns.jsx";
 import Overall from "../components/charts/overall.jsx";
+import ProfitVsLoss from "../components/charts/profit_loss.jsx";
 const { Title, Text } = Typography;
 const Dashboard = () => {
   const { user } = useAuth();
@@ -52,14 +53,39 @@ const Dashboard = () => {
           </Col>
         </Row>
       </div>
-      <Row gutter={[16, 16]}>
-        <Col xs={24} md={8}>
-          <div style={{ height: '100%' }}>
-            <Overall/>
-          </div>
+      <Row gutter={[16, 16]} style={{ marginBottom: '16px' }}>
+        <Col xs={24} lg={9}>
+          <Overall/>
         </Col>
-        <Col xs={24} md={16}>
-          <RevenueVsCost />
+        <Col xs={24} lg={15}>
+          <ProfitVsLoss />
+        </Col>
+      </Row>
+      <Row gutter={[16,16]} style={{ marginBottom: '16px' }}>
+        <Col span={14} >
+          <SalesVsPurchases/>
+        </Col>
+        <Col span={10}>
+          <Card title="Low Stock" className="h-full">
+            <Table columns={lowStockColumns} dataSource={lowStockData}/>
+          </Card>
+        </Col>
+      </Row>
+      <Row gutter={[16,16]}>
+        <Col span={6}>
+          <Row style={{ marginBottom: '16px' }}>
+            <Col span={24}>
+              <ExpensesChart/>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={24}>
+              <IncomeChart/>
+            </Col>
+          </Row>
+        </Col>
+        <Col span={18}>
+          <RevenueVsCost/>
         </Col>
       </Row>
     </div>
