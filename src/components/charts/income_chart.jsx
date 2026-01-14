@@ -34,26 +34,19 @@ const IncomeChart = () => {
         opacity: 1,
       },
     },
-
     stroke: {
       curve: "smooth",
       width: 3,
     },
-
-    colors: ["#2563eb"], // blue
-
+    colors: ["#2563eb"],
     grid: { show: false },
-
     xaxis: {
       labels: { show: false },
       axisBorder: { show: false },
       axisTicks: { show: false },
     },
-
     yaxis: { show: false },
-
     legend: { show: false },
-
     markers: { size: 0 },
   };
 

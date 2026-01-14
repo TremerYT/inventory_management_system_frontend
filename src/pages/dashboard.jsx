@@ -9,6 +9,7 @@ import ExpensesChart from "../components/charts/expenses_chart.jsx";
 import IncomeChart from "../components/charts/income_chart.jsx";
 import {outOfStockData} from "../mock/mock_data.jsx";
 import {outOfStockColumns} from "../utils/columns.jsx";
+import Overall from "../components/charts/overall.jsx";
 const { Title, Text } = Typography;
 const Dashboard = () => {
   const { user } = useAuth();
@@ -52,35 +53,13 @@ const Dashboard = () => {
         </Row>
       </div>
       <Row gutter={[16, 16]}>
-        <Col span={12}>
-          <SalesVsPurchases />
+        <Col xs={24} md={8}>
+          <div style={{ height: '100%' }}>
+            <Overall/>
+          </div>
         </Col>
-        <Col span={12}>
+        <Col xs={24} md={16}>
           <RevenueVsCost />
-        </Col>
-      </Row>
-      <Row gutter={[16,16]}>
-        <Col span={6}>
-          <Row className={"mb-4"}>
-            <Col span={24}>
-              <IncomeChart/>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={24}>
-              <ExpensesChart/>
-            </Col>
-          </Row>
-        </Col>
-        <Col span={9}>
-          <Card className={"h-full"}>
-            <Table dataSource={outOfStockData} columns={outOfStockColumns} />
-          </Card>
-        </Col>
-        <Col span={9}>
-          <Card>
-            <Table/>
-          </Card>
         </Col>
       </Row>
     </div>

@@ -34,26 +34,19 @@ const ExpensesChart = () => {
         opacity: 1,
       },
     },
-
     stroke: {
       curve: "smooth",
       width: 3,
     },
-
-    colors: ["#f97316"], // orange
-
+    colors: ["#f97316"],
     grid: { show: false },
-
     xaxis: {
       labels: { show: false },
       axisBorder: { show: false },
       axisTicks: { show: false },
     },
-
     yaxis: { show: false },
-
     legend: { show: false },
-
     markers: { size: 0 },
   };
 
