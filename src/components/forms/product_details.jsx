@@ -1,5 +1,5 @@
 import { Card, Col, Form, Input, Row, Select, Typography } from "antd";
-import { categories, stores, wareHouses } from "../../utils/select_items.js";
+import {categories, stores, units, wareHouses} from "../../utils/select_items.js";
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -17,27 +17,6 @@ const ProductDetails = ({ form }) => {
   };
   return (
     <Card title={<Title level={5}>Product Information</Title>}>
-      <Row gutter={[16, 16]}>
-        <Col span={12}>
-          <Form.Item
-            name="storeName"
-            label="Store"
-            rules={[{ required: true, message: "Store is Required" }]}
-          >
-            <Select options={stores} />
-          </Form.Item>
-        </Col>
-        <Col span={12}>
-          <Form.Item
-            name="warehouseName"
-            label="WareHouse"
-            rules={[{ required: true, message: "Warehouse is Required" }]}
-          >
-            <Select options={wareHouses} />
-          </Form.Item>
-        </Col>
-      </Row>
-
       <Row gutter={[16, 16]}>
         <Col span={12}>
           <Form.Item

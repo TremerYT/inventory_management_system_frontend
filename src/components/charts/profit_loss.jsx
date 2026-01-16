@@ -27,7 +27,7 @@ const options = {
     },
   },
   grid: {
-    borderColor: "#dddddd",
+    borderColor: "#ffeaea",
     strokeDashArray: 4,
   },
   legend: {

@@ -1,9 +1,10 @@
-import {Card} from "antd";
+import { Card } from "antd";
 import Chart from "react-apexcharts";
 
 const options = {
   chart: {
-    type: "area",
+    type: "line",
+    stacked: true,
     toolbar: { show: false },
   },
   stroke: {
@@ -13,28 +14,22 @@ const options = {
   dataLabels: {
     enabled: false,
   },
-  fill: {
-    type: "gradient",
-    gradient: {
-      shadeIntensity: 0.4,
-      opacityFrom: 0.45,
-      opacityTo: 0.05,
-      stops: [0, 90, 100],
-    },
-  },
-  labels: [
-    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
-  ],
   xaxis: {
-    axisBorder: { show: false },
-    axisTicks: { show: false },
+    categories: [
+      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+    ],
   },
-  yaxis: {
-    labels: {
-      style: { colors: "#6B7280" },
+  yaxis: [{
+    title: {
+      text: "Revenue",
     },
-  },
+  }, {
+    opposite: true,
+    title: {
+      text: "Cost",
+    },
+  }],
   grid: {
     borderColor: "#f1f5f9",
     strokeDashArray: 4,
@@ -53,10 +48,12 @@ const options = {
 const series = [
   {
     name: "Revenue",
+    type: "line",
     data: [440, 505, 414, 671, 227, 413, 201, 352, 752, 320, 257, 160],
   },
   {
     name: "Cost",
+    type: "column",
     data: [23, 42, 35, 27, 43, 22, 17, 31, 22, 22, 12, 16],
   },
 ];
@@ -67,7 +64,7 @@ const RevenueVsCost = () => {
       <Chart
         options={options}
         series={series}
-        type="area"
+        type="line"
         height={545}
       />
     </Card>
@@ -75,4 +72,3 @@ const RevenueVsCost = () => {
 };
 
 export default RevenueVsCost;
-

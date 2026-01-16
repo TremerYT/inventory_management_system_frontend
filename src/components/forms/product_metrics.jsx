@@ -22,11 +22,34 @@ const ProductMetrics = ({ form }) => {
             <Input />
           </Form.Item>
         </Col>
+
         <Col span={12}>
           <Form.Item
-            name="price"
-            label="Price"
-            rules={[{ required: true, message: "Price is required" }]}
+            name="minStock"
+            label="Minimum Stock Level"
+            rules={[{ required: true, message: "Minimum Stock level is required" }]}
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Row gutter={[16, 16]}>
+        <Col span={12}>
+          <Form.Item
+            name="costPrice"
+            label="Cost Price"
+            rules={[{ required: true, message: "Cost Price is required" }]}
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+
+        <Col span={12}>
+          <Form.Item
+            name="unitPrice"
+            label="Unit Price"
+            rules={[{ required: true, message: "Unit price is required" }]}
           >
             <Input />
           </Form.Item>

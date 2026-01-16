@@ -169,3 +169,30 @@ export const received = [
     label: "Not Yet Received",
   },
 ];
+
+export const units = [
+  {
+    value: "piece",
+    label: "Piece",
+  },
+  {
+    value: "kilogram",
+    label: "Kilogram",
+  },
+  {
+    value: "litre",
+    label: "Litre",
+  },
+  {
+    value: "bag",
+    label: "Bag",
+  },
+  {
+    value: "box",
+    label: "Box",
+  },
+  {
+    value: "carton",
+    label: "Carton",
+  },
+]
