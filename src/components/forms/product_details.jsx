@@ -1,5 +1,7 @@
-import { Card, Col, Form, Input, Row, Select, Typography } from "antd";
+import {Button, Card, Col, Form, Input, Row, Select, Typography} from "antd";
 import {categories, stores, units, wareHouses} from "../../utils/select_items.js";
+import {useEffect} from "react";
+import JsBarcode from "jsbarcode";
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -10,11 +12,26 @@ const generateSKU = (productName) => {
   return `${code}-${randomNumber}`;
 };
 
+const generateBarcodeNumber = () => {
+  return String(Math.floor(100000000000 + Math.random() * 900000000000))
+}
+
 const ProductDetails = ({ form }) => {
   const handleProductChange = (value) => {
     const sku = generateSKU(value);
     form.setFieldsValue({ skuNumber: sku });
   };
+
+  const handleGenerateBarcode = () => {
+    const barcode = generateBarcodeNumber()
+    form.setFieldsValue({barcodeNumber: barcode});
+  }
+
+  const barcodeValue = Form.useWatch("barcodeNumber", form);
+
+  useEffect(() => {
+
+  }, [barcodeValue]);
   return (
     <Card title={<Title level={5}>Product Information</Title>}>
       <Row gutter={[16, 16]}>
@@ -59,6 +76,48 @@ const ProductDetails = ({ form }) => {
           </Form.Item>
         </Col>
       </Row>
+
+      <Row gutter={[16, 16]}>
+        <Col span={12}>
+          <Form.Item
+            name="productUnit"
+            label="Product Unit"
+            rules={[{ required: true, message: "Product unit is Required" }]}
+          >
+            <Select options={units}/>
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item
+            name="barcodeNumber"
+            label="Barcode"
+            rules={[
+              { required: true, message: "Barcode is required" }
+            ]}
+          >
+            <Input.Group compact>
+              <Input
+                style={{ width: "75%" }}
+                placeholder="Enter or generate barcode"
+              />
+              <Button
+                type="primary"
+                onClick={handleGenerateBarcode}
+              >
+                Generate
+              </Button>
+            </Input.Group>
+          </Form.Item>
+        </Col>
+      </Row>
+
+      {barcodeValue && (
+        <Row>
+          <Col span={24} style={{ textAlign: "center", marginBottom: 16 }}>
+            <svg ref={barcodeRef} />
+          </Col>
+        </Row>
+      )}
 
       <Row>
         <Col span={24}>
