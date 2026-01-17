@@ -68,7 +68,6 @@ const ProductImages = () => {
         </Card>
       </Col>
     </Row>
-
   );
 };
 

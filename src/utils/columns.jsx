@@ -8,6 +8,11 @@ export const productColumns = [
     key: "skuNumber",
   },
   {
+    title: "Barcode",
+    dataIndex: "barcodeNumber",
+    key: "barcodeNumber",
+  },
+  {
     title: "Product Name",
     dataIndex: "productName",
     key: "productName",
@@ -23,14 +28,14 @@ export const productColumns = [
     key: "brand",
   },
   {
-    title: "Price",
-    dataIndex: "price",
-    key: "price",
-  },
-  {
     title: "Unit",
     dataIndex: "unit",
     key: "unit",
+  },
+  {
+    title: "Unit Price",
+    dataIndex: "unitPrice",
+    key: "unitPrice",
   },
   {
     title: "Quantity",
