@@ -1,6 +1,6 @@
-import {Button, Card, Col, Form, Input, Row, Select, Typography} from "antd";
+import {Button, Card, Col, Form, Input, Row, Select, Space, Typography} from "antd";
 import {categories, stores, units, wareHouses} from "../../utils/select_items.js";
-import {useEffect} from "react";
+import {useEffect, useRef} from "react";
 import JsBarcode from "jsbarcode";
 
 const { Title } = Typography;
@@ -17,6 +17,7 @@ const generateBarcodeNumber = () => {
 }
 
 const ProductDetails = ({ form }) => {
+  const barcodeRef = useRef(null);
   const handleProductChange = (value) => {
     const sku = generateSKU(value);
     form.setFieldsValue({ skuNumber: sku });
@@ -30,7 +31,15 @@ const ProductDetails = ({ form }) => {
   const barcodeValue = Form.useWatch("barcodeNumber", form);
 
   useEffect(() => {
-
+    if (barcodeValue && barcodeRef.current){
+      JsBarcode(barcodeRef.current, barcodeValue, {
+        format: "CODE128",
+        lineColor: "#000",
+        width: 2,
+        height: 50,
+        displayValue: true
+      })
+    }
   }, [barcodeValue]);
   return (
     <Card title={<Title level={5}>Product Information</Title>}>
@@ -95,10 +104,10 @@ const ProductDetails = ({ form }) => {
               { required: true, message: "Barcode is required" }
             ]}
           >
-            <Input.Group compact>
+            <Space.Compact style={{ width: "100%" }}>
               <Input
-                style={{ width: "75%" }}
-                placeholder="Enter or generate barcode"
+                disabled
+                placeholder={barcodeValue}
               />
               <Button
                 type="primary"
@@ -106,7 +115,7 @@ const ProductDetails = ({ form }) => {
               >
                 Generate
               </Button>
-            </Input.Group>
+            </Space.Compact>
           </Form.Item>
         </Col>
       </Row>
