@@ -5,7 +5,7 @@ const supabase = createClient(
   import.meta.env.VITE_SUPABASE_ANON_KEY
 );
 
-const upload = async (file, folder="products") => {
+export const upload = async (file, folder="products") => {
   const extract = file.name.split(".").pop();
   const fileName = `${crypto.randomUUID()}.${extract}`;
   const filePath = `${folder}/${fileName}`;
