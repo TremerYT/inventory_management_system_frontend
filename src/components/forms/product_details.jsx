@@ -3,7 +3,7 @@ import {
   Card,
   Col,
   Form,
-  Input,
+  Input, message,
   Row,
   Select,
   Space,
@@ -16,6 +16,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import JsBarcode from "jsbarcode";
 import AddCategory from "../modal/add_category.jsx";
+import {createCategory, getCategory} from "../../services/category.service.js";
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -31,8 +32,12 @@ const generateBarcodeNumber = () => {
 };
 
 const ProductDetails = ({ form }) => {
+  const barcodeValue = Form.useWatch("barcodeNumber", form);
   const barcodeRef = useRef(null);
-  const [isModaLOpen, setIsModalOpen] = useState(false)
+  const [isModaLOpen, setIsModalOpen] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [isLoading, setIsloading] = useState(false);
+
   const handleProductChange = (value) => {
     const sku = generateSKU(value);
     form.setFieldsValue({ skuNumber: sku });
@@ -43,7 +48,49 @@ const ProductDetails = ({ form }) => {
     form.setFieldsValue({ barcodeNumber: barcode });
   };
 
-  const barcodeValue = Form.useWatch("barcodeNumber", form);
+  const handleOnOk = async (values) => {
+    try {
+      console.log(values);
+      setIsloading(true);
+      const response = await createCategory(values);
+      setCategories(prev => [
+          ...prev,
+          {
+            label: response.categoryName,
+            value: response.id
+          }
+        ]
+      );
+      message.success("Category added successfully");
+      setIsModalOpen(false);
+    }
+    catch (e) {
+      message.error("Failed to add category");
+      console.error("Failed to add category: ", e)
+    }
+    finally {
+      setIsloading(false);
+    }
+  }
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        setIsloading(true)
+        const res = await getCategory();
+        console.log(res);
+        setCategories(
+          res.map(cat => ({ label: cat.categoryName, value: cat.id }))
+        );
+      } catch (e) {
+        console.error("Failed to fetch categories", e);
+      }
+      finally {
+        setIsloading(false);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   useEffect(() => {
     if (barcodeValue && barcodeRef.current) {
@@ -56,6 +103,7 @@ const ProductDetails = ({ form }) => {
       });
     }
   }, [barcodeValue]);
+
   return (
     <Card title={<Title level={5}>Product Information</Title>}>
       <Row gutter={[16, 16]}>
@@ -103,9 +151,9 @@ const ProductDetails = ({ form }) => {
             rules={[{ required: true, message: "Category is Required" }]}
           >
             <Space.Compact style={{ width: "100%" }}>
-              <Select options={categories} />
+              <Select options={categories} loading={isLoading}/>
               <Button type="primary" onClick={() => setIsModalOpen(true)}>
-                Add Category
+                +
               </Button>
             </Space.Compact>
           </Form.Item>
@@ -154,7 +202,11 @@ const ProductDetails = ({ form }) => {
         </Row>
       )}
 
-      <AddCategory isOpen={isModaLOpen} handleCancel={() => setIsModalOpen(false)} />
+      <AddCategory
+        isOpen={isModaLOpen}
+        handleCancel={() => setIsModalOpen(false)}
+        handleOk={handleOnOk} loading={isLoading}
+      />
     </Card>
 
     
