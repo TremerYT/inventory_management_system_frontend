@@ -26,8 +26,11 @@ const Product = () => {
         mainImage: mainImageUrl,
         galleryImages: galleryImagesUrl
       }
+      console.log(data);
       const response = await createProduct(data);
-      message.success("Added Produvt successfully");
+      console.log(response);
+      message.success("Added Product successfully");
+      form.resetFields();
     }
     catch (e) {
       setLoading(false);

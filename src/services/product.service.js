@@ -3,7 +3,7 @@ import api from "./api.js";
 
 export const createProduct = async (data) => {
   try {
-    const response = await api.post("/api/products/create", data);
+    const response = await api.post("/products/create", data);
     return response.data;
   }
   catch (e) {
@@ -14,7 +14,7 @@ export const createProduct = async (data) => {
 
 export const getProduct = async () => {
   try {
-    const response = await api.get("/api/products");
+    const response = await api.get("/products");
     return response.data;
   }
   catch (e) {
@@ -25,7 +25,7 @@ export const getProduct = async () => {
 
 export const getProductById = async (id) => {
   try {
-    const response = await api.get(`/api/products/${id}`);
+    const response = await api.get(`/products/${id}`);
     return response.data;
   }
   catch (e) {
@@ -36,7 +36,7 @@ export const getProductById = async (id) => {
 
 export const updateProduct = async (id, data) => {
   try {
-    const response = await api.put(`/api/products/${id}`, data);
+    const response = await api.put(`/products/${id}`, data);
     return response.data;
   }
   catch (e) {
@@ -47,7 +47,7 @@ export const updateProduct = async (id, data) => {
 
 export const getLowStockProducts = async () => {
   try {
-    const response = await api.get("/api/products/low-stock");
+    const response = await api.get("/products/low-stock");
     return response.data;
   }
   catch (e) {
@@ -58,7 +58,7 @@ export const getLowStockProducts = async () => {
 
 export const getOutOfStockProducts = async () => {
   try {
-    const response = await api.get("/api/products/out-of-stock");
+    const response = await api.get("/products/out-of-stock");
     return response.data;
   }
   catch (e) {
@@ -69,7 +69,7 @@ export const getOutOfStockProducts = async () => {
 
 export const getSummary = async () => {
   try {
-    const response = await api.get("/api/products/summary");
+    const response = await api.get("/products/summary");
     return response.data;
   }
   catch (e) {
@@ -80,7 +80,7 @@ export const getSummary = async () => {
 
 export const deleteProduct = async (id) => {
   try {
-    const response = await api.delete(`/api/products/${id}`);
+    const response = await api.delete(`/products/${id}`);
     return response.data;
   }
   catch (e) {

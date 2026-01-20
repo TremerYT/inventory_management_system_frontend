@@ -146,18 +146,32 @@ const ProductDetails = ({ form }) => {
 
         <Col span={12}>
           <Form.Item
-            name="category"
             label="Category"
-            rules={[{ required: true, message: "Category is Required" }]}
+            required
           >
             <Space.Compact style={{ width: "100%" }}>
-              <Select options={categories} loading={isLoading}/>
-              <Button type="primary" onClick={() => setIsModalOpen(true)}>
+              <Form.Item
+                name="categoryId"
+                noStyle
+                rules={[{ required: true, message: "Category is Required" }]}
+              >
+                <Select
+                  options={categories}
+                  loading={isLoading}
+                  placeholder="Select category"
+                />
+              </Form.Item>
+
+              <Button
+                type="primary"
+                onClick={() => setIsModalOpen(true)}
+              >
                 +
               </Button>
             </Space.Compact>
           </Form.Item>
         </Col>
+
       </Row>
 
       <Row gutter={[16, 16]}>
@@ -173,7 +187,7 @@ const ProductDetails = ({ form }) => {
 
         <Col span={12}>
           <Form.Item
-            name="productUnit"
+            name="unit"
             label="Product Unit"
             rules={[{ required: true, message: "Product unit is Required" }]}
           >
