@@ -1,5 +1,6 @@
-import { Card } from "antd";
+import {Card} from "antd";
 import Chart from "react-apexcharts";
+
 const options = {
   chart: {
     type: "bar",
@@ -52,8 +53,8 @@ const series = [
 
 const SalesVsPurchase = () => {
   return (
-    <Card title="Sales vs Purchase" style={{ marginBottom: 24, height: "100%"}}>
-      <Chart type="bar" options={options} series={series} height={350} />
+    <Card title="Sales vs Purchase" style={{marginBottom: 24, height: "100%"}}>
+      <Chart type="bar" options={options} series={series} height={350}/>
     </Card>
   );
 };

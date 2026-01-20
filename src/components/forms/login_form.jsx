@@ -1,17 +1,17 @@
-import { Button, Checkbox, Form, Input, message } from "antd";
+import {Button, Checkbox, Form, Input, message} from "antd";
 import api from "../../services/api.js";
 import useAuth from "../../hooks/useAuth.js";
-import { useState } from "react";
+import {useState} from "react";
 
 const LoginForm = () => {
   const [loginForm] = Form.useForm();
   const [loading, setloading] = useState(false);
-  const { login } = useAuth();
+  const {login} = useAuth();
   const handleSubmit = async () => {
     const data = loginForm.getFieldsValue();
     try {
       setloading(true);
-      const response = await api.post("/auth/login", data, { skipAuth: true });
+      const response = await api.post("/auth/login", data, {skipAuth: true});
       login(response.data.accessToken);
       setloading(false);
     } catch (e) {
@@ -25,13 +25,13 @@ const LoginForm = () => {
       <Form.Item
         label="Username"
         name="userName"
-        rules={[{ required: true, message: "Please input your username!" }]}
+        rules={[{required: true, message: "Please input your username!"}]}
       >
-        <Input size="large" placeholder="Enter your email" />
+        <Input size="large" placeholder="Enter your email"/>
       </Form.Item>
 
-      <Form.Item label="Password" name="password" rules={[{ required: true }]}>
-        <Input.Password size="large" placeholder="Enter your password" />
+      <Form.Item label="Password" name="password" rules={[{required: true}]}>
+        <Input.Password size="large" placeholder="Enter your password"/>
       </Form.Item>
 
       <div className="flex justify-between items-center mb-4">

@@ -31,13 +31,11 @@ const Product = () => {
       console.log(response);
       message.success("Added Product successfully");
       form.resetFields();
-    }
-    catch (e) {
+    } catch (e) {
       setLoading(false);
       message.error("Something went wrong uploading the Product");
       console.log("Error:", e);
-    }
-    finally {
+    } finally {
       setLoading(false);
     }
   }
@@ -51,9 +49,9 @@ const Product = () => {
       onFinish={handleOnFinish}
     >
       <div className="flex flex-col gap-6">
-        <ProductDetails form={form} />
-        <ProductMetrics form={form} />
-        <ProductImages form={form} />
+        <ProductDetails form={form}/>
+        <ProductMetrics form={form}/>
+        <ProductImages form={form}/>
       </div>
       <div className="flex gap-4 justify-end mt-10">
         <Button type="primary" htmlType="submit" size="large" loading={loading}>

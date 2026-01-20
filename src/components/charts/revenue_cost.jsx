@@ -1,11 +1,11 @@
-import { Card } from "antd";
+import {Card} from "antd";
 import Chart from "react-apexcharts";
 
 const options = {
   chart: {
     type: "line",
     stacked: true,
-    toolbar: { show: false },
+    toolbar: {show: false},
   },
   stroke: {
     curve: "smooth",

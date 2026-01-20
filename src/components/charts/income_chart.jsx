@@ -1,8 +1,8 @@
-import { useState } from "react";
+import {useState} from "react";
 import Chart from "react-apexcharts";
-import { Card, Select } from "antd";
+import {Card, Select} from "antd";
 
-const { Option } = Select;
+const {Option} = Select;
 
 const IncomeChart = () => {
   const [period, setPeriod] = useState("month");
@@ -24,8 +24,8 @@ const IncomeChart = () => {
     chart: {
       type: "line",
       height: 200,
-      toolbar: { show: false },
-      zoom: { enabled: false },
+      toolbar: {show: false},
+      zoom: {enabled: false},
       dropShadow: {
         enabled: true,
         top: 8,
@@ -39,15 +39,15 @@ const IncomeChart = () => {
       width: 3,
     },
     colors: ["#2563eb"],
-    grid: { show: false },
+    grid: {show: false},
     xaxis: {
-      labels: { show: false },
-      axisBorder: { show: false },
-      axisTicks: { show: false },
+      labels: {show: false},
+      axisBorder: {show: false},
+      axisTicks: {show: false},
     },
-    yaxis: { show: false },
-    legend: { show: false },
-    markers: { size: 0 },
+    yaxis: {show: false},
+    legend: {show: false},
+    markers: {size: 0},
   };
 
   const totalIncome = series[0].data.reduce((a, b) => a + b, 0);
@@ -75,7 +75,7 @@ const IncomeChart = () => {
         </Select>
       </div>
 
-      <Chart options={options} series={series} type="line" height={200} />
+      <Chart options={options} series={series} type="line" height={200}/>
     </Card>
   );
 };

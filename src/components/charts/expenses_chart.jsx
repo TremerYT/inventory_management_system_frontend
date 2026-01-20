@@ -1,8 +1,8 @@
-import { useState } from "react";
+import {useState} from "react";
 import Chart from "react-apexcharts";
-import { Select, Card } from "antd";
+import {Card, Select} from "antd";
 
-const { Option } = Select;
+const {Option} = Select;
 
 const ExpensesChart = () => {
   const [period, setPeriod] = useState("month");
@@ -24,8 +24,8 @@ const ExpensesChart = () => {
     chart: {
       type: "line",
       height: 200,
-      toolbar: { show: false },
-      zoom: { enabled: false },
+      toolbar: {show: false},
+      zoom: {enabled: false},
       dropShadow: {
         enabled: true,
         top: 8,
@@ -39,15 +39,15 @@ const ExpensesChart = () => {
       width: 3,
     },
     colors: ["#f97316"],
-    grid: { show: false },
+    grid: {show: false},
     xaxis: {
-      labels: { show: false },
-      axisBorder: { show: false },
-      axisTicks: { show: false },
+      labels: {show: false},
+      axisBorder: {show: false},
+      axisTicks: {show: false},
     },
-    yaxis: { show: false },
-    legend: { show: false },
-    markers: { size: 0 },
+    yaxis: {show: false},
+    legend: {show: false},
+    markers: {size: 0},
   };
 
   const totalExpenses = series[0].data.reduce((a, b) => a + b, 0);
@@ -74,7 +74,7 @@ const ExpensesChart = () => {
         </Select>
       </div>
 
-      <Chart options={options} series={series} type="line" height={200} />
+      <Chart options={options} series={series} type="line" height={200}/>
     </Card>
   );
 };

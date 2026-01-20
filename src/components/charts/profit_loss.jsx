@@ -4,7 +4,7 @@ import Chart from "react-apexcharts";
 const options = {
   chart: {
     type: "line",
-    toolbar: { show: true },
+    toolbar: {show: true},
   },
   stroke: {
     curve: "smooth",
@@ -18,12 +18,12 @@ const options = {
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
   ],
   xaxis: {
-    axisBorder: { show: false },
-    axisTicks: { show: false },
+    axisBorder: {show: false},
+    axisTicks: {show: false},
   },
   yaxis: {
     labels: {
-      style: { colors: "#6B7280" },
+      style: {colors: "#6B7280"},
     },
   },
   grid: {
@@ -54,7 +54,7 @@ const series = [
 
 const ProfitVsLoss = () => {
   return (
-    <Card style={{ height: '100%' }}>
+    <Card style={{height: '100%'}}>
       <Chart options={options} series={series} type="line" height={450}/>
     </Card>
   );
