@@ -6,8 +6,10 @@ import {
   taxes,
   taxType,
 } from "../../utils/select_items.js";
+import {useProduct} from "../../context/product_context.jsx";
 const { Title } = Typography;
-const ProductMetrics = ({ form }) => {
+const ProductMetrics = () => {
+  const {form} = useProduct();
   const currentTaxType = Form.useWatch("taxType", form);
   const currentDiscountType = Form.useWatch("discountType", form);
   return (

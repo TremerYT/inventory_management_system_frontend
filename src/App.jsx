@@ -1,5 +1,5 @@
 import "./index.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import PageLayout from "./components/layout/layout.jsx";
 import Dashboard from "./pages/dashboard.jsx";
 import Product from "./pages/product.jsx";
@@ -17,34 +17,43 @@ import Register from "./pages/register.jsx";
 import PrivateRoute from "./pages/private_route.jsx";
 import {AuthProvider} from "./context/auth_provider.jsx";
 import {Navigate} from "react-router";
+import {CategoryProvider} from "./context/category_provider.jsx";
+import {ProductProvider} from "./context/product_context.jsx";
+import {ProductDetailsProvider} from "./context/product_details_context.jsx";
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Routes>
-          <Route path="/" element={<Navigate to= "/login"/>}/>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register/>}/>
-          <Route element={
-              <PrivateRoute>
-                <PageLayout />
-              </PrivateRoute>
-            }
-          >
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/products/add" element={<Product />} />
-            <Route path="/products/list" element={<AllProducts />} />
-            <Route path="/categories/list" element={<Categories />} />
-            <Route path="/sales" element={<Sales />} />
-            <Route path="/purchases/list" element={<Purchases/>} />
-            <Route path="/purchases/add" element={<AddPurchase/>} />
-            <Route path="/returns/add" element={<AddReturn/>} />
-            <Route path="/returns/list" element={<Returns/>} />
-            <Route path="/customers" element={<Customers/>} />
-            <Route path="/suppliers" element={<Suppliers/>} />
-          </Route>
-        </Routes>
+        <ProductProvider>
+          <ProductDetailsProvider>
+            <CategoryProvider>
+              <Routes>
+                <Route path="/" element={<Navigate to="/login"/>}/>
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/register" element={<Register/>}/>
+                <Route element={
+                  <PrivateRoute>
+                    <PageLayout/>
+                  </PrivateRoute>
+                }
+                >
+                  <Route path="/dashboard" element={<Dashboard/>}/>
+                  <Route path="/products/add" element={<Product/>}/>
+                  <Route path="/products/list" element={<AllProducts/>}/>
+                  <Route path="/categories/list" element={<Categories/>}/>
+                  <Route path="/sales" element={<Sales/>}/>
+                  <Route path="/purchases/list" element={<Purchases/>}/>
+                  <Route path="/purchases/add" element={<AddPurchase/>}/>
+                  <Route path="/returns/add" element={<AddReturn/>}/>
+                  <Route path="/returns/list" element={<Returns/>}/>
+                  <Route path="/customers" element={<Customers/>}/>
+                  <Route path="/suppliers" element={<Suppliers/>}/>
+                </Route>
+              </Routes>
+            </CategoryProvider>
+          </ProductDetailsProvider>
+        </ProductProvider>
       </AuthProvider>
     </BrowserRouter>
   );

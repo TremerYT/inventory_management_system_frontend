@@ -1,25 +1,13 @@
-import {
-  Button,
-  Card,
-  Col,
-  Form,
-  Input, message,
-  Row,
-  Select,
-  Space,
-  Typography,
-} from "antd";
-import {
-  categories,
-  units,
-} from "../../utils/select_items.js";
-import { useEffect, useRef, useState } from "react";
+import {Button, Card, Col, Form, Input, Row, Select, Space, Typography,} from "antd";
+import {units,} from "../../utils/select_items.js";
+import {useEffect, useState} from "react";
 import JsBarcode from "jsbarcode";
 import AddCategory from "../modal/add_category.jsx";
-import {createCategory, getCategory} from "../../services/category.service.js";
+import {useCategory} from "../../context/category_provider.jsx";
+import {useProductDetails} from "../../context/product_details_context.jsx";
 
-const { Title } = Typography;
-const { TextArea } = Input;
+const {Title} = Typography;
+const {TextArea} = Input;
 const generateSKU = (productName) => {
   if (!productName) return "";
   const code = productName.substring(0, 3).toUpperCase();
@@ -31,78 +19,17 @@ const generateBarcodeNumber = () => {
   return String(Math.floor(100000000000 + Math.random() * 900000000000));
 };
 
-const ProductDetails = ({ form }) => {
-  const barcodeValue = Form.useWatch("barcodeNumber", form);
-  const barcodeRef = useRef(null);
+const ProductDetails = () => {
   const [isModaLOpen, setIsModalOpen] = useState(false);
-  const [categories, setCategories] = useState([]);
-  const [isLoading, setIsloading] = useState(false);
-
-  const handleProductChange = (value) => {
-    const sku = generateSKU(value);
-    form.setFieldsValue({ skuNumber: sku });
-  };
-
-  const handleGenerateBarcode = () => {
-    const barcode = generateBarcodeNumber();
-    form.setFieldsValue({ barcodeNumber: barcode });
-  };
+  const {categories, isLoading, fetchCategories, addCategory,} = useCategory();
+  const {barcodeValue, barcodeRef, generateBarcode, generateSKU} = useProductDetails();
 
   const handleOnOk = async (values) => {
-    try {
-      console.log(values);
-      setIsloading(true);
-      const response = await createCategory(values);
-      setCategories(prev => [
-          ...prev,
-          {
-            label: response.categoryName,
-            value: response.id
-          }
-        ]
-      );
-      message.success("Category added successfully");
+    const success = await addCategory(values);
+    if (success) {
       setIsModalOpen(false);
     }
-    catch (e) {
-      message.error("Failed to add category");
-      console.error("Failed to add category: ", e)
-    }
-    finally {
-      setIsloading(false);
-    }
   }
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        setIsloading(true)
-        const res = await getCategory();
-        console.log(res);
-        setCategories(
-          res.map(cat => ({ label: cat.categoryName, value: cat.id }))
-        );
-      } catch (e) {
-        console.error("Failed to fetch categories", e);
-      }
-      finally {
-        setIsloading(false);
-      }
-    };
-    fetchCategories();
-  }, []);
-
-  useEffect(() => {
-    if (barcodeValue && barcodeRef.current) {
-      JsBarcode(barcodeRef.current, barcodeValue, {
-        format: "CODE128",
-        lineColor: "#000",
-        width: 2,
-        height: 50,
-        displayValue: true,
-      });
-    }
-  }, [barcodeValue]);
 
   return (
     <Card title={<Title level={5}>Product Information</Title>}>
@@ -111,9 +38,9 @@ const ProductDetails = ({ form }) => {
           <Form.Item
             name="skuNumber"
             label="SKU"
-            rules={[{ required: true, message: "SKU is Required" }]}
+            rules={[{required: true, message: "SKU is Required"}]}
           >
-            <Input disabled placeholder={generateSKU()} />
+            <Input disabled placeholder={generateSKU()}/>
           </Form.Item>
         </Col>
 
@@ -121,11 +48,11 @@ const ProductDetails = ({ form }) => {
           <Form.Item
             name="barcodeNumber"
             label="Barcode"
-            rules={[{ required: true, message: "Barcode is required" }]}
+            rules={[{required: true, message: "Barcode is required"}]}
           >
-            <Space.Compact style={{ width: "100%" }}>
-              <Input disabled placeholder={barcodeValue} />
-              <Button type="primary" onClick={handleGenerateBarcode}>
+            <Space.Compact style={{width: "100%"}}>
+              <Input disabled placeholder={barcodeValue}/>
+              <Button type="primary" onClick={generateBarcode}>
                 Generate
               </Button>
             </Space.Compact>
@@ -138,9 +65,9 @@ const ProductDetails = ({ form }) => {
           <Form.Item
             name="productName"
             label="Product Name"
-            rules={[{ required: true, message: "Product is Required" }]}
+            rules={[{required: true, message: "Product is Required"}]}
           >
-            <Input onChange={(e) => handleProductChange(e.target.value)} />
+            <Input onChange={(e) => generateSKU(e.target.value)}/>
           </Form.Item>
         </Col>
 
@@ -149,11 +76,11 @@ const ProductDetails = ({ form }) => {
             label="Category"
             required
           >
-            <Space.Compact style={{ width: "100%" }}>
+            <Space.Compact style={{width: "100%"}}>
               <Form.Item
                 name="categoryId"
                 noStyle
-                rules={[{ required: true, message: "Category is Required" }]}
+                rules={[{required: true, message: "Category is Required"}]}
               >
                 <Select
                   options={categories}
@@ -179,9 +106,9 @@ const ProductDetails = ({ form }) => {
           <Form.Item
             name="brand"
             label="Brand"
-            rules={[{ required: true, message: "Brand is Required" }]}
+            rules={[{required: true, message: "Brand is Required"}]}
           >
-            <Input />
+            <Input/>
           </Form.Item>
         </Col>
 
@@ -189,9 +116,9 @@ const ProductDetails = ({ form }) => {
           <Form.Item
             name="unit"
             label="Product Unit"
-            rules={[{ required: true, message: "Product unit is Required" }]}
+            rules={[{required: true, message: "Product unit is Required"}]}
           >
-            <Select options={units} />
+            <Select options={units}/>
           </Form.Item>
         </Col>
       </Row>
@@ -201,17 +128,17 @@ const ProductDetails = ({ form }) => {
           <Form.Item
             name="description"
             label="Description"
-            rules={[{ required: true, message: "Description is Required" }]}
+            rules={[{required: true, message: "Description is Required"}]}
           >
-            <TextArea rows={7} />
+            <TextArea rows={7}/>
           </Form.Item>
         </Col>
       </Row>
 
       {barcodeValue && (
         <Row>
-          <Col span={24} style={{ textAlign: "center", marginBottom: 16 }}>
-            <svg ref={barcodeRef} />
+          <Col span={24} style={{textAlign: "center", marginBottom: 16}}>
+            <svg ref={barcodeRef}/>
           </Col>
         </Row>
       )}
@@ -222,8 +149,6 @@ const ProductDetails = ({ form }) => {
         handleOk={handleOnOk} loading={isLoading}
       />
     </Card>
-
-    
   );
 };
 
