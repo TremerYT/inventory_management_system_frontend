@@ -5,6 +5,7 @@ import {message} from "antd";
 const CategoryContext = createContext(null);
 export const CategoryProvider = ({children}) => {
   const [categories, setCategories] = useState([]);
+  const [categoryFilter, setCategoryFilter] = useState([]);
   const [isLoading, setIsloading] = useState(false);
 
   const fetchCategories = async () => {
@@ -13,6 +14,9 @@ export const CategoryProvider = ({children}) => {
       const res = await getCategory();
       setCategories(
         res.map(cat => ({label: cat.categoryName, value: cat.id}))
+      );
+      setCategoryFilter(
+        res.map(cat => ({label: cat.categoryName, value: cat.categoryName}))
       );
     } catch (e) {
       console.error("Failed to fetch categories", e);
@@ -52,6 +56,7 @@ export const CategoryProvider = ({children}) => {
     <CategoryContext.Provider value={{
       categories,
       isLoading,
+      categoryFilter,
       fetchCategories,
       addCategory,
     }}

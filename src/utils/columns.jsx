@@ -19,8 +19,8 @@ export const productColumns = [
   },
   {
     title: "Category",
-    dataIndex: "category",
-    key: "category",
+    dataIndex: "categoryName",
+    key: "categoryName",
   },
   {
     title: "Brand",

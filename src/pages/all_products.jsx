@@ -1,27 +1,17 @@
-import { Button, Card, Input, Select, Table } from "antd";
-import {
-  FileExcelFilled,
-  FilePdfFilled,
-  PlusOutlined,
-  ReloadOutlined,
-} from "@ant-design/icons";
-import { brands, categories } from "../utils/select_items.js";
-import { useState } from "react";
-import { productColumns } from "../utils/columns.jsx";
-import { useFilter } from "../hooks/useFilter.js";
-import { mockProducts } from "../mock/mock_data.jsx";
-import { useNavigate } from "react-router";
+import {Button, Card, Input, Select, Table} from "antd";
+import {FileExcelFilled, FilePdfFilled, PlusOutlined, ReloadOutlined,} from "@ant-design/icons";
+import {brands} from "../utils/select_items.js";
+import {useState} from "react";
+import {productColumns} from "../utils/columns.jsx";
+import {useNavigate} from "react-router";
+import {useProduct} from "../context/product_context.jsx";
+import {useCategory} from "../context/category_provider.jsx";
 
 const AllProducts = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const {products, loading, setSelectedCategory, setSelectedBrand, setSearchText, filteredData} = useProduct();
+  const {categoryFilter} = useCategory();
   const navigate = useNavigate();
-  const { searchText, filteredData, handleSearch, handleSelect } = useFilter(
-    mockProducts,
-    {
-      searchFields: ["productName", "skuNumber"],
-      selectFields: ["category", "brand"],
-    }
-  );
 
   const rowSelection = {
     selectedRowKeys,
@@ -40,20 +30,25 @@ const AllProducts = () => {
         <div className="flex gap-3">
           <Button
             type="text"
-            icon={<FilePdfFilled style={{ fontSize: 20, color: "red" }} />}
-            onClick={() => {}}
+            icon={<FilePdfFilled style={{fontSize: 20, color: "red"}}/>}
+            onClick={() => {
+            }}
           />
           <Button
             type="text"
-            icon={<FileExcelFilled style={{ fontSize: 20, color: "green" }} />}
-            onClick={() => {}}
+            icon={<FileExcelFilled style={{fontSize: 20, color: "green"}}/>}
+            onClick={() => {
+            }}
           />
           <Button
             type="text"
-            icon={<ReloadOutlined style={{ fontSize: 20 }} />}
-            onClick={() => {}}
+            icon={<ReloadOutlined style={{fontSize: 20}}/>}
+            onClick={() => {
+            }}
           />
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => {navigate('/products/add')}}>
+          <Button type="primary" icon={<PlusOutlined/>} onClick={() => {
+            navigate('/products/add')
+          }}>
             Add Product
           </Button>
         </div>
@@ -62,24 +57,27 @@ const AllProducts = () => {
       <Card
         title={
           <Input.Search
-            value={searchText}
-            onChange={handleSearch}
+            placeholder="Search product name, SKU, barcode..."
+            allowClear
             className="w-1/4!"
+            onChange={(e) => setSearchText(e.target.value)}
           />
         }
         extra={
           <div className="flex gap-2 w-80">
             <Select
-              defaultValue="Category"
-              options={categories}
+              placeholder="Category"
+              allowClear
+              options={categoryFilter}
               className="w-full!"
-              onSelect={(value) => handleSelect("category", value)}
+              onChange={(value) => setSelectedCategory(value)}
             />
             <Select
-              defaultValue="Brand"
+              placeholder="Brand"
+              allowClear
               options={brands}
               className="w-full!"
-              onSelect={(value) => handleSelect("brand", value)}
+              onChange={(value) => setSelectedBrand(value)}
             />
           </div>
         }
@@ -88,7 +86,8 @@ const AllProducts = () => {
           rowSelection={rowSelection}
           columns={productColumns}
           dataSource={filteredData}
-          pagination={{ pageSize: 10 }}
+          pagination={{pageSize: 10}}
+          loading={loading}
         />
       </Card>
     </>

@@ -12,7 +12,7 @@ export const createProduct = async (data) => {
   }
 }
 
-export const getProduct = async () => {
+export const getProducts = async () => {
   try {
     const response = await api.get("/products");
     return response.data;
