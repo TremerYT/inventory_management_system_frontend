@@ -2,7 +2,6 @@ import {createContext, useContext, useEffect, useState} from "react";
 import {Form, message} from "antd";
 import {upload} from "../services/supabase_storage.js";
 import {createProduct, getProducts} from "../services/product.service.js";
-import {productColumns} from "../utils/columns.jsx";
 
 const ProductContext = createContext();
 export const ProductProvider = ({children}) => {
@@ -19,16 +18,12 @@ export const ProductProvider = ({children}) => {
       product.productName?.toLowerCase().includes(searchText.toLowerCase()) ||
       product.skuNumber?.toLowerCase().includes(searchText.toLowerCase()) ||
       product.barcodeNumber?.includes(searchText);
-      console.log({
-        selectedCategory,
-        productCategoryName: product.categoryName,
-      });
-
     const matchesCategory = !selectedCategory || (product.categoryName === selectedCategory);
     const matchesBrand = !selectedBrand || product.brand === selectedBrand;
 
     return matchesSearch && matchesCategory && matchesBrand;
   });
+
 
   const handleOnFinish = async (values) => {
     try {

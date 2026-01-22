@@ -1,5 +1,5 @@
-import { Button, Space, Tag } from "antd";
-import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
+import {Button, Space, Tag} from "antd";
+import {DeleteOutlined, EditOutlined, EyeOutlined} from "@ant-design/icons";
 
 export const productColumns = [
   {
@@ -47,14 +47,17 @@ export const productColumns = [
     key: "action",
     render: (_, record) => (
       <Space size="middle">
-        <Button icon={<EyeOutlined />} onClick={() => {}} />
+        <Button icon={<EyeOutlined/>} onClick={() => {
+        }}/>
         <Button
-          icon={<EditOutlined style={{ color: "blue" }} />}
-          onClick={() => {}}
+          icon={<EditOutlined style={{color: "blue"}}/>}
+          onClick={() => {
+          }}
         />
         <Button
-          icon={<DeleteOutlined style={{ color: "red" }} />}
-          onClick={() => {}}
+          icon={<DeleteOutlined style={{color: "red"}}/>}
+          onClick={() => {
+          }}
         />
       </Space>
     ),
@@ -63,9 +66,14 @@ export const productColumns = [
 
 export const categoryColumns = [
   {
-    title: "Category",
-    dataIndex: "category",
-    key: "category",
+    title: "Category Code",
+    dataIndex: "categoryCode",
+    key: "categoryCode",
+  },
+  {
+    title: "Category Name",
+    dataIndex: "categoryName",
+    key: "categoryName",
   },
   {
     title: "Created on",
@@ -75,10 +83,10 @@ export const categoryColumns = [
   },
   {
     title: "Status",
-    dataIndex: "status",
-    key: "status",
-    render: (status) => (
-      <Tag color={status === "Active" ? "green" : "red"}>{status}</Tag>
+    dataIndex: "isActive",
+    key: "isActive",
+    render: (isActive) => (
+      <Tag color={isActive ? "green" : "red"}>{isActive ? "Active" : "Inactive"}</Tag>
     ),
   },
   {
@@ -87,12 +95,14 @@ export const categoryColumns = [
     render: (_, record) => (
       <Space size="middle">
         <Button
-          icon={<EditOutlined style={{ color: "blue" }} />}
-          onClick={() => {}}
+          icon={<EditOutlined style={{color: "blue"}}/>}
+          onClick={() => {
+          }}
         />
         <Button
-          icon={<DeleteOutlined style={{ color: "red" }} />}
-          onClick={() => {}}
+          icon={<DeleteOutlined style={{color: "red"}}/>}
+          onClick={() => {
+          }}
         />
       </Space>
     ),
@@ -176,12 +186,14 @@ export const salesColumns = [
     render: (_, record) => (
       <Space size="middle">
         <Button
-          icon={<EyeOutlined style={{ color: "blue" }} />}
-          onClick={() => {}}
+          icon={<EyeOutlined style={{color: "blue"}}/>}
+          onClick={() => {
+          }}
         />
         <Button
-          icon={<DeleteOutlined style={{ color: "red" }} />}
-          onClick={() => {}}
+          icon={<DeleteOutlined style={{color: "red"}}/>}
+          onClick={() => {
+          }}
         />
       </Space>
     ),
@@ -238,12 +250,14 @@ export const customersColumns = [
     render: (_, record) => (
       <Space size="middle">
         <Button
-          icon={<EditOutlined style={{ color: "blue" }} />}
-          onClick={() => {}}
+          icon={<EditOutlined style={{color: "blue"}}/>}
+          onClick={() => {
+          }}
         />
         <Button
-          icon={<DeleteOutlined style={{ color: "red" }} />}
-          onClick={() => {}}
+          icon={<DeleteOutlined style={{color: "red"}}/>}
+          onClick={() => {
+          }}
         />
       </Space>
     ),
@@ -297,12 +311,14 @@ export const suppliersColumn = [
     render: (_, record) => (
       <Space size="middle">
         <Button
-          icon={<EditOutlined style={{ color: "blue" }} />}
-          onClick={() => {}}
+          icon={<EditOutlined style={{color: "blue"}}/>}
+          onClick={() => {
+          }}
         />
         <Button
-          icon={<DeleteOutlined style={{ color: "red" }} />}
-          onClick={() => {}}
+          icon={<DeleteOutlined style={{color: "red"}}/>}
+          onClick={() => {
+          }}
         />
       </Space>
     ),
@@ -347,12 +363,14 @@ export const purchasesColumns = [
     render: (_, record) => (
       <Space size="middle">
         <Button
-          icon={<EditOutlined style={{ color: "blue" }} />}
-          onClick={() => {}}
+          icon={<EditOutlined style={{color: "blue"}}/>}
+          onClick={() => {
+          }}
         />
         <Button
-          icon={<DeleteOutlined style={{ color: "red" }} />}
-          onClick={() => {}}
+          icon={<DeleteOutlined style={{color: "red"}}/>}
+          onClick={() => {
+          }}
         />
       </Space>
     ),
@@ -403,12 +421,12 @@ export const returnsColumns = [
     render: (_, record) => (
       <Space size="middle">
         <Button
-          icon={<EyeOutlined />}
+          icon={<EyeOutlined/>}
           onClick={() => console.log("View return:", record)}
         />
         <Button
           danger
-          icon={<DeleteOutlined />}
+          icon={<DeleteOutlined/>}
           onClick={() => console.log("Delete return:", record)}
         />
       </Space>

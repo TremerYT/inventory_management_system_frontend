@@ -1,29 +1,14 @@
-import { useState } from "react";
-import { status } from "../utils/select_items";
-import { Button, Card, Input, Select, Table } from "antd";
-import {
-  FileExcelFilled,
-  FilePdfFilled,
-  PlusOutlined,
-  ReloadOutlined,
-} from "@ant-design/icons";
-import { categoryColumns } from "../utils/columns";
-import {useFilter} from "../hooks/useFilter.js";
-import {mockCategories} from "../mock/mock_data.jsx";
+import {useState} from "react";
+import {Button, Card, Input, Select, Table} from "antd";
+import {FileExcelFilled, FilePdfFilled, PlusOutlined, ReloadOutlined,} from "@ant-design/icons";
+import {categoryColumns} from "../utils/columns";
 import AddCategory from "../components/modal/add_category.jsx";
+import {useCategory} from "../context/category_provider.jsx";
 
 const Categories = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const {
-    searchText,
-    filteredData,
-    handleSearch,
-    handleSelect,
-  } = useFilter(mockCategories, {
-    searchFields: ["category"],
-    selectFields: ["status"],
-  });
+  const {categories, setSearchText, isLoading,filteredCategory, setSelectedStatus, categoryFilter} = useCategory();
 
   const rowSelection = {
     selectedRowKeys,
@@ -34,11 +19,11 @@ const Categories = () => {
 
   const handleOk = (values) => {
     console.log("Form Submited:", values);
-		setIsOpen(false);
+    setIsOpen(false);
   }
 
-   const handleCancel = () => {
-		setIsOpen(false);
+  const handleCancel = () => {
+    setIsOpen(false);
   }
 
   return (
@@ -51,20 +36,23 @@ const Categories = () => {
         <div className="flex gap-3">
           <Button
             type="text"
-            icon={<FilePdfFilled style={{ fontSize: 20, color: "red" }} />}
-            onClick={() => {}}
+            icon={<FilePdfFilled style={{fontSize: 20, color: "red"}}/>}
+            onClick={() => {
+            }}
           />
           <Button
             type="text"
-            icon={<FileExcelFilled style={{ fontSize: 20, color: "green" }} />}
-            onClick={() => {}}
+            icon={<FileExcelFilled style={{fontSize: 20, color: "green"}}/>}
+            onClick={() => {
+            }}
           />
           <Button
             type="text"
-            icon={<ReloadOutlined style={{ fontSize: 20 }} />}
-            onClick={() => {}}
+            icon={<ReloadOutlined style={{fontSize: 20}}/>}
+            onClick={() => {
+            }}
           />
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => setIsOpen(true)}>
+          <Button type="primary" icon={<PlusOutlined/>} onClick={() => setIsOpen(true)}>
             Add Category
           </Button>
         </div>
@@ -73,24 +61,31 @@ const Categories = () => {
       <Card
         title={
           <Input.Search
-            value={searchText}
-            onChange={handleSearch}
+            placeholder="Search category name or code"
+            allowClear
             className="w-1/4!"
+            onChange={(e) => setSearchText(e.target.value)}
           />
         }
         extra={
           <Select
-            defaultValue="Status"
-            options={status}
-            onSelect={(value) => handleSelect("status", value)}
+            placeholder="Filter by status"
+            allowClear
+            options={[
+              {label: "Active", value: true}, 
+              {label: "Inactive", value: false}
+            ]}
+            className="w-40!"
+            onChange={(value) => setSelectedStatus(value)}
           />
         }
       >
         <Table
           rowSelection={rowSelection}
           columns={categoryColumns}
-          dataSource={filteredData}
-          pagination={{ pageSize: 10 }}
+          dataSource={filteredCategory}
+          pagination={{pageSize: 10}}
+          loading={isLoading}
         />
         <AddCategory isOpen={isOpen} handleOk={handleOk} handleCancel={handleCancel}/>
       </Card>

@@ -8,20 +8,10 @@ import {useProductDetails} from "../../context/product_details_context.jsx";
 
 const {Title} = Typography;
 const {TextArea} = Input;
-const generateSKU = (productName) => {
-  if (!productName) return "";
-  const code = productName.substring(0, 3).toUpperCase();
-  const randomNumber = Math.floor(1000 + Math.random() * 9000);
-  return `${code}-${randomNumber}`;
-};
-
-const generateBarcodeNumber = () => {
-  return String(Math.floor(100000000000 + Math.random() * 900000000000));
-};
 
 const ProductDetails = () => {
   const [isModaLOpen, setIsModalOpen] = useState(false);
-  const {categories, isLoading, fetchCategories, addCategory,} = useCategory();
+  const {categoryOptions, isLoading, fetchCategories, addCategory,} = useCategory();
   const {barcodeValue, barcodeRef, generateBarcode, generateSKU} = useProductDetails();
 
   const handleOnOk = async (values) => {
@@ -83,7 +73,7 @@ const ProductDetails = () => {
                 rules={[{required: true, message: "Category is Required"}]}
               >
                 <Select
-                  options={categories}
+                  options={categoryOptions}
                   loading={isLoading}
                   placeholder="Select category"
                 />

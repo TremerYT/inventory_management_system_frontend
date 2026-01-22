@@ -4,20 +4,36 @@ import {message} from "antd";
 
 const CategoryContext = createContext(null);
 export const CategoryProvider = ({children}) => {
+  const [searchText, setSearchText] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState(null);
   const [categories, setCategories] = useState([]);
   const [categoryFilter, setCategoryFilter] = useState([]);
+  const [categoryOptions, setCategoryOptions] = useState([]);
+  const [categoryStatus, setCategoryStatus] = useState([]);
   const [isLoading, setIsloading] = useState(false);
+
+  const filteredCategory = categories.filter((category) => {
+    const matchesSearch =
+      !searchText ||
+      category.categoryName?.toLowerCase().includes(searchText.toLowerCase()) ||
+      category.categoryCode?.toLowerCase().includes(searchText.toLowerCase());
+    const matchesActive = selectedStatus === null || selectedStatus === undefined || category.isActive === selectedStatus;
+
+    return matchesSearch && matchesActive;
+  });
 
   const fetchCategories = async () => {
     try {
       setIsloading(true)
       const res = await getCategory();
-      setCategories(
+      setCategories(res);
+      setCategoryOptions(
         res.map(cat => ({label: cat.categoryName, value: cat.id}))
       );
       setCategoryFilter(
         res.map(cat => ({label: cat.categoryName, value: cat.categoryName}))
       );
+
     } catch (e) {
       console.error("Failed to fetch categories", e);
     } finally {
@@ -57,8 +73,13 @@ export const CategoryProvider = ({children}) => {
       categories,
       isLoading,
       categoryFilter,
+      categoryOptions,
+      filteredCategory,
       fetchCategories,
       addCategory,
+      setSearchText,
+      selectedStatus,
+      setSelectedStatus,
     }}
     >
       {children}
