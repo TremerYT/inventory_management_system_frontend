@@ -7,8 +7,16 @@ import {useCategory} from "../context/category_provider.jsx";
 
 const Categories = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
-  const {categories, setSearchText, isLoading,filteredCategory, setSelectedStatus, categoryFilter} = useCategory();
+  const [isModaLOpen, setIsModalOpen] = useState(false);
+  const {
+    categories,
+    setSearchText,
+    isLoading,
+    filteredCategory,
+    setSelectedStatus,
+    categoryFilter,
+    addCategory,
+  } = useCategory();
 
   const rowSelection = {
     selectedRowKeys,
@@ -17,13 +25,15 @@ const Categories = () => {
     },
   };
 
-  const handleOk = (values) => {
-    console.log("Form Submited:", values);
-    setIsOpen(false);
+  const handleOnOk = async (values) => {
+    const success = await addCategory(values);
+    if (success) {
+      setIsModalOpen(false);
+    }
   }
 
   const handleCancel = () => {
-    setIsOpen(false);
+    setIsModalOpen(false);
   }
 
   return (
@@ -52,7 +62,7 @@ const Categories = () => {
             onClick={() => {
             }}
           />
-          <Button type="primary" icon={<PlusOutlined/>} onClick={() => setIsOpen(true)}>
+          <Button type="primary" icon={<PlusOutlined/>} onClick={() => setIsModalOpen(true)}>
             Add Category
           </Button>
         </div>
@@ -72,7 +82,7 @@ const Categories = () => {
             placeholder="Filter by status"
             allowClear
             options={[
-              {label: "Active", value: true}, 
+              {label: "Active", value: true},
               {label: "Inactive", value: false}
             ]}
             className="w-40!"
@@ -87,7 +97,12 @@ const Categories = () => {
           pagination={{pageSize: 10}}
           loading={isLoading}
         />
-        <AddCategory isOpen={isOpen} handleOk={handleOk} handleCancel={handleCancel}/>
+        <AddCategory
+          isOpen={isModaLOpen}
+          handleOk={handleOnOk}
+          handleCancel={() => setIsModalOpen(false)}
+          loading={isLoading}
+        />
       </Card>
     </>
   );

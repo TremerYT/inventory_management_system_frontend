@@ -45,14 +45,8 @@ export const CategoryProvider = ({children}) => {
     try {
       setIsloading(true);
       const response = await createCategory(values);
-      setCategories(prev => [
-          ...prev,
-          {
-            label: response.categoryName,
-            value: response.id
-          }
-        ]
-      );
+      await fetchCategories();
+      
       message.success("Category added successfully");
       return true;
     } catch (e) {
