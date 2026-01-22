@@ -8,7 +8,7 @@ import {
 import { status } from "../utils/select_items.js";
 import { useState } from "react";
 import { customersColumns} from "../utils/columns.jsx";
-import { useFilter } from "../hooks/useFilter.js";
+
 import { mockCustomers} from "../mock/mock_data.jsx";
 
 const Customers = () => {

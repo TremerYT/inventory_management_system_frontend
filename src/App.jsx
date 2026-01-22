@@ -20,6 +20,7 @@ import {Navigate} from "react-router";
 import {CategoryProvider} from "./context/category_provider.jsx";
 import {ProductProvider} from "./context/product_context.jsx";
 import {ProductDetailsProvider} from "./context/product_details_context.jsx";
+import LowStocks from "./pages/low_stocks.jsx";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
                 >
                   <Route path="/dashboard" element={<Dashboard/>}/>
                   <Route path="/products/add" element={<Product/>}/>
+                  <Route path="/products/low-stocks" element={<LowStocks/>}/>
                   <Route path="/products/list" element={<AllProducts/>}/>
                   <Route path="/categories/list" element={<Categories/>}/>
                   <Route path="/sales" element={<Sales/>}/>

@@ -7,7 +7,6 @@ import {
 import { dates, paymentStatus, saleStatus, status } from "../utils/select_items.js";
 import { useState } from "react";
 import { salesColumns } from "../utils/columns.jsx";
-import { useFilter } from "../hooks/useFilter.js";
 import { mockSales } from "../mock/mock_data.jsx";
 import { useNavigate } from "react-router";
 

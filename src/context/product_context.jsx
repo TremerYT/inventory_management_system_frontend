@@ -1,13 +1,15 @@
 import {createContext, useContext, useEffect, useState} from "react";
 import {Form, message} from "antd";
 import {upload} from "../services/supabase_storage.js";
-import {createProduct, getProducts} from "../services/product.service.js";
+import {createProduct, getLowStockProducts, getOutOfStockProducts, getProducts} from "../services/product.service.js";
 
 const ProductContext = createContext();
 export const ProductProvider = ({children}) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
+  const [lowStockProducts, setLowStockProducts] = useState([]);
+  const [outOfStockProducts, setOutOfStockProducts] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedBrand, setSelectedBrand] = useState(null);
@@ -54,6 +56,7 @@ export const ProductProvider = ({children}) => {
   const handleOnCancel = () => {
     form.resetFields();
   }
+
   const fetchProducts = async () => {
     try {
       setLoading(true)
@@ -67,8 +70,35 @@ export const ProductProvider = ({children}) => {
     }
   }
 
+  const fetchLowStockProducts = async() => {
+    try {
+      setLoading(true)
+      const data = await  getLowStockProducts();
+      console.log(data);
+      setLowStockProducts(data);
+    } catch (e) {
+      console.error("Error fetching Products:", e)
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const fetchOutOfStockProducts = async() => {
+    try {
+      setLoading(true)
+      const data = await getOutOfStockProducts();
+      setOutOfStockProducts(data);
+    } catch (e) {
+      console.error("Error fetching Products:", e)
+    } finally {
+      setLoading(false);
+    }
+  }
+
   useEffect(() => {
     fetchProducts();
+    fetchLowStockProducts();
+    fetchOutOfStockProducts();
   }, []);
 
   return (
@@ -76,6 +106,8 @@ export const ProductProvider = ({children}) => {
       form,
       loading,
       products,
+      lowStockProducts,
+      outOfStockProducts,
       filteredData,
       handleOnCancel,
       handleOnFinish,

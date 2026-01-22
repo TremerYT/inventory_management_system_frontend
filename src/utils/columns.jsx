@@ -436,54 +436,103 @@ export const returnsColumns = [
 
 export const lowStockColumns = [
   {
-    title: "Product",
-    dataIndex: "name",
-    key: "name",
-    ellipsis: true,
+    title: "SKU",
+    dataIndex: "skuNumber",
+    key: "skuNumber",
   },
   {
-    title: "SKU",
-    dataIndex: "sku",
-    key: "sku",
+    title: "Product Name",
+    dataIndex: "productName",
+    key: "productName",
   },
   {
     title: "Category",
-    dataIndex: "category",
-    key: "category",
+    dataIndex: "categoryName",
+    key: "categoryName",
   },
   {
-    title: "Stock",
-    dataIndex: "stock",
-    key: "stock",
-    render: (stock) => (
-      <Tag color={stock <= 5 ? "red" : "orange"}>
-        {stock}
-      </Tag>
+    title: "Unit",
+    dataIndex: "unit",
+    key: "unit",
+  },
+  {
+    title: "Quantity remaining",
+    dataIndex: "quantity",
+    key: "quantity",
+  },
+  {
+    title: "Alert Quantity",
+    dataIndex: "minStock",
+    key: "minStock",
+  },
+  {
+    title: "Action",
+    key: "action",
+    render: (_, record) => (
+      <Space size="middle">
+        <Button
+          icon={<EditOutlined style={{color: "blue"}}/>}
+          onClick={() => {
+          }}
+        />
+        <Button
+          icon={<DeleteOutlined style={{color: "red"}}/>}
+          onClick={() => {
+          }}
+        />
+      </Space>
     ),
   },
 ];
 
 export const outOfStockColumns = [
   {
-    title: "Product",
-    dataIndex: "name",
-    key: "name",
-    ellipsis: true,
+    title: "SKU",
+    dataIndex: "skuNumber",
+    key: "skuNumber",
   },
   {
-    title: "SKU",
-    dataIndex: "sku",
-    key: "sku",
+    title: "Product Name",
+    dataIndex: "productName",
+    key: "productName",
   },
   {
     title: "Category",
-    dataIndex: "category",
-    key: "category",
+    dataIndex: "categoryName",
+    key: "categoryName",
   },
   {
-    title: "Status",
-    key: "status",
-    render: () => <Tag color="red">Out of Stock</Tag>,
+    title: "Unit",
+    dataIndex: "unit",
+    key: "unit",
+  },
+  {
+    title: "Quantity remaining",
+    dataIndex: "quantity",
+    key: "quantity",
+  },
+  {
+    title: "Alert Quantity",
+    dataIndex: "minStock",
+    key: "minStock",
+  },
+  {
+    title: "Action",
+    key: "action",
+    render: (_, record) => (
+      <Space size="middle">
+        <Button
+          icon={<EditOutlined style={{color: "blue"}}/>}
+          onClick={() => {
+          }}
+        />
+        <Button
+          icon={<DeleteOutlined style={{color: "red"}}/>}
+          onClick={() => {
+          }}
+        />
+      </Space>
+    ),
   },
 ];
 

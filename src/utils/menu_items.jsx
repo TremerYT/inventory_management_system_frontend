@@ -39,8 +39,8 @@ export const items = [
   ]),
   getItems("/sales", <FaShoppingCart />, "Sales", [
     getItems("/sales/list", null, "Sales Orders"),
-    getItems("/sales/invoices", null, "Invoices"),
     getItems("/sales/returns", null, "Sales Returns"),
+    getItems("/sales/invoices", null, "Invoices"),
   ]),
   getItems("/purchases", <FaTruck />, "Purchases", [
     getItems("/purchases/list", null, "List Purchases"),
