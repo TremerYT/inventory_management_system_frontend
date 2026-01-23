@@ -38,6 +38,7 @@ export const items = [
     getItems("/categories/list", null, "List Categories"),
   ]),
   getItems("/sales", <FaShoppingCart />, "Sales", [
+    getItems("/sales/add", null, "Create Sale"),
     getItems("/sales/list", null, "Sales Orders"),
     getItems("/sales/returns", null, "Sales Returns"),
     getItems("/sales/invoices", null, "Invoices"),

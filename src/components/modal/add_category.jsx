@@ -1,8 +1,10 @@
-import { Form, Modal, Switch, Input } from "antd";
+import {Form, Modal, Switch, Input, Upload} from "antd";
 import {useState} from "react";
+import {PlusOutlined} from "@ant-design/icons";
 
 const AddCategory = ({ isOpen, handleCancel, handleOk}) => {
   const [addCategoryForm] = Form.useForm();
+  const [categoryImage, setCategoryImage] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const onFinish = async (values) => {
@@ -14,6 +16,10 @@ const AddCategory = ({ isOpen, handleCancel, handleOk}) => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleCategoryImageChange = ({ fileList }) => {
+    setCategoryImage(fileList);
   };
 
   return (
@@ -31,6 +37,30 @@ const AddCategory = ({ isOpen, handleCancel, handleOk}) => {
           rules={[{ required: true, message: "Category is Required" }]}
         >
           <Input />
+        </Form.Item>
+
+        <Form.Item
+          name="categoryImage"
+          valuePropName="fileList"
+          getValueFromEvent={(e) => e.fileList}
+          rules={[
+            { required: true, message: "Please upload at least one image" },
+          ]}
+        >
+          <Upload
+            listType="picture-card"
+            fileList={categoryImage}
+            onChange={handleCategoryImageChange}
+            beforeUpload={() => false}
+            maxCount={1}
+          >
+            {categoryImage.length >= 1 ? null : (
+              <div>
+                <PlusOutlined />
+                <div style={{ marginTop: 8 }}>Upload</div>
+              </div>
+            )}
+          </Upload>
         </Form.Item>
         <Form.Item name="isActive" valuePropName="checked">
           <Switch />

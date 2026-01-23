@@ -21,6 +21,7 @@ import {CategoryProvider} from "./context/category_provider.jsx";
 import {ProductProvider} from "./context/product_context.jsx";
 import {ProductDetailsProvider} from "./context/product_details_context.jsx";
 import LowStocks from "./pages/low_stocks.jsx";
+import AddSale from "./pages/add_sale.jsx";
 
 function App() {
   return (
@@ -44,7 +45,7 @@ function App() {
                   <Route path="/products/low-stocks" element={<LowStocks/>}/>
                   <Route path="/products/list" element={<AllProducts/>}/>
                   <Route path="/categories/list" element={<Categories/>}/>
-                  <Route path="/sales" element={<Sales/>}/>
+                  <Route path="/sales/add" element={<AddSale/>}/>
                   <Route path="/purchases/list" element={<Purchases/>}/>
                   <Route path="/purchases/add" element={<AddPurchase/>}/>
                   <Route path="/returns/add" element={<AddReturn/>}/>
