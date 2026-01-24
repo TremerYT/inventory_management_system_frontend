@@ -34,6 +34,17 @@ export const getProductById = async (id) => {
   }
 }
 
+export const getProductsByQuery = async (query) => {
+  try {
+    const response = await api.get(`/products/search?query=${query}`);
+    return response.data;
+  }
+  catch (e) {
+    console.error("Failed to fetch products by query");
+    throw e;
+  }
+}
+
 export const updateProduct = async (id, data) => {
   try {
     const response = await api.put(`/products/${id}`, data);

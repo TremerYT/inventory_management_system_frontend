@@ -5,19 +5,19 @@ const supabase = createClient(
   import.meta.env.VITE_SUPABASE_ANON_KEY
 );
 
-export const upload = async (file, folder="products") => {
+export const upload = async (file, folder, bucket) => {
   const extract = file.name.split(".").pop();
   const fileName = `${crypto.randomUUID()}.${extract}`;
   const filePath = `${folder}/${fileName}`;
 
   const {error} = await supabase
     .storage
-    .from('productImages')
+    .from(bucket)
     .upload(filePath, file);
   if (error) throw error;
   const {data} = await supabase
     .storage
-    .from('productImages')
+    .from(bucket)
     .getPublicUrl(filePath);
 
   return data.publicUrl;

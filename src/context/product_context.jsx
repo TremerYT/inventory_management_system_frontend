@@ -1,7 +1,13 @@
-import {createContext, useContext, useEffect, useState} from "react";
+import {createContext, useContext, useEffect, useRef, useState} from "react";
 import {Form, message} from "antd";
-import {upload} from "../services/supabase_storage.js";
-import {createProduct, getLowStockProducts, getOutOfStockProducts, getProducts} from "../services/product.service.js";
+import {upload, uploadProduct} from "../services/supabase_storage.js";
+import {
+  createProduct,
+  getLowStockProducts,
+  getOutOfStockProducts,
+  getProducts,
+  getProductsByQuery
+} from "../services/product.service.js";
 
 const ProductContext = createContext();
 export const ProductProvider = ({children}) => {
@@ -13,6 +19,9 @@ export const ProductProvider = ({children}) => {
   const [searchText, setSearchText] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedBrand, setSelectedBrand] = useState(null);
+  const [productOptions, setProductOptions] = useState([]);
+  const [saleItems, setSaleItems] = useState([]);
+  const debounce = useRef(null);
 
   const filteredData = products.filter((product) => {
     const matchesSearch =
@@ -26,16 +35,58 @@ export const ProductProvider = ({children}) => {
     return matchesSearch && matchesCategory && matchesBrand;
   });
 
+  const handleOnSelect = (_, option) => {
+    console.log(option);
+    console.log(_);
+    const product = option.product;
+    setSaleItems(prev => {
+      const exists = prev.find(i => i.skuNumber === product.skuNumber);
+
+      if (exists) {
+        return prev.map(i =>
+          i.skuNumber === product.skuNumber
+            ? { ...i, quantity: i.quantity + 1 }
+            : i
+        );
+      }
+
+      return [
+        ...prev,
+        {
+          id: product.id,
+          name: product.productName,
+          price: product.unitPrice,
+          quantity: 1,
+          stock: product.stock
+        }
+      ];
+    });
+  }
+
+  const handleOnSearch = (value) => {
+    clearTimeout(debounce.current);
+
+    if (!value) {
+      setProductOptions([]);
+      return;
+    }
+
+    debounce.current = setTimeout(() =>{
+      fetchProductsByQuery(value);
+    }, 300)
+  }
+
 
   const handleOnFinish = async (values) => {
     try {
       setLoading(true);
       const mainImage = values.mainImage[0]?.originFileObj;
-      const mainImageUrl = await upload(mainImage, "main");
+      const mainImageUrl = await upload(mainImage, "main", "productImages'");
 
       const galleryImagesUrl = await Promise.all(
         values.galleryImages.map((image) =>
-          upload(image.originFileObj, "gallery"))
+          upload(image.originFileObj, "gallery", "productImages")
+        )
       );
 
       const data = {
@@ -55,6 +106,34 @@ export const ProductProvider = ({children}) => {
   }
   const handleOnCancel = () => {
     form.resetFields();
+  }
+
+  const fetchProductsByQuery = async(query) => {
+    try {
+      setLoading(true);
+      const data = await getProductsByQuery(query);
+      console.log(data);
+      setProductOptions(
+        data.map((product) => ({
+          value: product.productName,
+          label: (
+            <div>
+              <strong>{product.productName}</strong>
+              <div style={{ fontSize: 12, color: "#888" }}>
+                {product.skuNumber} · KES {product.unitPrice} · Stock: {product.quantity}
+              </div>
+            </div>
+          ),
+          products: product
+        }))
+      )
+    }
+    catch (e) {
+      console.error(e);
+    }
+    finally {
+      setLoading(false);
+    }
   }
 
   const fetchProducts = async () => {

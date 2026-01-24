@@ -1,6 +1,7 @@
 import {createContext, useContext, useEffect, useState} from "react";
 import {createCategory, getCategory} from "../services/category.service.js";
 import {message} from "antd";
+import {upload} from "../services/supabase_storage.js";
 
 const CategoryContext = createContext(null);
 export const CategoryProvider = ({children}) => {
@@ -44,6 +45,8 @@ export const CategoryProvider = ({children}) => {
   const addCategory = async (values) => {
     try {
       setIsloading(true);
+      const categoryImage = values.categoryImage[0]?.originFileObj;
+      const categoryImageUrl = await upload(categoryImage, "categories", "")
       const response = await createCategory(values);
       await fetchCategories();
       
