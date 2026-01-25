@@ -46,13 +46,19 @@ export const CategoryProvider = ({children}) => {
     try {
       setIsloading(true);
       const categoryImage = values.categoryImage[0]?.originFileObj;
-      const categoryImageUrl = await upload(categoryImage, "categories", "")
-      const response = await createCategory(values);
+      const categoryImageUrl = await upload(categoryImage, "categories", "categoryImages");
+
+      const data = {
+        ...values,
+        categoryImage: categoryImageUrl
+      }
+      const response = await createCategory(data);
       await fetchCategories();
       
       message.success("Category added successfully");
       return true;
     } catch (e) {
+      setIsloading(false);
       message.error("Failed to add category");
       console.error("Failed to add category: ", e);
       return false;

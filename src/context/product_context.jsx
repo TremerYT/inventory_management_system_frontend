@@ -1,6 +1,6 @@
 import {createContext, useContext, useEffect, useRef, useState} from "react";
 import {Form, message} from "antd";
-import {upload, uploadProduct} from "../services/supabase_storage.js";
+import {upload} from "../services/supabase_storage.js";
 import {
   createProduct,
   getLowStockProducts,
@@ -81,7 +81,7 @@ export const ProductProvider = ({children}) => {
     try {
       setLoading(true);
       const mainImage = values.mainImage[0]?.originFileObj;
-      const mainImageUrl = await upload(mainImage, "main", "productImages'");
+      const mainImageUrl = await upload(mainImage, "main", "productImages");
 
       const galleryImagesUrl = await Promise.all(
         values.galleryImages.map((image) =>
@@ -97,8 +97,10 @@ export const ProductProvider = ({children}) => {
       const response = await createProduct(data);
       message.success("Added Product successfully");
       form.resetFields();
+      await fetchProducts();
     } catch (e) {
       setLoading(false);
+      console.error("Error Uploading the product:", e);
       message.error("Something went wrong uploading the Product");
     } finally {
       setLoading(false);
