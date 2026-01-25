@@ -44,8 +44,8 @@ export const ProductProvider = ({children}) => {
 
       if (exists) {
         return prev.map(i =>
-          i.skuNumber === product.skuNumber
-            ? { ...i, quantity: i.quantity + 1 }
+          i.sku === product.skuNumber
+            ? { ...i, quantity: i.quantity + 1, subtotal: (i.quantity + 1) * i.price}
             : i
         );
       }
@@ -53,11 +53,13 @@ export const ProductProvider = ({children}) => {
       return [
         ...prev,
         {
-          id: product.id,
+          productId: product.id,
+          sku: product.skuNumber,
           name: product.productName,
           price: product.unitPrice,
           quantity: 1,
-          stock: product.stock
+          stock: product.quantity,
+          subtotal: product.unitPrice
         }
       ];
     });
@@ -73,7 +75,7 @@ export const ProductProvider = ({children}) => {
 
     debounce.current = setTimeout(() =>{
       fetchProductsByQuery(value);
-    }, 300)
+    }, 100);
   }
 
 
@@ -106,6 +108,7 @@ export const ProductProvider = ({children}) => {
       setLoading(false);
     }
   }
+
   const handleOnCancel = () => {
     form.resetFields();
   }
@@ -122,11 +125,11 @@ export const ProductProvider = ({children}) => {
             <div>
               <strong>{product.productName}</strong>
               <div style={{ fontSize: 12, color: "#888" }}>
-                {product.skuNumber} · KES {product.unitPrice} · Stock: {product.quantity}
+                {product.skuNumber} · KES {product.unitPrice} · Quantity: {product.quantity}
               </div>
             </div>
           ),
-          products: product
+          product: product
         }))
       )
     }
@@ -190,6 +193,10 @@ export const ProductProvider = ({children}) => {
       lowStockProducts,
       outOfStockProducts,
       filteredData,
+      productOptions,
+      saleItems,
+      handleOnSearch,
+      handleOnSelect,
       handleOnCancel,
       handleOnFinish,
       setSearchText,

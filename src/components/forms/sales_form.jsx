@@ -4,14 +4,12 @@ import {useEffect, useState} from "react";
 import {useProduct} from "../../context/product_context.jsx";
 
 const generateRef = () => {
-  const code = "SALE";
-  const randomNumber = Math.floor(1000 + Math.random() * 9000);
-  return `${code}-${randomNumber}`;
+  return `SALE-${Date.now().toString().slice(-6)}`;
 };
 
 const SalesForm = () => {
   const [form] = Form.useForm();
-  const {productOptions, handleSearch, handleOnSelect, saleItems} = useProduct();
+  const {productOptions, handleOnSearch, handleOnSelect, saleItems} = useProduct();
 
   useEffect(() => {
     const number = generateRef();
@@ -70,7 +68,8 @@ const SalesForm = () => {
             <AutoComplete
               options={productOptions}
               onSelect={handleOnSelect}
-              onSearch={handleSearch}
+              onSearch={handleOnSearch}
+              filterOption={false}
             >
               <Input.Search size="large" className="w-full"/>
             </AutoComplete>
