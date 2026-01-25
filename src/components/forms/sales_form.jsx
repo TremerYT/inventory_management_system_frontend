@@ -1,7 +1,7 @@
-import {AutoComplete, Col, DatePicker, Form, Input, Row, Select} from "antd";
+import { AutoComplete, Col, DatePicker, Form, Input, Row, Select } from "antd";
 import dayjs from "dayjs";
-import {useEffect, useState} from "react";
-import {useProduct} from "../../context/product_context.jsx";
+import { useEffect } from "react";
+import { useProduct } from "../../context/product_context.jsx";
 
 const generateRef = () => {
   return `SALE-${Date.now().toString().slice(-6)}`;
@@ -9,27 +9,20 @@ const generateRef = () => {
 
 const SalesForm = () => {
   const [form] = Form.useForm();
-  const {productOptions, handleOnSearch, handleOnSelect, saleItems} = useProduct();
+  const { productOptions, handleOnSearch, handleOnSelect, saleItems } =
+    useProduct();
 
   useEffect(() => {
     const number = generateRef();
-    form.setFieldsValue({referenceNumber: number});
+    form.setFieldsValue({ referenceNumber: number });
   }, [form]);
 
   return (
-    <Form
-      layout="vertical"
-      form={form}
-      onFinish={(values) => {
-      }}
-    >
+    <Form layout="vertical" form={form} onFinish={(values) => {}}>
       <Row gutter={[16, 16]}>
         <Col span={8}>
-          <Form.Item
-            label="Reference No"
-            name="referenceNumber"
-          >
-            <Input disabled/>
+          <Form.Item label="Reference No" name="referenceNumber">
+            <Input disabled />
           </Form.Item>
         </Col>
 
@@ -37,7 +30,7 @@ const SalesForm = () => {
           <Form.Item
             label="Date"
             name="date"
-            rules={[{required: true, message: "Date is required"}]}
+            rules={[{ required: true, message: "Date is required" }]}
           >
             <DatePicker
               className="w-full"
@@ -52,9 +45,9 @@ const SalesForm = () => {
           <Form.Item
             label="Customer name"
             name="customerName"
-            rules={[{required: true, message: "Customer Name is required"}]}
+            rules={[{ required: true, message: "Customer Name is required" }]}
           >
-            <Select options={[]}/>
+            <Select options={[]} />
           </Form.Item>
         </Col>
       </Row>
@@ -63,7 +56,7 @@ const SalesForm = () => {
           <Form.Item
             label="Choose product"
             name="productName"
-            rules={[{required: true, message: "Product Name is required"}]}
+            rules={[{ required: true, message: "Product Name is required" }]}
           >
             <AutoComplete
               options={productOptions}
@@ -71,10 +64,9 @@ const SalesForm = () => {
               onSearch={handleOnSearch}
               filterOption={false}
             >
-              <Input.Search size="large" className="w-full"/>
+              <Input.Search size="large" className="w-full" />
             </AutoComplete>
           </Form.Item>
-
         </Col>
       </Row>
     </Form>

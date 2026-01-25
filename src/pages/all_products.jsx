@@ -1,16 +1,27 @@
-import {Button, Card, Input, Select, Table} from "antd";
-import {FileExcelFilled, FilePdfFilled, PlusOutlined, ReloadOutlined,} from "@ant-design/icons";
-import {brands} from "../utils/select_items.js";
-import {useState} from "react";
-import {productColumns} from "../utils/columns.jsx";
-import {useNavigate} from "react-router";
-import {useProduct} from "../context/product_context.jsx";
-import {useCategory} from "../context/category_provider.jsx";
+import { Button, Card, Input, Select, Table } from "antd";
+import {
+  FileExcelFilled,
+  FilePdfFilled,
+  PlusOutlined,
+  ReloadOutlined,
+} from "@ant-design/icons";
+import { brands } from "../utils/select_items.js";
+import { useState } from "react";
+import { productColumns } from "../utils/columns.jsx";
+import { useNavigate } from "react-router";
+import { useProduct } from "../context/product_context.jsx";
+import { useCategory } from "../context/category_provider.jsx";
 
 const AllProducts = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  const {products, loading, setSelectedCategory, setSelectedBrand, setSearchText, filteredData} = useProduct();
-  const {categoryFilter} = useCategory();
+  const {
+    loading,
+    setSelectedCategory,
+    setSelectedBrand,
+    setSearchText,
+    filteredData,
+  } = useProduct();
+  const { categoryFilter } = useCategory();
   const navigate = useNavigate();
 
   const rowSelection = {
@@ -30,25 +41,26 @@ const AllProducts = () => {
         <div className="flex gap-3">
           <Button
             type="text"
-            icon={<FilePdfFilled style={{fontSize: 20, color: "red"}}/>}
-            onClick={() => {
-            }}
+            icon={<FilePdfFilled style={{ fontSize: 20, color: "red" }} />}
+            onClick={() => {}}
           />
           <Button
             type="text"
-            icon={<FileExcelFilled style={{fontSize: 20, color: "green"}}/>}
-            onClick={() => {
-            }}
+            icon={<FileExcelFilled style={{ fontSize: 20, color: "green" }} />}
+            onClick={() => {}}
           />
           <Button
             type="text"
-            icon={<ReloadOutlined style={{fontSize: 20}}/>}
-            onClick={() => {
-            }}
+            icon={<ReloadOutlined style={{ fontSize: 20 }} />}
+            onClick={() => {}}
           />
-          <Button type="primary" icon={<PlusOutlined/>} onClick={() => {
-            navigate('/products/add')
-          }}>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => {
+              navigate("/products/add");
+            }}
+          >
             Add Product
           </Button>
         </div>
@@ -86,8 +98,9 @@ const AllProducts = () => {
           rowSelection={rowSelection}
           columns={productColumns}
           dataSource={filteredData}
-          pagination={{pageSize: 10}}
+          pagination={{ pageSize: 10 }}
           loading={loading}
+          rowKey="skuNumber"
         />
       </Card>
     </>
