@@ -534,5 +534,4 @@ export const outOfStockColumns = [
       </Space>
     ),
   },
-];
-
+]

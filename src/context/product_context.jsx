@@ -37,38 +37,60 @@ export const ProductProvider = ({ children }) => {
   });
 
   const handleOnSelect = (_, option) => {
-    console.log(option);
-    console.log(_);
     const product = option.product;
+    console.log(product.categoryName);
     setSaleItems((prev) => {
-      const exists = prev.find((i) => i.skuNumber === product.skuNumber);
-
-      if (exists) {
-        return prev.map((i) =>
-          i.sku === product.skuNumber
-            ? {
-                ...i,
-                quantity: i.quantity + 1,
-                subtotal: (i.quantity + 1) * i.price,
-              }
-            : i,
-        );
-      }
-
+      const exists = prev.some((i) => i.skuNumber === product.skuNumber);
+      if (exists) return prev;
       return [
         ...prev,
         {
-          productId: product.id,
-          sku: product.skuNumber,
-          name: product.productName,
+          skuNumber: product.skuNumber,
+          productName: product.productName,
+          categoryName: product.categoryName,
+          brand: product.brand,
+          unit: product.unit,
           price: product.unitPrice,
+          discountType: product.discountType,
+          discountValue: product.discountValue,
           quantity: 1,
           stock: product.quantity,
-          subtotal: product.unitPrice,
+          subTotal: calculateSubTotal(1, product.unitPrice, product.discountType, product.discountValue),
         },
       ];
     });
   };
+
+  const handleQuantityChange = (record, change) => {
+    setSaleItems(
+      (prev) => prev.map((item) => {
+        if (item.skuNumber !== record.skuNumber) return item;
+        const newQuantity = item.quantity + change;
+        if (newQuantity < 1) return null;
+        return {
+          ...item,
+          quantity: newQuantity,
+          subTotal: calculateSubTotal(
+            newQuantity,
+            item.price,
+            item.discountType,
+            item.discountValue
+          )
+        }
+      })
+    )
+  }
+
+
+  const calculateSubTotal = (quantity, price, discountType, discountValue) => {
+    if (!discountValue) return quantity * price;
+
+    if (discountType === "PERCENTAGE") {
+      return quantity * price * (1 - discountValue / 100);
+    }
+
+    return quantity * price - discountValue;
+  }
 
   const handleOnSearch = (value) => {
     clearTimeout(debounce.current);
@@ -201,6 +223,8 @@ export const ProductProvider = ({ children }) => {
         handleOnSelect,
         handleOnCancel,
         handleOnFinish,
+        handleQuantityChange,
+        calculateSubTotal,
         setSearchText,
         setSelectedCategory,
         setSelectedBrand,

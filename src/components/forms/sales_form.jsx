@@ -9,8 +9,7 @@ const generateRef = () => {
 
 const SalesForm = () => {
   const [form] = Form.useForm();
-  const { productOptions, handleOnSearch, handleOnSelect, saleItems } =
-    useProduct();
+  const { productOptions, handleOnSearch, handleOnSelect} = useProduct();
 
   useEffect(() => {
     const number = generateRef();
